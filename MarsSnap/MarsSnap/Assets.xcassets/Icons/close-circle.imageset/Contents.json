@@ -1,6 +1,7 @@
 {
-  "colors" : [
+  "images" : [
     {
+      "filename" : "close-circle.pdf",
       "idiom" : "universal"
     }
   ],
