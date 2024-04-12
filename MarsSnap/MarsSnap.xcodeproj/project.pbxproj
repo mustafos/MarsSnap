@@ -17,6 +17,7 @@
 		6A681A7E2BC7E87B00DC11EA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A681A7D2BC7E87B00DC11EA /* SceneDelegate.swift */; };
 		6A681A822BC7F44600DC11EA /* MarsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A681A812BC7F44600DC11EA /* MarsViewModel.swift */; };
 		6A681A842BC7F45300DC11EA /* Mars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A681A832BC7F45300DC11EA /* Mars.swift */; };
+		6A681A892BC8124300DC11EA /* HistoryButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A681A882BC8124300DC11EA /* HistoryButtonComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		6A681A7F2BC7F2AB00DC11EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A681A812BC7F44600DC11EA /* MarsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsViewModel.swift; sourceTree = "<group>"; };
 		6A681A832BC7F45300DC11EA /* Mars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mars.swift; sourceTree = "<group>"; };
+		6A681A882BC8124300DC11EA /* HistoryButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryButtonComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			children = (
 				6A681A782BC7CDE200DC11EA /* CardComponent.swift */,
 				6A681A7A2BC7CDF500DC11EA /* FiltersCardComponent.swift */,
+				6A681A882BC8124300DC11EA /* HistoryButtonComponent.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A681A892BC8124300DC11EA /* HistoryButtonComponent.swift in Sources */,
 				6A681A842BC7F45300DC11EA /* Mars.swift in Sources */,
 				6A681A7E2BC7E87B00DC11EA /* SceneDelegate.swift in Sources */,
 				6A681A792BC7CDE200DC11EA /* CardComponent.swift in Sources */,
