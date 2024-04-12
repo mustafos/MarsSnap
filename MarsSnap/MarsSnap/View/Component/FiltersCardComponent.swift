@@ -13,6 +13,7 @@ struct FiltersCardComponent: View {
     }
 }
 
+// MARK: – PREVIEW
 #Preview {
     FiltersCardComponent()
 }

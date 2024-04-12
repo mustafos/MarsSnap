@@ -20,7 +20,7 @@ struct HistoryButtonComponent: View {
                     Spacer()
                     Circle()
                         .frame(width: 70, height: 70)
-                        .foregroundColor(.accentOne)
+                        .foregroundColor(.accentColor)
                         .shadow(radius: 3)
                         .overlay(Image("archive"))
                         .opacity(opacityState)

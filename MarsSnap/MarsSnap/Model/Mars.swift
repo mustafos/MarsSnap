@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+struct MarsData: Identifiable, Hashable {
+    let id = UUID()
+    let rover: String
+    let camera: String
+    let date: String
+    let photo: String
+}
