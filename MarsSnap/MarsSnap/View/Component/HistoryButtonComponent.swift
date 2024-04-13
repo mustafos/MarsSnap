@@ -10,6 +10,7 @@ import SwiftUI
 struct HistoryButtonComponent: View {
     @State private var dragAmount: CGPoint?
     @State private var opacityState: Double = 1
+    @State private var isHistoryPresented = false
     var action: () -> Void
     
     var body: some View {
@@ -21,7 +22,7 @@ struct HistoryButtonComponent: View {
                     Circle()
                         .frame(width: 70, height: 70)
                         .foregroundColor(.accentColor)
-                        .shadow(radius: 3)
+                        .shadow (radius: 5)
                         .overlay(Image("archive"))
                         .opacity(opacityState)
                         .onTapGesture {

@@ -19,24 +19,18 @@ struct MarsImageView: View {
         ZStack {
             Color.layerOne
                 .edgesIgnoringSafeArea(.all)
-            VStack(alignment: .center, spacing: 20) {
-                // MARS IMAGE
-                Image(image)
-                    .resizable()
-                    .scaledToFit()
-            }
-            .navigationBarBackButtonHidden()
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button {
-                        feedback.impactOccurred()
-                        presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        Image("close-circle")
-                    }
-                }
-            }
+            // MARS IMAGE
+            Image(image)
+                .resizable()
+                .scaledToFit()
         } //: ZSTACK
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: Button {
+            feedback.impactOccurred()
+            presentationMode.wrappedValue.dismiss()
+        } label: {
+            Image("close-circle")
+        })
     }
 }
 

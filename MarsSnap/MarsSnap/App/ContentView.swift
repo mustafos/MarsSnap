@@ -10,8 +10,6 @@ import SwiftUI
 struct ContentView: View {
     
     // MARK: – PROPERTIES
-    @State private var gridLayout: [GridItem] = [ GridItem(.flexible()) ]
-    
     let animals = [
         MarsData(rover: "Spirit", camera: "Navigation Camera", date: "April 18, 2005", photo: "photo"),
         MarsData(rover: "Curiosity", camera: "ChemCam", date: "August 29, 2012", photo: "photo"),
@@ -30,10 +28,12 @@ struct ContentView: View {
         NavigationView {
             Group {
                 VStack {
+//                    LottieView(loopMode: .loop)
+//                                .scaleEffect(0.4)
                     HeaderView()
                     ZStack {
                         ScrollView(.vertical, showsIndicators: false) {
-                            LazyVGrid(columns: gridLayout, alignment: .center, spacing: 10) {
+                            Spacer()
                                 ForEach(animals, id: \.self) { mars in
                                     NavigationLink(destination: MarsImageView(image: mars.photo)) {
                                         CardComponent(rover: mars.rover, camera: mars.camera, date: mars.date, photo: mars.photo)
@@ -45,19 +45,19 @@ struct ContentView: View {
                                         .font(.footnote)
                                         .multilineTextAlignment(.center)
                                     Spacer()
-                                }
-                            } //: GRID
+                                } //: HSTACK
                             .padding(10)
                             .animation(.easeIn)
                         } //: SCROLL
                         
                         HistoryButtonComponent {
-                            print("History")
+                            feedback.impactOccurred()
                         }
                     } //: ZSTACK
                     .background(Color.backgroundOne)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .edgesIgnoringSafeArea(.all)
+                    
                 } //: VSTACK
                 .background(Color.accentColor)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -78,12 +78,16 @@ struct ContentView: View {
                     Text("June 6, 2019")
                 }
                 Spacer()
-                Button(action: {}, label: {
+                Button(action: {
+                    feedback.impactOccurred()
+                }, label: {
                     Image("calendar")
                 })
             } //: HSTACK
             HStack {
-                Button {} label: {
+                Button {
+                    feedback.impactOccurred()
+                } label: {
                     HStack {
                         Image("cpu")
                         Text("All")
