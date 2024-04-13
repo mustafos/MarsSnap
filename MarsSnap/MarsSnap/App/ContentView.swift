@@ -26,14 +26,15 @@ struct ContentView: View {
     // MARK: – BODY
     var body: some View {
         NavigationView {
-            Group {
-                VStack {
-//                    LottieView(loopMode: .loop)
-//                                .scaleEffect(0.4)
-                    HeaderView()
-                    ZStack {
-                        ScrollView(.vertical, showsIndicators: false) {
-                            Spacer()
+            ZStack(alignment: .bottomTrailing) {
+                Group {
+                    VStack {
+//                        LottieView(loopMode: .loop)
+//                            .scaleEffect(0.4)
+                        HeaderView()
+                        ZStack {
+                            ScrollView(.vertical, showsIndicators: false) {
+                                Spacer()
                                 ForEach(animals, id: \.self) { mars in
                                     NavigationLink(destination: MarsImageView(image: mars.photo)) {
                                         CardComponent(rover: mars.rover, camera: mars.camera, date: mars.date, photo: mars.photo)
@@ -46,24 +47,24 @@ struct ContentView: View {
                                         .multilineTextAlignment(.center)
                                     Spacer()
                                 } //: HSTACK
-                            .padding(10)
-                            .animation(.easeIn)
-                        } //: SCROLL
+                                .padding(10)
+                                .animation(.easeIn)
+                            } //: SCROLL
+                        } //: ZSTACK
+                        .background(Color.backgroundOne)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .edgesIgnoringSafeArea(.all)
                         
-                        HistoryButtonComponent {
-                            feedback.impactOccurred()
-                        }
-                    } //: ZSTACK
-                    .background(Color.backgroundOne)
+                    } //: VSTACK
+                    .background(Color.accentColor)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .edgesIgnoringSafeArea(.all)
-                    
-                } //: VSTACK
-                .background(Color.accentColor)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .edgesIgnoringSafeArea(.all)
-            } //: GROUP
-            .navigationBarHidden(true)
+                } //: GROUP
+                .navigationBarHidden(true)
+                
+                HistoryButton()
+                
+            } //: ZSTACK
         } //: NAVIGATION
     }
     
@@ -121,6 +122,22 @@ struct ContentView: View {
         .padding(.bottom, 10)
         .background(Color.accentColor)
         .edgesIgnoringSafeArea(.all)
+    }
+    
+    @ViewBuilder
+    private func HistoryButton() -> some View {
+        NavigationLink {
+            HistoryView()
+        } label: {
+            Circle()
+                .frame(width: 70, height: 70)
+                .foregroundColor(.accentColor)
+                .shadow (radius: 5)
+                .overlay(Image("archive"))
+        }
+        .edgesIgnoringSafeArea(.all)
+        .padding(.trailing, 20)
+        .padding(.bottom, 10)
     }
 }
 

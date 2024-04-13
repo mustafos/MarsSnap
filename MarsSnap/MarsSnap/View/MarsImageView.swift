@@ -30,6 +30,7 @@ struct MarsImageView: View {
             presentationMode.wrappedValue.dismiss()
         } label: {
             Image("close-circle")
+                .frame(width: 44, height: 44)
         })
     }
 }

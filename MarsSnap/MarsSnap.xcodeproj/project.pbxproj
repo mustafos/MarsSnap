@@ -13,7 +13,6 @@
 		6AE6FB432BC995BF00F31EDE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AE6FB422BC995BF00F31EDE /* Preview Assets.xcassets */; };
 		6AE6FB512BC9967300F31EDE /* CardComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB4D2BC9967300F31EDE /* CardComponent.swift */; };
 		6AE6FB522BC9967300F31EDE /* FiltersCardComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB4E2BC9967300F31EDE /* FiltersCardComponent.swift */; };
-		6AE6FB532BC9967300F31EDE /* HistoryButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB4F2BC9967300F31EDE /* HistoryButtonComponent.swift */; };
 		6AE6FB5A2BC996D000F31EDE /* MarsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB542BC996D000F31EDE /* MarsViewModel.swift */; };
 		6AE6FB5B2BC996D000F31EDE /* Mars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB562BC996D000F31EDE /* Mars.swift */; };
 		6AE6FB5C2BC996D000F31EDE /* MarsImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB582BC996D000F31EDE /* MarsImageView.swift */; };
@@ -22,7 +21,8 @@
 		6AE6FB662BCA7FF900F31EDE /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 6AE6FB652BCA7FF900F31EDE /* Lottie */; };
 		6AE6FB682BCA817100F31EDE /* loader.json in Resources */ = {isa = PBXBuildFile; fileRef = 6AE6FB672BCA817100F31EDE /* loader.json */; };
 		6AE6FB6A2BCA81D900F31EDE /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB692BCA81D900F31EDE /* LottieView.swift */; };
-		6AE6FB6F2BCA8E8A00F31EDE /* loader.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6AE6FB6E2BCA8E8A00F31EDE /* loader.gif */; };
+		6AE6FB712BCA99AC00F31EDE /* Preloader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AE6FB702BCA99AC00F31EDE /* Preloader.storyboard */; };
+		6AE6FB732BCA9AAA00F31EDE /* Preloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB722BCA9AAA00F31EDE /* Preloader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +33,6 @@
 		6AE6FB422BC995BF00F31EDE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6AE6FB4D2BC9967300F31EDE /* CardComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardComponent.swift; sourceTree = "<group>"; };
 		6AE6FB4E2BC9967300F31EDE /* FiltersCardComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersCardComponent.swift; sourceTree = "<group>"; };
-		6AE6FB4F2BC9967300F31EDE /* HistoryButtonComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryButtonComponent.swift; sourceTree = "<group>"; };
 		6AE6FB542BC996D000F31EDE /* MarsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsViewModel.swift; sourceTree = "<group>"; };
 		6AE6FB562BC996D000F31EDE /* Mars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mars.swift; sourceTree = "<group>"; };
 		6AE6FB582BC996D000F31EDE /* MarsImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsImageView.swift; sourceTree = "<group>"; };
@@ -41,7 +40,8 @@
 		6AE6FB602BC9C60500F31EDE /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		6AE6FB672BCA817100F31EDE /* loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loader.json; sourceTree = "<group>"; };
 		6AE6FB692BCA81D900F31EDE /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
-		6AE6FB6E2BCA8E8A00F31EDE /* loader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loader.gif; sourceTree = "<group>"; };
+		6AE6FB702BCA99AC00F31EDE /* Preloader.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preloader.storyboard; sourceTree = "<group>"; };
+		6AE6FB722BCA9AAA00F31EDE /* Preloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preloader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +80,9 @@
 				6AE6FB592BC996D000F31EDE /* View */,
 				6AE6FB552BC996D000F31EDE /* ViewModel */,
 				6AE6FB3F2BC995BF00F31EDE /* Assets.xcassets */,
-				6AE6FB6E2BCA8E8A00F31EDE /* loader.gif */,
 				6AE6FB672BCA817100F31EDE /* loader.json */,
+				6AE6FB702BCA99AC00F31EDE /* Preloader.storyboard */,
+				6AE6FB722BCA9AAA00F31EDE /* Preloader.swift */,
 				6AE6FB5E2BC9A1A800F31EDE /* Constant.swift */,
 				6AE6FB412BC995BF00F31EDE /* Preview Content */,
 			);
@@ -101,7 +102,6 @@
 			children = (
 				6AE6FB4D2BC9967300F31EDE /* CardComponent.swift */,
 				6AE6FB4E2BC9967300F31EDE /* FiltersCardComponent.swift */,
-				6AE6FB4F2BC9967300F31EDE /* HistoryButtonComponent.swift */,
 				6AE6FB692BCA81D900F31EDE /* LottieView.swift */,
 			);
 			path = Component;
@@ -207,7 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AE6FB432BC995BF00F31EDE /* Preview Assets.xcassets in Resources */,
-				6AE6FB6F2BCA8E8A00F31EDE /* loader.gif in Resources */,
+				6AE6FB712BCA99AC00F31EDE /* Preloader.storyboard in Resources */,
 				6AE6FB402BC995BF00F31EDE /* Assets.xcassets in Resources */,
 				6AE6FB682BCA817100F31EDE /* loader.json in Resources */,
 			);
@@ -220,10 +220,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6AE6FB532BC9967300F31EDE /* HistoryButtonComponent.swift in Sources */,
 				6AE6FB612BC9C60500F31EDE /* HistoryView.swift in Sources */,
 				6AE6FB5B2BC996D000F31EDE /* Mars.swift in Sources */,
 				6AE6FB3E2BC995BE00F31EDE /* ContentView.swift in Sources */,
+				6AE6FB732BCA9AAA00F31EDE /* Preloader.swift in Sources */,
 				6AE6FB3C2BC995BE00F31EDE /* MarsSnapApp.swift in Sources */,
 				6AE6FB512BC9967300F31EDE /* CardComponent.swift in Sources */,
 				6AE6FB5A2BC996D000F31EDE /* MarsViewModel.swift in Sources */,
@@ -373,7 +373,6 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -411,7 +410,6 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

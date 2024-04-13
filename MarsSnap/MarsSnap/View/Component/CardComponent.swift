@@ -11,6 +11,7 @@ struct CardComponent: View {
     
     // MARK: – PROPERTIES
     //    let model: Mars
+    var isFilterCard: Bool = false
     var rover: String
     var camera: String
     var date: String
@@ -24,6 +25,16 @@ struct CardComponent: View {
             
             HStack {
                 VStack(alignment: .leading, spacing: 8) {
+                    if isFilterCard {
+                        HStack {
+                            RoundedRectangle(cornerRadius: 25)
+                                .fill(Color.accentColor)
+                                .frame(height: 1)
+                            Text("Filters")
+                                .font(.custom("SF Pro", size: 22))
+                                .fontWeight(.bold)
+                        }
+                    }
                     Text("Rover: ")
                         .foregroundColor(.layerTwo)
                         .fontWeight(.regular)
@@ -43,20 +54,22 @@ struct CardComponent: View {
                         .fontWeight(.bold)
                         .foregroundColor(.layerOne)
                 } //: VSTACK
-                
                 Spacer()
-                
-                Image(photo)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 130, height: 130)
-                    .clipShape(
-                        RoundedRectangle(cornerRadius: 20)
-                    )
+                if !isFilterCard {
+                    Image(photo)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 130, height: 130)
+                        .clipShape(
+                            RoundedRectangle(cornerRadius: 20)
+                        )
+                }
             } //: HSTACK
             .padding(10)
         } //: ZSTACK
+        .frame(maxWidth: .infinity)
         .frame(height: 150)
+        .padding(.horizontal, 20)
         .clipped()
         .shadow(radius: 10)
     }

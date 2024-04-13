@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-#if canImport(UIKit) && !os(watchOS)
+#if canImport(UIKit)
 @available(iOS 14.0, *)
 @main
 struct MarsSnapApp: App {
