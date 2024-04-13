@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6A06599C2BCAF333005D9B8E /* DatePickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A06599B2BCAF333005D9B8E /* DatePickerComponent.swift */; };
+		6A357C7F2BCB0B5B0048A833 /* GeneralFilterComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A357C7E2BCB0B5B0048A833 /* GeneralFilterComponent.swift */; };
+		6A357C812BCB159D0048A833 /* Preloader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A357C802BCB159D0048A833 /* Preloader.storyboard */; };
 		6AE6FB3C2BC995BE00F31EDE /* MarsSnapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB3B2BC995BE00F31EDE /* MarsSnapApp.swift */; };
 		6AE6FB3E2BC995BE00F31EDE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB3D2BC995BE00F31EDE /* ContentView.swift */; };
 		6AE6FB402BC995BF00F31EDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AE6FB3F2BC995BF00F31EDE /* Assets.xcassets */; };
@@ -18,15 +20,12 @@
 		6AE6FB5C2BC996D000F31EDE /* MarsImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB582BC996D000F31EDE /* MarsImageView.swift */; };
 		6AE6FB5F2BC9A1A800F31EDE /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB5E2BC9A1A800F31EDE /* Constant.swift */; };
 		6AE6FB612BC9C60500F31EDE /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB602BC9C60500F31EDE /* HistoryView.swift */; };
-		6AE6FB662BCA7FF900F31EDE /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 6AE6FB652BCA7FF900F31EDE /* Lottie */; };
-		6AE6FB682BCA817100F31EDE /* loader.json in Resources */ = {isa = PBXBuildFile; fileRef = 6AE6FB672BCA817100F31EDE /* loader.json */; };
-		6AE6FB6A2BCA81D900F31EDE /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB692BCA81D900F31EDE /* LottieView.swift */; };
-		6AE6FB712BCA99AC00F31EDE /* Preloader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AE6FB702BCA99AC00F31EDE /* Preloader.storyboard */; };
-		6AE6FB732BCA9AAA00F31EDE /* Preloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB722BCA9AAA00F31EDE /* Preloader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6A06599B2BCAF333005D9B8E /* DatePickerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerComponent.swift; sourceTree = "<group>"; };
+		6A357C7E2BCB0B5B0048A833 /* GeneralFilterComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralFilterComponent.swift; sourceTree = "<group>"; };
+		6A357C802BCB159D0048A833 /* Preloader.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preloader.storyboard; sourceTree = "<group>"; };
 		6AE6FB382BC995BE00F31EDE /* MarsSnap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarsSnap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AE6FB3B2BC995BE00F31EDE /* MarsSnapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsSnapApp.swift; sourceTree = "<group>"; };
 		6AE6FB3D2BC995BE00F31EDE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -38,10 +37,6 @@
 		6AE6FB582BC996D000F31EDE /* MarsImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsImageView.swift; sourceTree = "<group>"; };
 		6AE6FB5E2BC9A1A800F31EDE /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		6AE6FB602BC9C60500F31EDE /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
-		6AE6FB672BCA817100F31EDE /* loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loader.json; sourceTree = "<group>"; };
-		6AE6FB692BCA81D900F31EDE /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
-		6AE6FB702BCA99AC00F31EDE /* Preloader.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preloader.storyboard; sourceTree = "<group>"; };
-		6AE6FB722BCA9AAA00F31EDE /* Preloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preloader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,7 +44,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6AE6FB662BCA7FF900F31EDE /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,9 +74,7 @@
 				6AE6FB592BC996D000F31EDE /* View */,
 				6AE6FB552BC996D000F31EDE /* ViewModel */,
 				6AE6FB3F2BC995BF00F31EDE /* Assets.xcassets */,
-				6AE6FB672BCA817100F31EDE /* loader.json */,
-				6AE6FB702BCA99AC00F31EDE /* Preloader.storyboard */,
-				6AE6FB722BCA9AAA00F31EDE /* Preloader.swift */,
+				6A357C802BCB159D0048A833 /* Preloader.storyboard */,
 				6AE6FB5E2BC9A1A800F31EDE /* Constant.swift */,
 				6AE6FB412BC995BF00F31EDE /* Preview Content */,
 			);
@@ -102,7 +94,7 @@
 			children = (
 				6AE6FB4D2BC9967300F31EDE /* CardComponent.swift */,
 				6A06599B2BCAF333005D9B8E /* DatePickerComponent.swift */,
-				6AE6FB692BCA81D900F31EDE /* LottieView.swift */,
+				6A357C7E2BCB0B5B0048A833 /* GeneralFilterComponent.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -159,7 +151,6 @@
 			);
 			name = MarsSnap;
 			packageProductDependencies = (
-				6AE6FB652BCA7FF900F31EDE /* Lottie */,
 			);
 			productName = MarsSnap;
 			productReference = 6AE6FB382BC995BE00F31EDE /* MarsSnap.app */;
@@ -190,7 +181,6 @@
 			);
 			mainGroup = 6AE6FB2F2BC995BE00F31EDE;
 			packageReferences = (
-				6AE6FB642BCA7FF900F31EDE /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 6AE6FB392BC995BE00F31EDE /* Products */;
 			projectDirPath = "";
@@ -207,9 +197,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AE6FB432BC995BF00F31EDE /* Preview Assets.xcassets in Resources */,
-				6AE6FB712BCA99AC00F31EDE /* Preloader.storyboard in Resources */,
 				6AE6FB402BC995BF00F31EDE /* Assets.xcassets in Resources */,
-				6AE6FB682BCA817100F31EDE /* loader.json in Resources */,
+				6A357C812BCB159D0048A833 /* Preloader.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,14 +209,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A357C7F2BCB0B5B0048A833 /* GeneralFilterComponent.swift in Sources */,
 				6AE6FB612BC9C60500F31EDE /* HistoryView.swift in Sources */,
 				6AE6FB5B2BC996D000F31EDE /* Mars.swift in Sources */,
 				6AE6FB3E2BC995BE00F31EDE /* ContentView.swift in Sources */,
-				6AE6FB732BCA9AAA00F31EDE /* Preloader.swift in Sources */,
 				6AE6FB3C2BC995BE00F31EDE /* MarsSnapApp.swift in Sources */,
 				6AE6FB512BC9967300F31EDE /* CardComponent.swift in Sources */,
 				6AE6FB5A2BC996D000F31EDE /* MarsViewModel.swift in Sources */,
-				6AE6FB6A2BCA81D900F31EDE /* LottieView.swift in Sources */,
 				6AE6FB5F2BC9A1A800F31EDE /* Constant.swift in Sources */,
 				6A06599C2BCAF333005D9B8E /* DatePickerComponent.swift in Sources */,
 				6AE6FB5C2BC996D000F31EDE /* MarsImageView.swift in Sources */,
@@ -361,7 +349,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MarsSnap/Preview Content\"";
@@ -373,6 +361,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = Preloader.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -398,7 +387,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MarsSnap/Preview Content\"";
@@ -410,6 +399,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = Preloader.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -452,25 +442,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		6AE6FB642BCA7FF900F31EDE /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/airbnb/lottie-ios";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.4.2;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		6AE6FB652BCA7FF900F31EDE /* Lottie */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6AE6FB642BCA7FF900F31EDE /* XCRemoteSwiftPackageReference "lottie-ios" */;
-			productName = Lottie;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6AE6FB302BC995BE00F31EDE /* Project object */;
 }

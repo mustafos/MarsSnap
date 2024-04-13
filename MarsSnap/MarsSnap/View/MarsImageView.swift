@@ -26,8 +26,10 @@ struct MarsImageView: View {
         } //: ZSTACK
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: Button {
-            feedback.impactOccurred()
-            presentationMode.wrappedValue.dismiss()
+            withAnimation {
+                feedback.impactOccurred()
+                presentationMode.wrappedValue.dismiss()
+            }
         } label: {
             Image("close-circle")
                 .frame(width: 44, height: 44)

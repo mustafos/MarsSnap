@@ -38,7 +38,10 @@ struct DatePickerComponent: View {
     private func HeaderView() -> some View {
         HStack {
             Button {
-                negativeButtonAction?()
+                withAnimation {
+                    feedback.impactOccurred()
+                    negativeButtonAction?()
+                }
             } label: {
                 Image("close")
                     .frame(width: 44, height: 44)
@@ -50,7 +53,10 @@ struct DatePickerComponent: View {
             
             Spacer()
             Button {
-                positiveButtonAction?(selectedDate)
+                withAnimation {
+                    feedback.impactOccurred()
+                    positiveButtonAction?(selectedDate)
+                }
             } label: {
                 Image("correct")
                     .frame(width: 44, height: 44)

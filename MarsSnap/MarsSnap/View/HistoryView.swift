@@ -73,9 +73,21 @@ struct HistoryView: View {
     }
     
     private func filterSheet() -> ActionSheet {
-        let useButton = ActionSheet.Button.default(Text("Use")) {}
-        let deleteOutButton = ActionSheet.Button.destructive(Text("Delete")) {}
-        let cancelButton = ActionSheet.Button.cancel(Text("Cancel")) {}
+        let useButton = ActionSheet.Button.default(Text("Use")) {
+            withAnimation {
+                feedback.impactOccurred()
+            }
+        }
+        let deleteOutButton = ActionSheet.Button.destructive(Text("Delete")) {
+            withAnimation {
+                feedback.impactOccurred()
+            }
+        }
+        let cancelButton = ActionSheet.Button.cancel(Text("Cancel")) {
+            withAnimation {
+                feedback.impactOccurred()
+            }
+        }
         let buttons: [ActionSheet.Button] = [useButton, deleteOutButton, cancelButton]
         
         return ActionSheet(title: Text("Menu Filter"), buttons: buttons)
@@ -86,8 +98,10 @@ struct HistoryView: View {
         ZStack {
             HStack {
                 Button {
-                    feedback.impactOccurred()
-                    presentationMode.wrappedValue.dismiss()
+                    withAnimation {
+                        feedback.impactOccurred()
+                        presentationMode.wrappedValue.dismiss()
+                    }
                 } label: {
                     Image("back")
                         .frame(width: 44, height: 44)

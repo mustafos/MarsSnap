@@ -11,6 +11,7 @@ struct ContentView: View {
     
     // MARK: – PROPERTIES
     @State private var showSaveFilterAlert: Bool = false
+    @State private var isSheetPresented = false
     @State private var presentDatePickerFilter: Bool = false
     @State private var selectedDate = Date()
     @State private var tempSelectedDate = Date()
@@ -74,6 +75,9 @@ struct ContentView: View {
                     .background(Color.accentOne)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .edgesIgnoringSafeArea(.all)
+                    .sheet(isPresented: $isSheetPresented) {
+                        GeneralFilterComponent()
+                    }
                 } //: GROUP
                 .navigationBarHidden(true)
                 
@@ -130,6 +134,7 @@ struct ContentView: View {
                 Button {
                     withAnimation {
                         feedback.impactOccurred()
+                        isSheetPresented.toggle()
                     }
                 } label: {
                     HStack {
