@@ -11,7 +11,8 @@ struct HistoryView: View {
     
     // MARK: – PROPERTIES
     @Environment(\.presentationMode) var presentationMode
-    @State private var isEmptyHustory: Bool = false
+    @State private var isEmptyHistory: Bool = false
+    @State private var showFilterMenuSheet: Bool = false
     let animals = [
         MarsData(rover: "Spirit", camera: "Navigation Camera", date: "April 18, 2005", photo: "photo"),
         MarsData(rover: "Curiosity", camera: "ChemCam", date: "August 29, 2012", photo: "photo"),
@@ -32,7 +33,7 @@ struct HistoryView: View {
             ZStack {
                 ScrollView(.vertical, showsIndicators: false) {
                     Spacer()
-                    if isEmptyHustory {
+                    if isEmptyHistory {
                         ZStack {
                             Image("empty")
                                 .resizable()
@@ -43,9 +44,10 @@ struct HistoryView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     } else {
                         ForEach(animals, id: \.self) { mars in
-                            NavigationLink(destination: MarsImageView(image: mars.photo)) {
-                                CardComponent(isFilterCard: true, rover: mars.rover, camera: mars.camera, date: mars.date, photo: mars.photo)
-                            } //: LINK
+                            CardComponent(isFilterCard: true, rover: mars.rover, camera: mars.camera, date: mars.date, photo: mars.photo)
+                                .onTapGesture {
+                                    showFilterMenuSheet.toggle()
+                                }
                         } //: LOOP
                         HStack {
                             Spacer()
@@ -64,9 +66,19 @@ struct HistoryView: View {
             .edgesIgnoringSafeArea(.all)
         } //: VSTACK
         .navigationBarBackButtonHidden(true)
-        .background(Color.accentColor)
+        .background(Color.accentOne)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .edgesIgnoringSafeArea(.all)
+        .actionSheet(isPresented: $showFilterMenuSheet, content: filterSheet)
+    }
+    
+    private func filterSheet() -> ActionSheet {
+        let useButton = ActionSheet.Button.default(Text("Use")) {}
+        let deleteOutButton = ActionSheet.Button.destructive(Text("Delete")) {}
+        let cancelButton = ActionSheet.Button.cancel(Text("Cancel")) {}
+        let buttons: [ActionSheet.Button] = [useButton, deleteOutButton, cancelButton]
+        
+        return ActionSheet(title: Text("Menu Filter"), buttons: buttons)
     }
     
     @ViewBuilder
@@ -89,7 +101,7 @@ struct HistoryView: View {
         .padding(.top, 50)
         .padding(.horizontal)
         .padding(.bottom, 10)
-        .background(Color.accentColor)
+        .background(Color.accentOne)
         .edgesIgnoringSafeArea(.all)
     }
 }

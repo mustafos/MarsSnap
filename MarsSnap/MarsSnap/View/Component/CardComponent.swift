@@ -21,14 +21,14 @@ struct CardComponent: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25.0)
-                .foregroundColor(.white)
+                .foregroundColor(.backgroundOne)
             
             HStack {
                 VStack(alignment: .leading, spacing: 8) {
                     if isFilterCard {
                         HStack {
                             RoundedRectangle(cornerRadius: 25)
-                                .fill(Color.accentColor)
+                                .fill(Color.accentOne)
                                 .frame(height: 1)
                             Text("Filters")
                                 .font(.custom("SF Pro", size: 22))

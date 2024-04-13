@@ -10,6 +10,11 @@ import SwiftUI
 struct ContentView: View {
     
     // MARK: – PROPERTIES
+    @State private var showSaveFilterAlert: Bool = false
+    @State private var presentDatePickerFilter: Bool = false
+    @State private var selectedDate = Date()
+    @State private var tempSelectedDate = Date()
+    
     let animals = [
         MarsData(rover: "Spirit", camera: "Navigation Camera", date: "April 18, 2005", photo: "photo"),
         MarsData(rover: "Curiosity", camera: "ChemCam", date: "August 29, 2012", photo: "photo"),
@@ -27,6 +32,16 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack(alignment: .bottomTrailing) {
+                if presentDatePickerFilter {
+                    DatePickerComponent(title: "Date", selectedDate: $tempSelectedDate)
+                        .onNegativeButtonTap {
+                            presentDatePickerFilter.toggle()
+                        }
+                        .onPositiveButtonTap { date in
+                            presentDatePickerFilter.toggle()
+                            selectedDate = tempSelectedDate
+                        }
+                }
                 Group {
                     VStack {
 //                        LottieView(loopMode: .loop)
@@ -56,7 +71,7 @@ struct ContentView: View {
                         .edgesIgnoringSafeArea(.all)
                         
                     } //: VSTACK
-                    .background(Color.accentColor)
+                    .background(Color.accentOne)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .edgesIgnoringSafeArea(.all)
                 } //: GROUP
@@ -65,6 +80,16 @@ struct ContentView: View {
                 HistoryButton()
                 
             } //: ZSTACK
+            .alert(isPresented: $showSaveFilterAlert) {
+                Alert(
+                    title: Text("Save Filters"),
+                    message: Text("The current filters and the date you have chosen can be saved to the filter history."),
+                    primaryButton: .default(Text("Save"), action: {
+                        // Handle the "Save" button tap
+                    }),
+                    secondaryButton: .cancel()
+                )
+            }
         } //: NAVIGATION
     }
     
@@ -76,18 +101,23 @@ struct ContentView: View {
                 VStack(alignment: .leading) {
                     Text("mars.camera".uppercased())
                         .font(.system(size: 34, weight: .bold))
-                    Text("June 6, 2019")
+                    Text(formattedDate)
                 }
                 Spacer()
                 Button(action: {
-                    feedback.impactOccurred()
+                    withAnimation {
+                        feedback.impactOccurred()
+                        presentDatePickerFilter.toggle()
+                    }
                 }, label: {
                     Image("calendar")
                 })
             } //: HSTACK
             HStack {
                 Button {
-                    feedback.impactOccurred()
+                    withAnimation {
+                        feedback.impactOccurred()
+                    }
                 } label: {
                     HStack {
                         Image("cpu")
@@ -97,7 +127,11 @@ struct ContentView: View {
                 }
                 .background(Color.white)
                 
-                Button {} label: {
+                Button {
+                    withAnimation {
+                        feedback.impactOccurred()
+                    }
+                } label: {
                     HStack {
                         Image("camera")
                         Text("All")
@@ -108,7 +142,12 @@ struct ContentView: View {
                 
                 Spacer()
                 
-                Button {} label: {
+                Button {
+                    withAnimation {
+                        feedback.impactOccurred()
+                        showSaveFilterAlert.toggle()
+                    }
+                } label: {
                     HStack {
                         Image(systemName: "plus")
                     }
@@ -120,7 +159,7 @@ struct ContentView: View {
         .padding(.top, 50)
         .padding(.horizontal)
         .padding(.bottom, 10)
-        .background(Color.accentColor)
+        .background(Color.accentOne)
         .edgesIgnoringSafeArea(.all)
     }
     
@@ -131,13 +170,20 @@ struct ContentView: View {
         } label: {
             Circle()
                 .frame(width: 70, height: 70)
-                .foregroundColor(.accentColor)
+                .foregroundColor(.accentOne)
                 .shadow (radius: 5)
                 .overlay(Image("archive"))
         }
         .edgesIgnoringSafeArea(.all)
         .padding(.trailing, 20)
         .padding(.bottom, 10)
+    }
+    
+    // MARK: – METHODS
+    private var formattedDate: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM d, yyyy"
+        return formatter.string(from: selectedDate)
     }
 }
 
