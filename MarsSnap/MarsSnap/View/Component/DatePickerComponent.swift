@@ -23,7 +23,7 @@ struct DatePickerComponent: View {
             
             VStack {
                 HeaderView()
-                DatePicker("", selection: $selectedDate, displayedComponents: .date)
+                DatePicker("Select the earth date", selection: $selectedDate, displayedComponents: .date)
                     .datePickerStyle(.wheel)
                     .padding(.horizontal, 20)
             } //: VSTACK
@@ -46,12 +46,14 @@ struct DatePickerComponent: View {
                 Image("close")
                     .frame(width: 44, height: 44)
             }
+            
             Spacer()
             
             Text(title)
                 .font(.system(size: 22, weight: .bold))
             
             Spacer()
+            
             Button {
                 withAnimation {
                     feedback.impactOccurred()

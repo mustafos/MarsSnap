@@ -8,33 +8,50 @@
 import SwiftUI
 
 struct GeneralFilterComponent: View {
+    
     // MARK: – PROPERTIES
     var isFilterCamera: Bool = true
+    
+    @State private var cameraName = Camera.all
+    @State private var roverName = Rover.all
+    
     @Binding var selectedFilter: String
     var positiveButtonAction: ((String) -> ())? = nil
     var negativeButtonAction: (() -> ())? = {}
     
-    var colors = ["Red", "Green", "Blue", "Tartan"]
-    
     // MARK: – BODY
     var body: some View {
-        ZStack {
+        ZStack(alignment: .bottom) {
             Color.black.opacity(0.5)
                 .edgesIgnoringSafeArea(.all)
             Spacer()
             VStack {
                 HeaderView()
-                Picker("Please choose a color", selection: $selectedFilter) {
-                    ForEach(colors, id: \.self) {
-                        Text($0)
+                if isFilterCamera {
+                    Picker("Choose the camera", selection: $cameraName) {
+                        ForEach(Camera.allCases) { camera in
+                            Text(camera.rawValue.capitalized)
+                                .tag(camera)
+                        }
                     }
+                    .pickerStyle(.wheel)
+                    .padding(.bottom)
+                } else {
+                    Picker("Choose the rover", selection: $roverName) {
+                        ForEach(Rover.allCases) { rover in
+                            Text(rover.rawValue.capitalized)
+                                .tag(rover)
+                        }
+                    }
+                    .pickerStyle(.wheel)
+                    .padding(.bottom)
                 }
-                Text("You selected: \(selectedFilter)")
             } //: VSTACK
             .frame(maxWidth: .infinity, maxHeight: 306)
             .background(Color.backgroundOne)
             .cornerRadius(50)
         } //: ZSTACK
+        .edgesIgnoringSafeArea(.all)
         .zIndex(2)
     }
     
@@ -59,14 +76,14 @@ struct GeneralFilterComponent: View {
             Button {
                 withAnimation {
                     feedback.impactOccurred()
-                    positiveButtonAction?(selectedFilter)
+                    positiveButtonAction?(isFilterCamera ? cameraName.rawValue : roverName.rawValue)
                 }
             } label: {
                 Image("correct")
                     .frame(width: 44, height: 44)
             }
         }
-        .padding(20)
+        .padding([.top, .horizontal], 20)
     }
 }
 

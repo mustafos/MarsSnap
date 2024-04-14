@@ -78,6 +78,18 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		6AD259FC2BCC7DFF00E56C38 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6AE6FB3F2BC995BF00F31EDE /* Assets.xcassets */,
+				6A357C802BCB159D0048A833 /* Preloader.storyboard */,
+				6AE6FB5E2BC9A1A800F31EDE /* Constant.swift */,
+				6AD259F12BCC3CA800E56C38 /* AsyncImageView.swift */,
+				6AE6FB412BC995BF00F31EDE /* Preview Content */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		6AE6FB2F2BC995BE00F31EDE = {
 			isa = PBXGroup;
 			children = (
@@ -103,11 +115,7 @@
 				6AE6FB572BC996D000F31EDE /* Model */,
 				6AE6FB592BC996D000F31EDE /* View */,
 				6AE6FB552BC996D000F31EDE /* ViewModel */,
-				6AE6FB3F2BC995BF00F31EDE /* Assets.xcassets */,
-				6A357C802BCB159D0048A833 /* Preloader.storyboard */,
-				6AE6FB5E2BC9A1A800F31EDE /* Constant.swift */,
-				6AD259F12BCC3CA800E56C38 /* AsyncImageView.swift */,
-				6AE6FB412BC995BF00F31EDE /* Preview Content */,
+				6AD259FC2BCC7DFF00E56C38 /* Utils */,
 			);
 			path = MarsSnap;
 			sourceTree = "<group>";
@@ -448,7 +456,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MarsSnap/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"MarsSnap/Utils/Preview Content\"";
 				DEVELOPMENT_TEAM = 9PCQ5XC84W;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -488,7 +496,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MarsSnap/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"MarsSnap/Utils/Preview Content\"";
 				DEVELOPMENT_TEAM = 9PCQ5XC84W;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;

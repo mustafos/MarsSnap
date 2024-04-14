@@ -42,20 +42,29 @@ class MarsPhotoManager: ObservableObject {
     }
 }
 
-enum Rover: String, CaseIterable {
-    case perseverance
-    case curiosity
-    // Add more rovers if needed
+enum Rover: String, CaseIterable, Identifiable {
+    case all = "All"
+    case perseverance = "Perseverance"
+    case curiosity = "Curiosity"
+    
+    var id: String { self.rawValue}
 }
 
-enum Camera: String, CaseIterable {
+enum Camera: String, CaseIterable, Identifiable {
     case all = "All"
-    // Add more cameras if needed
+    case FHAZ = "Front Hazard Avoidance Camera"
+    case NAVCAM = "Navigation Camera"
+    case MAST = "Mast Camera"
+    case CHEMCAM = "Chemistry and Camera Complex"
+    case MAHLI = "Mars Hand Lens Imager"
+    case MARD = "Mars Descent Imager"
+    case RHAZ = "Rear Hazard Avoidance Camera"
+    
+    var id: String { self.rawValue}
 }
 
 enum EarthDate: String, CaseIterable {
     case latest = "Latest"
-    // Add more earth dates if needed
 }
 
 extension MarsPhotoManager {

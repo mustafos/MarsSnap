@@ -17,8 +17,10 @@ struct ContentView: View {
     @State private var selectedEarthDate = EarthDate.latest
     
     @State private var showSaveFilterAlert: Bool = false
-    @State private var isSheetPresented: Bool = false
-    @State private var selectedFilter = String()
+    @State private var isSheetCameraPresented: Bool = false
+    @State private var isSheetRoverPresented: Bool = false
+    @State private var selectedRoverFilter = String()
+    @State private var selectedCameraFilter = String()
     @State private var presentDatePickerFilter: Bool = false
     @State private var selectedDate = Date()
     @State private var tempSelectedDate = Date()
@@ -40,14 +42,25 @@ struct ContentView: View {
                         }
                 }
                 
-                if isSheetPresented {
-                    GeneralFilterComponent(selectedFilter: $selectedFilter)
+                if isSheetRoverPresented {
+                    GeneralFilterComponent(isFilterCamera: false, selectedFilter: $selectedRoverFilter)
                         .onNegativeButtonTap {
-                            isSheetPresented.toggle()
+                            isSheetRoverPresented.toggle()
                         }
                         .onPositiveButtonTap { filter in
-                            isSheetPresented.toggle()
-                            selectedFilter = filter
+                            isSheetRoverPresented.toggle()
+                            selectedRoverFilter = filter
+                        }
+                }
+                
+                if isSheetCameraPresented {
+                    GeneralFilterComponent(selectedFilter: $selectedCameraFilter)
+                        .onNegativeButtonTap {
+                            isSheetCameraPresented.toggle()
+                        }
+                        .onPositiveButtonTap { filter in
+                            isSheetCameraPresented.toggle()
+                            selectedCameraFilter = filter
                         }
                 }
                 Group {
@@ -126,6 +139,7 @@ struct ContentView: View {
                 Button(action: {
                     withAnimation {
                         feedback.impactOccurred()
+                        isSheetRoverPresented.toggle()
                     }
                 }, label: {
                     HStack(alignment: .center, spacing: 7) {
@@ -134,9 +148,10 @@ struct ContentView: View {
                             .scaledToFit()
                             .frame(width: 24, height: 24, alignment: .center)
                         
-                        Text("All")
+                        Text(selectedRoverFilter.isEmpty ? "All" : selectedRoverFilter)
                             .fontWeight(.bold)
                             .foregroundColor(.black)
+                            .lineLimit(1)
                         
                         Spacer()
                     } //: HSTACK
@@ -146,7 +161,7 @@ struct ContentView: View {
                 Button(action: {
                     withAnimation {
                         feedback.impactOccurred()
-                        isSheetPresented.toggle()
+                        isSheetCameraPresented.toggle()
                     }
                 }, label: {
                     HStack(alignment: .center, spacing: 7) {
@@ -155,9 +170,10 @@ struct ContentView: View {
                             .scaledToFit()
                             .frame(width: 24, height: 24, alignment: .center)
                         
-                        Text("All")
+                        Text(selectedCameraFilter.isEmpty ? "All" : selectedCameraFilter)
                             .fontWeight(.bold)
                             .foregroundColor(.black)
+                            .lineLimit(1)
                         
                         Spacer()
                     } //: HSTACK
@@ -226,7 +242,7 @@ struct ContentView: View {
             realm.add(filterHistory)
         }
     }
-
+    
     private var formattedDate: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM d, yyyy"
