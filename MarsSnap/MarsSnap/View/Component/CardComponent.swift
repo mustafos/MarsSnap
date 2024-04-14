@@ -10,6 +10,7 @@ import SwiftUI
 struct CardComponent: View {
     
     // MARK: – PROPERTIES
+    @ObservedObject var vm = MarsViewModel()
     //    let model: Mars
     var isFilterCard: Bool = false
     var rover: String

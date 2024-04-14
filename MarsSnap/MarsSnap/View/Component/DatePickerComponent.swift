@@ -26,11 +26,11 @@ struct DatePickerComponent: View {
                 DatePicker("", selection: $selectedDate, displayedComponents: .date)
                     .datePickerStyle(.wheel)
                     .padding(.horizontal, 20)
-            }
+            } //: VSTACK
             .frame(maxWidth: 353, maxHeight: 312)
             .background(Color.backgroundOne)
             .cornerRadius(50)
-        }
+        } //: ZSTACK
         .zIndex(2)
     }
     
@@ -61,7 +61,7 @@ struct DatePickerComponent: View {
                 Image("correct")
                     .frame(width: 44, height: 44)
             }
-        }
+        } //: HSTACK
         .padding(20)
     }
 }

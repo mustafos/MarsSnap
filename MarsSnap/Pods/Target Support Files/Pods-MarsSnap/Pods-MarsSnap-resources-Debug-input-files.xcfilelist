@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-MarsSnap/Pods-MarsSnap-resources.sh
+${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.bundle
+${PODS_CONFIGURATION_BUILD_DIR}/SwiftyJSON/SwiftyJSON.bundle
+${PODS_CONFIGURATION_BUILD_DIR}/lottie-ios/LottiePrivacyInfo.bundle

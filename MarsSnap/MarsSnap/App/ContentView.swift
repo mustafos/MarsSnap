@@ -10,8 +10,10 @@ import SwiftUI
 struct ContentView: View {
     
     // MARK: – PROPERTIES
+    @ObservedObject var marsVM: MarsViewModel
     @State private var showSaveFilterAlert: Bool = false
-    @State private var isSheetPresented = false
+    @State private var isSheetPresented: Bool = false
+    @State private var selectedFilter = String()
     @State private var presentDatePickerFilter: Bool = false
     @State private var selectedDate = Date()
     @State private var tempSelectedDate = Date()
@@ -43,10 +45,19 @@ struct ContentView: View {
                             selectedDate = tempSelectedDate
                         }
                 }
+                
+                if isSheetPresented {
+                    GeneralFilterComponent(selectedFilter: $selectedFilter)
+                        .onNegativeButtonTap {
+                            isSheetPresented.toggle()
+                        }
+                        .onPositiveButtonTap { filter in
+                            isSheetPresented.toggle()
+                            selectedFilter = filter
+                        }
+                }
                 Group {
                     VStack {
-//                        LottieView(loopMode: .loop)
-//                            .scaleEffect(0.4)
                         HeaderView()
                         ZStack {
                             ScrollView(.vertical, showsIndicators: false) {
@@ -75,9 +86,6 @@ struct ContentView: View {
                     .background(Color.accentOne)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .edgesIgnoringSafeArea(.all)
-                    .sheet(isPresented: $isSheetPresented) {
-                        GeneralFilterComponent()
-                    }
                 } //: GROUP
                 .navigationBarHidden(true)
                 
@@ -194,5 +202,5 @@ struct ContentView: View {
 
 // MARK: – PREVIEW
 #Preview {
-    ContentView()
+    ContentView(marsVM: MarsViewModel())
 }

@@ -1,0 +1,6 @@
+module Pods_MarsSnap {
+  umbrella header "Pods-MarsSnap-umbrella.h"
+
+  export *
+  module * { export * }
+}

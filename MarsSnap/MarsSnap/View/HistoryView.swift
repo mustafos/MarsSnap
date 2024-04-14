@@ -11,7 +11,7 @@ struct HistoryView: View {
     
     // MARK: – PROPERTIES
     @Environment(\.presentationMode) var presentationMode
-    @State private var isEmptyHistory: Bool = false
+    @State private var isEmptyHistory: Bool = true
     @State private var showFilterMenuSheet: Bool = false
     let animals = [
         MarsData(rover: "Spirit", camera: "Navigation Camera", date: "April 18, 2005", photo: "photo"),
