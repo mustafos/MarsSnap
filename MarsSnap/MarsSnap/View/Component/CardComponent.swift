@@ -10,13 +10,8 @@ import SwiftUI
 struct CardComponent: View {
     
     // MARK: – PROPERTIES
-    @ObservedObject var vm = MarsViewModel()
-    //    let model: Mars
+    let mars: Mars
     var isFilterCard: Bool = false
-    var rover: String
-    var camera: String
-    var date: String
-    var photo: String
     
     // MARK: – BODY
     var body: some View {
@@ -39,26 +34,25 @@ struct CardComponent: View {
                     Text("Rover: ")
                         .foregroundColor(.layerTwo)
                         .fontWeight(.regular)
-                    + Text(rover)
+                    + Text(mars.rover)
                         .fontWeight(.bold)
                         .foregroundColor(.layerOne)
                     
                     Text("Camera: ")
                         .foregroundColor(.layerTwo)
-                    + Text(camera)
+                    + Text(mars.camera)
                         .fontWeight(.bold)
                         .foregroundColor(.layerOne)
                     
                     Text("Date: ")
                         .foregroundColor(.layerTwo)
-                    + Text(date)
+                    + Text(mars.date)
                         .fontWeight(.bold)
                         .foregroundColor(.layerOne)
                 } //: VSTACK
                 Spacer()
                 if !isFilterCard {
-                    Image(photo)
-                        .resizable()
+                    AsyncImageView(imageUrl: mars.imageUrl!)
                         .scaledToFill()
                         .frame(width: 130, height: 130)
                         .clipShape(
@@ -74,9 +68,4 @@ struct CardComponent: View {
         .clipped()
         .shadow(radius: 10)
     }
-}
-
-// MARK: – PREVIEW
-#Preview {
-    CardComponent(rover: "Curiosity", camera: "Front Hazard Avoidance Camera", date: "June 6, 2019", photo: "photo")
 }

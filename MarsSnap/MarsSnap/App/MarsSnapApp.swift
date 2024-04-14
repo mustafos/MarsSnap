@@ -13,9 +13,8 @@ import SwiftUI
 struct MarsSnapApp: App {
     var body: some Scene {
         WindowGroup {
-            HomeView()
-//            ContentView(marsVM: MarsViewModel())
-//                .colorScheme(.light)
+            ContentView()
+                .colorScheme(.light)
         }
     }
 }

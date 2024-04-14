@@ -10,22 +10,11 @@ import SwiftUI
 struct HistoryView: View {
     
     // MARK: – PROPERTIES
+    @ObservedObject var observer = MarsPhotoManager()
     @Environment(\.presentationMode) var presentationMode
     @State private var isEmptyHistory: Bool = true
     @State private var showFilterMenuSheet: Bool = false
-    let animals = [
-        MarsData(rover: "Spirit", camera: "Navigation Camera", date: "April 18, 2005", photo: "photo"),
-        MarsData(rover: "Curiosity", camera: "ChemCam", date: "August 29, 2012", photo: "photo"),
-        MarsData(rover: "Perseverance", camera: "Sherloc", date: "March 2, 2021", photo: "photo"),
-        MarsData(rover: "Opportunity", camera: "Microscopic Imager", date: "December 7, 2004", photo: "photo"),
-        MarsData(rover: "Spirit", camera: "Panoramic Camera", date: "March 10, 2005", photo: "photo"),
-        MarsData(rover: "Curiosity", camera: "Rover Environmental Monitoring Station", date: "November 26, 2013", photo: "photo"),
-        MarsData(rover: "Perseverance", camera: "Mars Hand Lens Imager", date: "April 1, 2021", photo: "photo"),
-        MarsData(rover: "Opportunity", camera: "Miniature Thermal Emission Spectrometer", date: "June 17, 2004", photo: "photo"),
-        MarsData(rover: "Spirit", camera: "Mini-TES", date: "April 28, 2005", photo: "photo"),
-        MarsData(rover: "Curiosity", camera: "Mars Descent Imager", date: "August 6, 2012", photo: "photo"),
-    ]
-    
+
     // MARK: – BODY
     var body: some View {
         VStack {
@@ -43,8 +32,8 @@ struct HistoryView: View {
                         }
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     } else {
-                        ForEach(animals, id: \.self) { mars in
-                            CardComponent(isFilterCard: true, rover: mars.rover, camera: mars.camera, date: mars.date, photo: mars.photo)
+                        ForEach(observer.datas) { mars in
+                            CardComponent(mars: mars, isFilterCard: true)
                                 .onTapGesture {
                                     showFilterMenuSheet.toggle()
                                 }

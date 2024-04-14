@@ -7,20 +7,10 @@
 
 import Foundation
 
-//token = "T9f55mAkKU4eIDFxBC9viMRytowhjzcNrh4dtanu"
-struct MarsData: Identifiable, Hashable {
-    let id = UUID()
-    let rover: String
-    let camera: String
-    let date: String
-    let photo: String
+struct Mars: Identifiable, Decodable {
+    var id = UUID()
+    var rover: String
+    var camera: String
+    var date: String
+    var imageUrl: String?
 }
-
-struct Mars: Codable {
-    let copyright: String
-    let date: String
-    let explanation: String
-    let hdurl: String
-    let title: String
-}
-

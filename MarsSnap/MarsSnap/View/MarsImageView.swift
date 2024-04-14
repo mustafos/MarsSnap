@@ -11,8 +11,7 @@ struct MarsImageView: View {
     
     // MARK: – PROPERTIES
     @Environment(\.presentationMode) var presentationMode
-    //    let mars: Mars
-    var image: String
+    let mars: Mars
     
     // MARK: – BODY
     var body: some View {
@@ -20,9 +19,9 @@ struct MarsImageView: View {
             Color.layerOne
                 .edgesIgnoringSafeArea(.all)
             // MARS IMAGE
-            Image(image)
-                .resizable()
+            AsyncImageView(imageUrl: mars.imageUrl!)
                 .scaledToFit()
+                .frame(maxWidth: .infinity)
         } //: ZSTACK
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: Button {
@@ -34,12 +33,5 @@ struct MarsImageView: View {
             Image("close-circle")
                 .frame(width: 44, height: 44)
         })
-    }
-}
-
-// MARK: – PREVIEW
-#Preview {
-    NavigationView {
-        MarsImageView(image: "photo")
     }
 }

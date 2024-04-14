@@ -1,49 +1,82 @@
 //
 //  MarsViewModel.swift
 //  MarsSnap
-//
+//  //token = "T9f55mAkKU4eIDFxBC9viMRytowhjzcNrh4dtanu"
 //  Created by Mustafa Bekirov on 11.04.2024.
 //
 
 import SwiftUI
+import Alamofire
+import SwiftyJSON
+import Kingfisher
 
-class MarsViewModel: ObservableObject {
+class MarsPhotoManager: ObservableObject {
+    @Published var datas = [Mars]()
     
-    struct Constants {
-        static let apiKey = "T9f55mAkKU4eIDFxBC9viMRytowhjzcNrh4dtanu"
+    init() {
+        fetchPhotos()
     }
     
-    enum APIError: Error {
-        case failedToGetData
-    }
-    
-    @Published var mars = Mars(
-        copyright: "",
-        date: "",
-        explanation: "",
-        hdurl: "https://apod.nasa.gov/apod/image/1410/butterflyblue_hst_3919.jpg",
-        title: ""
-    )
-    
-    func fetch() {
-        guard let url = URL(string: "https://api.nasa.gov/planetary/apod?api_key=" + Constants.apiKey + "&date=2014-10-01") else {
-            return
-        }
+    func fetchPhotos() {
+        let rover = "perseverance" // Default rover
+        let sol = "1000" // Default sol
         
-        let task = URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data, error == nil else {
-                return
-            }
-            
-            do {
-                let result = try JSONDecoder().decode(Mars.self, from: data)
-                DispatchQueue.main.async {
-                    self.mars = result
+        AF.request("https://api.nasa.gov/mars-photos/api/v1/rovers/\(rover)/photos?sol=\(sol)&api_key=T9f55mAkKU4eIDFxBC9viMRytowhjzcNrh4dtanu").responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                if let photos = json["photos"].array {
+                    for photo in photos {
+                        let roverName = photo["rover"]["name"].stringValue
+                        let cameraName = photo["camera"]["full_name"].stringValue
+                        let earthDate = photo["earth_date"].stringValue
+                        let imageUrl = photo["img_src"].stringValue
+                        let data = Mars(rover: roverName, camera: cameraName, date: earthDate, imageUrl: imageUrl)
+                        self.datas.append(data)
+                    }
                 }
-            } catch {
+            case .failure(let error):
                 print(error)
             }
         }
-        task.resume()
+    }
+}
+
+enum Rover: String, CaseIterable {
+    case perseverance
+    case curiosity
+    // Add more rovers if needed
+}
+
+enum Camera: String, CaseIterable {
+    case all = "All"
+    // Add more cameras if needed
+}
+
+enum EarthDate: String, CaseIterable {
+    case latest = "Latest"
+    // Add more earth dates if needed
+}
+
+extension MarsPhotoManager {
+    func filteredData(selectedRover: Rover, selectedCamera: Camera, selectedEarthDate: EarthDate) -> [Mars] {
+        var filteredData = datas
+        
+        // Filter by rover
+        if selectedRover != .perseverance {
+            filteredData = filteredData.filter { $0.rover.lowercased() == selectedRover.rawValue }
+        }
+        
+        // Filter by camera
+        if selectedCamera != .all {
+            filteredData = filteredData.filter { $0.camera.lowercased() == selectedCamera.rawValue }
+        }
+        
+        // Filter by earth date
+        if selectedEarthDate != .latest {
+            filteredData = filteredData.filter { $0.date == selectedEarthDate.rawValue }
+        }
+        
+        return filteredData
     }
 }
