@@ -1,16 +1,16 @@
 //
-//  CardComponent.swift
+//  FilterCardComponent.swift
 //  MarsSnap
 //
-//  Created by Mustafa Bekirov on 11.04.2024.
+//  Created by Mustafa Bekirov on 14.04.2024.
 //
 
 import SwiftUI
 
-struct CardComponent: View {
+struct FilterCardComponent: View {
     
     // MARK: – PROPERTIES
-    let mars: Mars
+    let history: History
     
     // MARK: – BODY
     var body: some View {
@@ -20,32 +20,34 @@ struct CardComponent: View {
             
             HStack {
                 VStack(alignment: .leading, spacing: 8) {
+                    HStack {
+                        RoundedRectangle(cornerRadius: 25)
+                            .fill(Color.accentOne)
+                            .frame(height: 1)
+                        Text("Filters")
+                            .font(.custom("SF Pro", size: 22))
+                            .fontWeight(.bold)
+                    }
                     Text("Rover: ")
                         .foregroundColor(.layerTwo)
                         .fontWeight(.regular)
-                    + Text(mars.rover)
+                    + Text(history.selectedRover)
                         .fontWeight(.bold)
                         .foregroundColor(.layerOne)
                     
                     Text("Camera: ")
                         .foregroundColor(.layerTwo)
-                    + Text(mars.camera)
+                    + Text(history.selectedCamera)
                         .fontWeight(.bold)
                         .foregroundColor(.layerOne)
                     
                     Text("Date: ")
                         .foregroundColor(.layerTwo)
-                    + Text(mars.date)
+                    + Text(history.selectedCamera)
                         .fontWeight(.bold)
                         .foregroundColor(.layerOne)
                 } //: VSTACK
                 Spacer()
-                AsyncImageView(imageUrl: mars.imageUrl!)
-                    .scaledToFill()
-                    .frame(width: 130, height: 130)
-                    .clipShape(
-                        RoundedRectangle(cornerRadius: 20)
-                    )
             } //: HSTACK
             .padding(10)
         } //: ZSTACK

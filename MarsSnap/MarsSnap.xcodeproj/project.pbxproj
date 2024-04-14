@@ -16,6 +16,8 @@
 		6AD259F22BCC3CA800E56C38 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD259F12BCC3CA800E56C38 /* AsyncImageView.swift */; };
 		6AD259F52BCC612100E56C38 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 6AD259F42BCC612100E56C38 /* Realm */; };
 		6AD259F72BCC612100E56C38 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6AD259F62BCC612100E56C38 /* RealmSwift */; };
+		6AD259F92BCC62A100E56C38 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD259F82BCC62A100E56C38 /* History.swift */; };
+		6AD259FB2BCC70BE00E56C38 /* FilterCardComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD259FA2BCC70BE00E56C38 /* FilterCardComponent.swift */; };
 		6AE6FB3C2BC995BE00F31EDE /* MarsSnapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB3B2BC995BE00F31EDE /* MarsSnapApp.swift */; };
 		6AE6FB3E2BC995BE00F31EDE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB3D2BC995BE00F31EDE /* ContentView.swift */; };
 		6AE6FB402BC995BF00F31EDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AE6FB3F2BC995BF00F31EDE /* Assets.xcassets */; };
@@ -35,6 +37,8 @@
 		6A357C7E2BCB0B5B0048A833 /* GeneralFilterComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralFilterComponent.swift; sourceTree = "<group>"; };
 		6A357C802BCB159D0048A833 /* Preloader.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preloader.storyboard; sourceTree = "<group>"; };
 		6AD259F12BCC3CA800E56C38 /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
+		6AD259F82BCC62A100E56C38 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
+		6AD259FA2BCC70BE00E56C38 /* FilterCardComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCardComponent.swift; sourceTree = "<group>"; };
 		6AE6FB382BC995BE00F31EDE /* MarsSnap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarsSnap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AE6FB3B2BC995BE00F31EDE /* MarsSnapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsSnapApp.swift; sourceTree = "<group>"; };
 		6AE6FB3D2BC995BE00F31EDE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -120,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				6AE6FB4D2BC9967300F31EDE /* CardComponent.swift */,
+				6AD259FA2BCC70BE00E56C38 /* FilterCardComponent.swift */,
 				6A06599B2BCAF333005D9B8E /* DatePickerComponent.swift */,
 				6A357C7E2BCB0B5B0048A833 /* GeneralFilterComponent.swift */,
 			);
@@ -138,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				6AE6FB562BC996D000F31EDE /* Mars.swift */,
+				6AD259F82BCC62A100E56C38 /* History.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -300,7 +306,9 @@
 				6AE6FB5B2BC996D000F31EDE /* Mars.swift in Sources */,
 				6AE6FB3E2BC995BE00F31EDE /* ContentView.swift in Sources */,
 				6AE6FB3C2BC995BE00F31EDE /* MarsSnapApp.swift in Sources */,
+				6AD259FB2BCC70BE00E56C38 /* FilterCardComponent.swift in Sources */,
 				6AE6FB512BC9967300F31EDE /* CardComponent.swift in Sources */,
+				6AD259F92BCC62A100E56C38 /* History.swift in Sources */,
 				6AE6FB5A2BC996D000F31EDE /* MarsViewModel.swift in Sources */,
 				6AE6FB5F2BC9A1A800F31EDE /* Constant.swift in Sources */,
 				6A06599C2BCAF333005D9B8E /* DatePickerComponent.swift in Sources */,

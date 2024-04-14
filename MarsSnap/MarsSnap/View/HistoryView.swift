@@ -6,15 +6,16 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct HistoryView: View {
     
     // MARK: – PROPERTIES
-    @ObservedObject var observer = MarsPhotoManager()
     @Environment(\.presentationMode) var presentationMode
-    @State private var isEmptyHistory: Bool = true
+    @Environment(\.realm) var realm
+    @State var filterHistory: Results<History>?
     @State private var showFilterMenuSheet: Bool = false
-
+    
     // MARK: – BODY
     var body: some View {
         VStack {
@@ -22,22 +23,14 @@ struct HistoryView: View {
             ZStack {
                 ScrollView(.vertical, showsIndicators: false) {
                     Spacer()
-                    if isEmptyHistory {
-                        ZStack {
-                            Image("empty")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 193, height: 186)
-                                .padding(.top, 200)
-                        }
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    } else {
-                        ForEach(observer.datas) { mars in
-                            CardComponent(mars: mars, isFilterCard: true)
+                    if let filterHistory = filterHistory, !filterHistory.isEmpty {
+                        ForEach(filterHistory, id: \.self) { history in
+                            FilterCardComponent(history: history)
                                 .onTapGesture {
                                     showFilterMenuSheet.toggle()
                                 }
                         } //: LOOP
+                        
                         HStack {
                             Spacer()
                             Text("Copyright © 2024 Mustafa Bekirov. \nAll rights reserved.")
@@ -47,6 +40,15 @@ struct HistoryView: View {
                         } //: HSTACK
                         .padding(10)
                         .animation(.easeIn)
+                    } else {
+                        ZStack {
+                            Image("empty")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 193, height: 186)
+                                .padding(.top, 200)
+                        }
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
                 } //: SCROLL
             } //: ZSTACK
@@ -61,6 +63,19 @@ struct HistoryView: View {
         .actionSheet(isPresented: $showFilterMenuSheet, content: filterSheet)
     }
     
+    private func fetchFilterHistory() {
+        filterHistory = realm.objects(History.self)
+    }
+    
+    private func deleteFilterCard(at indexSet: IndexSet) {
+        guard let index = indexSet.first else { return }
+        if let history = filterHistory?[index] {
+            try? realm.write {
+                realm.delete(history)
+            }
+        }
+    }
+    
     private func filterSheet() -> ActionSheet {
         let useButton = ActionSheet.Button.default(Text("Use")) {
             withAnimation {
@@ -70,6 +85,10 @@ struct HistoryView: View {
         let deleteOutButton = ActionSheet.Button.destructive(Text("Delete")) {
             withAnimation {
                 feedback.impactOccurred()
+                if let _ = filterHistory {
+                    showFilterMenuSheet = false
+                    deleteFilterCard(at: IndexSet(integer: 0))
+                }
             }
         }
         let cancelButton = ActionSheet.Button.cancel(Text("Cancel")) {

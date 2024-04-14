@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct ContentView: View {
     
@@ -21,6 +22,8 @@ struct ContentView: View {
     @State private var presentDatePickerFilter: Bool = false
     @State private var selectedDate = Date()
     @State private var tempSelectedDate = Date()
+    
+    let realm = try! Realm()
     
     // MARK: – BODY
     var body: some View {
@@ -88,7 +91,10 @@ struct ContentView: View {
                     title: Text("Save Filters"),
                     message: Text("The current filters and the date you have chosen can be saved to the filter history."),
                     primaryButton: .default(Text("Save"), action: {
-                        // Handle the "Save" button tap
+                        withAnimation {
+                            feedback.impactOccurred()
+                            saveFilterHistory()
+                        }
                     }),
                     secondaryButton: .cancel()
                 )
@@ -201,6 +207,26 @@ struct ContentView: View {
     }
     
     // MARK: – METHODS
+    private func saveToHistory(marsData: Mars) {
+        try! realm.write {
+            let history = History()
+            history.selectedRover = selectedRover.rawValue
+            history.selectedCamera = selectedCamera.rawValue
+            history.selectedEarthDate = selectedDate
+            realm.add(history)
+        }
+    }
+    
+    private func saveFilterHistory() {
+        try! realm.write {
+            let filterHistory = History()
+            filterHistory.selectedRover = selectedRover.rawValue
+            filterHistory.selectedCamera = selectedCamera.rawValue
+            filterHistory.selectedEarthDate = selectedDate
+            realm.add(filterHistory)
+        }
+    }
+
     private var formattedDate: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM d, yyyy"
