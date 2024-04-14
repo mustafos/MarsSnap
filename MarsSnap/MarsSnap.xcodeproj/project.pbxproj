@@ -14,6 +14,8 @@
 		6A357C7F2BCB0B5B0048A833 /* GeneralFilterComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A357C7E2BCB0B5B0048A833 /* GeneralFilterComponent.swift */; };
 		6A357C812BCB159D0048A833 /* Preloader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A357C802BCB159D0048A833 /* Preloader.storyboard */; };
 		6AD259F22BCC3CA800E56C38 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD259F12BCC3CA800E56C38 /* AsyncImageView.swift */; };
+		6AD259F52BCC612100E56C38 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 6AD259F42BCC612100E56C38 /* Realm */; };
+		6AD259F72BCC612100E56C38 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6AD259F62BCC612100E56C38 /* RealmSwift */; };
 		6AE6FB3C2BC995BE00F31EDE /* MarsSnapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB3B2BC995BE00F31EDE /* MarsSnapApp.swift */; };
 		6AE6FB3E2BC995BE00F31EDE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB3D2BC995BE00F31EDE /* ContentView.swift */; };
 		6AE6FB402BC995BF00F31EDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AE6FB3F2BC995BF00F31EDE /* Assets.xcassets */; };
@@ -54,6 +56,8 @@
 			files = (
 				6A25C0262BCBCAAE0087CA5C /* Lottie in Frameworks */,
 				6A25C02C2BCBCAEB0087CA5C /* Kingfisher in Frameworks */,
+				6AD259F52BCC612100E56C38 /* Realm in Frameworks */,
+				6AD259F72BCC612100E56C38 /* RealmSwift in Frameworks */,
 				18C34495396DAA1F2F0B6518 /* Pods_MarsSnap.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -186,6 +190,8 @@
 			packageProductDependencies = (
 				6A25C0252BCBCAAE0087CA5C /* Lottie */,
 				6A25C02B2BCBCAEB0087CA5C /* Kingfisher */,
+				6AD259F42BCC612100E56C38 /* Realm */,
+				6AD259F62BCC612100E56C38 /* RealmSwift */,
 			);
 			productName = MarsSnap;
 			productReference = 6AE6FB382BC995BE00F31EDE /* MarsSnap.app */;
@@ -218,6 +224,7 @@
 			packageReferences = (
 				6A25C0242BCBCAAE0087CA5C /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				6A25C02A2BCBCAEB0087CA5C /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				6AD259F32BCC612100E56C38 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 6AE6FB392BC995BE00F31EDE /* Products */;
 			projectDirPath = "";
@@ -544,6 +551,14 @@
 				minimumVersion = 7.11.0;
 			};
 		};
+		6AD259F32BCC612100E56C38 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -556,6 +571,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6A25C02A2BCBCAEB0087CA5C /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		6AD259F42BCC612100E56C38 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6AD259F32BCC612100E56C38 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		6AD259F62BCC612100E56C38 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6AD259F32BCC612100E56C38 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

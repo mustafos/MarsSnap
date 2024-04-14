@@ -117,47 +117,64 @@ struct ContentView: View {
                 })
             } //: HSTACK
             HStack {
-                Button {
+                Button(action: {
                     withAnimation {
                         feedback.impactOccurred()
                     }
-                } label: {
-                    HStack {
+                }, label: {
+                    HStack(alignment: .center, spacing: 7) {
                         Image("cpu")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 24, height: 24, alignment: .center)
+                        
                         Text("All")
-                    }
-                    .padding(5)
-                }
-                .background(Color.white)
-                
-                Button {
+                            .fontWeight(.bold)
+                            .foregroundColor(.black)
+                        
+                        Spacer()
+                    } //: HSTACK
+                    .padding(7)
+                    .background(Color.white.cornerRadius(10))
+                }) //: BUTTON
+                Button(action: {
                     withAnimation {
                         feedback.impactOccurred()
                         isSheetPresented.toggle()
                     }
-                } label: {
-                    HStack {
+                }, label: {
+                    HStack(alignment: .center, spacing: 7) {
                         Image("camera")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 24, height: 24, alignment: .center)
+                        
                         Text("All")
-                    }
-                    .padding(5)
-                }
-                .background(Color.white)
+                            .fontWeight(.bold)
+                            .foregroundColor(.black)
+                        
+                        Spacer()
+                    } //: HSTACK
+                    .padding(7)
+                    .background(Color.white.cornerRadius(10))
+                }) //: BUTTON
                 
                 Spacer()
                 
-                Button {
+                Button(action: {
                     withAnimation {
                         feedback.impactOccurred()
                         showSaveFilterAlert.toggle()
                     }
-                } label: {
-                    HStack {
-                        Image(systemName: "plus")
-                    }
-                    .padding(5)
-                }
-                .background(Color.white)
+                }, label: {
+                    Image(systemName: "plus")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 16, height: 16, alignment: .center)
+                        .foregroundColor(.black)
+                }) //: BUTTON
+                .padding(11)
+                .background(Color.white.cornerRadius(10))
             } //: HSTACK
         } //: VSTACK
         .padding(.top, 50)
@@ -189,9 +206,4 @@ struct ContentView: View {
         formatter.dateFormat = "MMMM d, yyyy"
         return formatter.string(from: selectedDate)
     }
-}
-
-// MARK: – PREVIEW
-#Preview {
-    ContentView()
 }
