@@ -1,0 +1,7 @@
+platform :ios, '13.0'
+use_frameworks!
+
+target 'MarsSnap' do
+  pod 'Alamofire'
+  pod 'SwiftyJSON'
+end

@@ -1,0 +1,620 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		18C34495396DAA1F2F0B6518 /* Pods_MarsSnap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BBF6703C6E2ED104E9E3D1 /* Pods_MarsSnap.framework */; };
+		6A06599C2BCAF333005D9B8E /* DatePickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A06599B2BCAF333005D9B8E /* DatePickerComponent.swift */; };
+		6A25C0262BCBCAAE0087CA5C /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 6A25C0252BCBCAAE0087CA5C /* Lottie */; };
+		6A25C02C2BCBCAEB0087CA5C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6A25C02B2BCBCAEB0087CA5C /* Kingfisher */; };
+		6A357C7F2BCB0B5B0048A833 /* GeneralFilterComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A357C7E2BCB0B5B0048A833 /* GeneralFilterComponent.swift */; };
+		6A357C812BCB159D0048A833 /* Preloader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A357C802BCB159D0048A833 /* Preloader.storyboard */; };
+		6AD259F22BCC3CA800E56C38 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD259F12BCC3CA800E56C38 /* AsyncImageView.swift */; };
+		6AD259F52BCC612100E56C38 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 6AD259F42BCC612100E56C38 /* Realm */; };
+		6AD259F72BCC612100E56C38 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6AD259F62BCC612100E56C38 /* RealmSwift */; };
+		6AD259F92BCC62A100E56C38 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD259F82BCC62A100E56C38 /* History.swift */; };
+		6AD259FB2BCC70BE00E56C38 /* FilterCardComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD259FA2BCC70BE00E56C38 /* FilterCardComponent.swift */; };
+		6AD259FE2BCC9F1E00E56C38 /* loader.json in Resources */ = {isa = PBXBuildFile; fileRef = 6AD259FD2BCC9F1E00E56C38 /* loader.json */; };
+		6AD25A002BCC9F8800E56C38 /* LottieAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD259FF2BCC9F8800E56C38 /* LottieAnimationView.swift */; };
+		6AE6FB3C2BC995BE00F31EDE /* MarsSnapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB3B2BC995BE00F31EDE /* MarsSnapApp.swift */; };
+		6AE6FB3E2BC995BE00F31EDE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB3D2BC995BE00F31EDE /* ContentView.swift */; };
+		6AE6FB402BC995BF00F31EDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AE6FB3F2BC995BF00F31EDE /* Assets.xcassets */; };
+		6AE6FB432BC995BF00F31EDE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AE6FB422BC995BF00F31EDE /* Preview Assets.xcassets */; };
+		6AE6FB512BC9967300F31EDE /* CardComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB4D2BC9967300F31EDE /* CardComponent.swift */; };
+		6AE6FB5A2BC996D000F31EDE /* MarsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB542BC996D000F31EDE /* MarsViewModel.swift */; };
+		6AE6FB5B2BC996D000F31EDE /* Mars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB562BC996D000F31EDE /* Mars.swift */; };
+		6AE6FB5C2BC996D000F31EDE /* MarsImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB582BC996D000F31EDE /* MarsImageView.swift */; };
+		6AE6FB5F2BC9A1A800F31EDE /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB5E2BC9A1A800F31EDE /* Constant.swift */; };
+		6AE6FB612BC9C60500F31EDE /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB602BC9C60500F31EDE /* HistoryView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0D7F3FC6F362A2F075606548 /* Pods-MarsSnap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarsSnap.debug.xcconfig"; path = "Target Support Files/Pods-MarsSnap/Pods-MarsSnap.debug.xcconfig"; sourceTree = "<group>"; };
+		61202EBAABC9088A2EF00DDC /* Pods-MarsSnap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarsSnap.release.xcconfig"; path = "Target Support Files/Pods-MarsSnap/Pods-MarsSnap.release.xcconfig"; sourceTree = "<group>"; };
+		6A06599B2BCAF333005D9B8E /* DatePickerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerComponent.swift; sourceTree = "<group>"; };
+		6A357C7E2BCB0B5B0048A833 /* GeneralFilterComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralFilterComponent.swift; sourceTree = "<group>"; };
+		6A357C802BCB159D0048A833 /* Preloader.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preloader.storyboard; sourceTree = "<group>"; };
+		6AD259F12BCC3CA800E56C38 /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
+		6AD259F82BCC62A100E56C38 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
+		6AD259FA2BCC70BE00E56C38 /* FilterCardComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCardComponent.swift; sourceTree = "<group>"; };
+		6AD259FD2BCC9F1E00E56C38 /* loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loader.json; sourceTree = "<group>"; };
+		6AD259FF2BCC9F8800E56C38 /* LottieAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieAnimationView.swift; sourceTree = "<group>"; };
+		6AE6FB382BC995BE00F31EDE /* MarsSnap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarsSnap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6AE6FB3B2BC995BE00F31EDE /* MarsSnapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsSnapApp.swift; sourceTree = "<group>"; };
+		6AE6FB3D2BC995BE00F31EDE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		6AE6FB3F2BC995BF00F31EDE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6AE6FB422BC995BF00F31EDE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		6AE6FB4D2BC9967300F31EDE /* CardComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardComponent.swift; sourceTree = "<group>"; };
+		6AE6FB542BC996D000F31EDE /* MarsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsViewModel.swift; sourceTree = "<group>"; };
+		6AE6FB562BC996D000F31EDE /* Mars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mars.swift; sourceTree = "<group>"; };
+		6AE6FB582BC996D000F31EDE /* MarsImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsImageView.swift; sourceTree = "<group>"; };
+		6AE6FB5E2BC9A1A800F31EDE /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		6AE6FB602BC9C60500F31EDE /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		76BBF6703C6E2ED104E9E3D1 /* Pods_MarsSnap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarsSnap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6AE6FB352BC995BE00F31EDE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A25C0262BCBCAAE0087CA5C /* Lottie in Frameworks */,
+				6A25C02C2BCBCAEB0087CA5C /* Kingfisher in Frameworks */,
+				6AD259F52BCC612100E56C38 /* Realm in Frameworks */,
+				6AD259F72BCC612100E56C38 /* RealmSwift in Frameworks */,
+				18C34495396DAA1F2F0B6518 /* Pods_MarsSnap.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		06686B99DE8D754DD71E8712 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0D7F3FC6F362A2F075606548 /* Pods-MarsSnap.debug.xcconfig */,
+				61202EBAABC9088A2EF00DDC /* Pods-MarsSnap.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		6AD259FC2BCC7DFF00E56C38 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6AD259FD2BCC9F1E00E56C38 /* loader.json */,
+				6AE6FB3F2BC995BF00F31EDE /* Assets.xcassets */,
+				6A357C802BCB159D0048A833 /* Preloader.storyboard */,
+				6AE6FB412BC995BF00F31EDE /* Preview Content */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		6AD25A012BCC9FAC00E56C38 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				6AE6FB5E2BC9A1A800F31EDE /* Constant.swift */,
+				6AD259F12BCC3CA800E56C38 /* AsyncImageView.swift */,
+				6AD259FF2BCC9F8800E56C38 /* LottieAnimationView.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		6AE6FB2F2BC995BE00F31EDE = {
+			isa = PBXGroup;
+			children = (
+				6AE6FB3A2BC995BE00F31EDE /* MarsSnap */,
+				6AE6FB392BC995BE00F31EDE /* Products */,
+				06686B99DE8D754DD71E8712 /* Pods */,
+				EBC932975E9527A37942EDA7 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		6AE6FB392BC995BE00F31EDE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6AE6FB382BC995BE00F31EDE /* MarsSnap.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6AE6FB3A2BC995BE00F31EDE /* MarsSnap */ = {
+			isa = PBXGroup;
+			children = (
+				6AE6FB5D2BC996DF00F31EDE /* App */,
+				6AE6FB572BC996D000F31EDE /* Model */,
+				6AE6FB592BC996D000F31EDE /* View */,
+				6AE6FB552BC996D000F31EDE /* ViewModel */,
+				6AD25A012BCC9FAC00E56C38 /* Helpers */,
+				6AD259FC2BCC7DFF00E56C38 /* Utils */,
+			);
+			path = MarsSnap;
+			sourceTree = "<group>";
+		};
+		6AE6FB412BC995BF00F31EDE /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				6AE6FB422BC995BF00F31EDE /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		6AE6FB502BC9967300F31EDE /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				6AE6FB4D2BC9967300F31EDE /* CardComponent.swift */,
+				6AD259FA2BCC70BE00E56C38 /* FilterCardComponent.swift */,
+				6A06599B2BCAF333005D9B8E /* DatePickerComponent.swift */,
+				6A357C7E2BCB0B5B0048A833 /* GeneralFilterComponent.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		6AE6FB552BC996D000F31EDE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6AE6FB542BC996D000F31EDE /* MarsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6AE6FB572BC996D000F31EDE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6AE6FB562BC996D000F31EDE /* Mars.swift */,
+				6AD259F82BCC62A100E56C38 /* History.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6AE6FB592BC996D000F31EDE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6AE6FB582BC996D000F31EDE /* MarsImageView.swift */,
+				6AE6FB602BC9C60500F31EDE /* HistoryView.swift */,
+				6AE6FB502BC9967300F31EDE /* Component */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6AE6FB5D2BC996DF00F31EDE /* App */ = {
+			isa = PBXGroup;
+			children = (
+				6AE6FB3B2BC995BE00F31EDE /* MarsSnapApp.swift */,
+				6AE6FB3D2BC995BE00F31EDE /* ContentView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		EBC932975E9527A37942EDA7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				76BBF6703C6E2ED104E9E3D1 /* Pods_MarsSnap.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6AE6FB372BC995BE00F31EDE /* MarsSnap */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6AE6FB462BC995BF00F31EDE /* Build configuration list for PBXNativeTarget "MarsSnap" */;
+			buildPhases = (
+				67BD20EED152E873B9EBEACD /* [CP] Check Pods Manifest.lock */,
+				6AE6FB342BC995BE00F31EDE /* Sources */,
+				6AE6FB352BC995BE00F31EDE /* Frameworks */,
+				6AE6FB362BC995BE00F31EDE /* Resources */,
+				CE8D38FFD53528CCC2485207 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MarsSnap;
+			packageProductDependencies = (
+				6A25C0252BCBCAAE0087CA5C /* Lottie */,
+				6A25C02B2BCBCAEB0087CA5C /* Kingfisher */,
+				6AD259F42BCC612100E56C38 /* Realm */,
+				6AD259F62BCC612100E56C38 /* RealmSwift */,
+			);
+			productName = MarsSnap;
+			productReference = 6AE6FB382BC995BE00F31EDE /* MarsSnap.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6AE6FB302BC995BE00F31EDE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					6AE6FB372BC995BE00F31EDE = {
+						CreatedOnToolsVersion = 15.3;
+					};
+				};
+			};
+			buildConfigurationList = 6AE6FB332BC995BE00F31EDE /* Build configuration list for PBXProject "MarsSnap" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6AE6FB2F2BC995BE00F31EDE;
+			packageReferences = (
+				6A25C0242BCBCAAE0087CA5C /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				6A25C02A2BCBCAEB0087CA5C /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				6AD259F32BCC612100E56C38 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
+			productRefGroup = 6AE6FB392BC995BE00F31EDE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6AE6FB372BC995BE00F31EDE /* MarsSnap */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6AE6FB362BC995BE00F31EDE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6AE6FB432BC995BF00F31EDE /* Preview Assets.xcassets in Resources */,
+				6AE6FB402BC995BF00F31EDE /* Assets.xcassets in Resources */,
+				6AD259FE2BCC9F1E00E56C38 /* loader.json in Resources */,
+				6A357C812BCB159D0048A833 /* Preloader.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		67BD20EED152E873B9EBEACD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MarsSnap-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CE8D38FFD53528CCC2485207 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MarsSnap/Pods-MarsSnap-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MarsSnap/Pods-MarsSnap-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MarsSnap/Pods-MarsSnap-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6AE6FB342BC995BE00F31EDE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A357C7F2BCB0B5B0048A833 /* GeneralFilterComponent.swift in Sources */,
+				6AE6FB612BC9C60500F31EDE /* HistoryView.swift in Sources */,
+				6AD25A002BCC9F8800E56C38 /* LottieAnimationView.swift in Sources */,
+				6AE6FB5B2BC996D000F31EDE /* Mars.swift in Sources */,
+				6AE6FB3E2BC995BE00F31EDE /* ContentView.swift in Sources */,
+				6AE6FB3C2BC995BE00F31EDE /* MarsSnapApp.swift in Sources */,
+				6AD259FB2BCC70BE00E56C38 /* FilterCardComponent.swift in Sources */,
+				6AE6FB512BC9967300F31EDE /* CardComponent.swift in Sources */,
+				6AD259F92BCC62A100E56C38 /* History.swift in Sources */,
+				6AE6FB5A2BC996D000F31EDE /* MarsViewModel.swift in Sources */,
+				6AE6FB5F2BC9A1A800F31EDE /* Constant.swift in Sources */,
+				6A06599C2BCAF333005D9B8E /* DatePickerComponent.swift in Sources */,
+				6AE6FB5C2BC996D000F31EDE /* MarsImageView.swift in Sources */,
+				6AD259F22BCC3CA800E56C38 /* AsyncImageView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6AE6FB442BC995BF00F31EDE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6AE6FB452BC995BF00F31EDE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6AE6FB472BC995BF00F31EDE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0D7F3FC6F362A2F075606548 /* Pods-MarsSnap.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MarsSnap/Utils/Preview Content\"";
+				DEVELOPMENT_TEAM = 9PCQ5XC84W;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MarsSnap/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MarsSnap;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = Preloader.storyboard;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = mandlecommerce.MarsSnap;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		6AE6FB482BC995BF00F31EDE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61202EBAABC9088A2EF00DDC /* Pods-MarsSnap.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MarsSnap/Utils/Preview Content\"";
+				DEVELOPMENT_TEAM = 9PCQ5XC84W;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MarsSnap/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MarsSnap;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = Preloader.storyboard;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = mandlecommerce.MarsSnap;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6AE6FB332BC995BE00F31EDE /* Build configuration list for PBXProject "MarsSnap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6AE6FB442BC995BF00F31EDE /* Debug */,
+				6AE6FB452BC995BF00F31EDE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6AE6FB462BC995BF00F31EDE /* Build configuration list for PBXNativeTarget "MarsSnap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6AE6FB472BC995BF00F31EDE /* Debug */,
+				6AE6FB482BC995BF00F31EDE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6A25C0242BCBCAAE0087CA5C /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.4.2;
+			};
+		};
+		6A25C02A2BCBCAEB0087CA5C /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.11.0;
+			};
+		};
+		6AD259F32BCC612100E56C38 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6A25C0252BCBCAAE0087CA5C /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6A25C0242BCBCAAE0087CA5C /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+		6A25C02B2BCBCAEB0087CA5C /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6A25C02A2BCBCAEB0087CA5C /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		6AD259F42BCC612100E56C38 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6AD259F32BCC612100E56C38 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		6AD259F62BCC612100E56C38 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6AD259F32BCC612100E56C38 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 6AE6FB302BC995BE00F31EDE /* Project object */;
+}
