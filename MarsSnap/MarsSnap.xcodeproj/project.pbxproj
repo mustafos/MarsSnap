@@ -18,6 +18,8 @@
 		6AD259F72BCC612100E56C38 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6AD259F62BCC612100E56C38 /* RealmSwift */; };
 		6AD259F92BCC62A100E56C38 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD259F82BCC62A100E56C38 /* History.swift */; };
 		6AD259FB2BCC70BE00E56C38 /* FilterCardComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD259FA2BCC70BE00E56C38 /* FilterCardComponent.swift */; };
+		6AD259FE2BCC9F1E00E56C38 /* loader.json in Resources */ = {isa = PBXBuildFile; fileRef = 6AD259FD2BCC9F1E00E56C38 /* loader.json */; };
+		6AD25A002BCC9F8800E56C38 /* LottieAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD259FF2BCC9F8800E56C38 /* LottieAnimationView.swift */; };
 		6AE6FB3C2BC995BE00F31EDE /* MarsSnapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB3B2BC995BE00F31EDE /* MarsSnapApp.swift */; };
 		6AE6FB3E2BC995BE00F31EDE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB3D2BC995BE00F31EDE /* ContentView.swift */; };
 		6AE6FB402BC995BF00F31EDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AE6FB3F2BC995BF00F31EDE /* Assets.xcassets */; };
@@ -39,6 +41,8 @@
 		6AD259F12BCC3CA800E56C38 /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		6AD259F82BCC62A100E56C38 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		6AD259FA2BCC70BE00E56C38 /* FilterCardComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCardComponent.swift; sourceTree = "<group>"; };
+		6AD259FD2BCC9F1E00E56C38 /* loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loader.json; sourceTree = "<group>"; };
+		6AD259FF2BCC9F8800E56C38 /* LottieAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieAnimationView.swift; sourceTree = "<group>"; };
 		6AE6FB382BC995BE00F31EDE /* MarsSnap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarsSnap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AE6FB3B2BC995BE00F31EDE /* MarsSnapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsSnapApp.swift; sourceTree = "<group>"; };
 		6AE6FB3D2BC995BE00F31EDE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -81,13 +85,22 @@
 		6AD259FC2BCC7DFF00E56C38 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				6AD259FD2BCC9F1E00E56C38 /* loader.json */,
 				6AE6FB3F2BC995BF00F31EDE /* Assets.xcassets */,
 				6A357C802BCB159D0048A833 /* Preloader.storyboard */,
-				6AE6FB5E2BC9A1A800F31EDE /* Constant.swift */,
-				6AD259F12BCC3CA800E56C38 /* AsyncImageView.swift */,
 				6AE6FB412BC995BF00F31EDE /* Preview Content */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		6AD25A012BCC9FAC00E56C38 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				6AE6FB5E2BC9A1A800F31EDE /* Constant.swift */,
+				6AD259F12BCC3CA800E56C38 /* AsyncImageView.swift */,
+				6AD259FF2BCC9F8800E56C38 /* LottieAnimationView.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		6AE6FB2F2BC995BE00F31EDE = {
@@ -115,6 +128,7 @@
 				6AE6FB572BC996D000F31EDE /* Model */,
 				6AE6FB592BC996D000F31EDE /* View */,
 				6AE6FB552BC996D000F31EDE /* ViewModel */,
+				6AD25A012BCC9FAC00E56C38 /* Helpers */,
 				6AD259FC2BCC7DFF00E56C38 /* Utils */,
 			);
 			path = MarsSnap;
@@ -256,6 +270,7 @@
 			files = (
 				6AE6FB432BC995BF00F31EDE /* Preview Assets.xcassets in Resources */,
 				6AE6FB402BC995BF00F31EDE /* Assets.xcassets in Resources */,
+				6AD259FE2BCC9F1E00E56C38 /* loader.json in Resources */,
 				6A357C812BCB159D0048A833 /* Preloader.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,6 +326,7 @@
 			files = (
 				6A357C7F2BCB0B5B0048A833 /* GeneralFilterComponent.swift in Sources */,
 				6AE6FB612BC9C60500F31EDE /* HistoryView.swift in Sources */,
+				6AD25A002BCC9F8800E56C38 /* LottieAnimationView.swift in Sources */,
 				6AE6FB5B2BC996D000F31EDE /* Mars.swift in Sources */,
 				6AE6FB3E2BC995BE00F31EDE /* ContentView.swift in Sources */,
 				6AE6FB3C2BC995BE00F31EDE /* MarsSnapApp.swift in Sources */,

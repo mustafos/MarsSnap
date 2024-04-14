@@ -74,6 +74,9 @@ struct ContentView: View {
                                         CardComponent(mars: marsData)
                                     } //: LINK
                                 } //: LOOP
+                                
+                                LottieView(animationFileName: "loader", loopMode: .loop)
+                                    .frame(width: 200, height: 200)
                                 HStack {
                                     Spacer()
                                     Text("Copyright © 2024 Mustafa Bekirov. \nAll rights reserved.")
