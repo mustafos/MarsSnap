@@ -1,4 +1,4 @@
-module Pods_MarsSnap {
+framework module Pods_MarsSnap {
   umbrella header "Pods-MarsSnap-umbrella.h"
 
   export *
