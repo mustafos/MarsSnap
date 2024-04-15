@@ -3,17 +3,19 @@
 //  MarsSnap
 //
 //  Created by Mustafa Bekirov on 13.04.2024.
-//
+//  Copyright © 2024 Mustafa Bekirov. All rights reserved.
 
 import SwiftUI
 
 struct GeneralFilterComponent: View {
     
     // MARK: – PROPERTIES
+    @ObservedObject var viewModel = MarsPhotosViewModel()
     var isFilterCamera: Bool = true
-    
-    @State private var cameraName = Camera.all
-    @State private var roverName = Rover.all
+//    let rover: Rover
+//    let camera: Camera
+    @State private var cameraName = String()
+    @State private var roverName = String()
     
     @Binding var selectedFilter: String
     var positiveButtonAction: ((String) -> ())? = nil
@@ -26,22 +28,32 @@ struct GeneralFilterComponent: View {
                 .edgesIgnoringSafeArea(.all)
             Spacer()
             VStack {
+                
+                
+                ForEach(viewModel.photos, id: \.id) { photo in
+                    NavigationLink(destination: MarsImageView(marsPhoto: photo, manager: self.viewModel)) {
+                        CardComponent(mars: photo)
+                    } //: LINK
+                } //: LOOP
+                
+                
+                
                 HeaderView()
                 if isFilterCamera {
                     Picker("Choose the camera", selection: $cameraName) {
-                        ForEach(Camera.allCases) { camera in
-                            Text(camera.rawValue.capitalized)
-                                .tag(camera)
-                        }
+//                        ForEach(Camera.allCases) { camera in
+//                            Text(camera.rawValue.capitalized)
+//                                .tag(camera)
+//                        }
                     }
                     .pickerStyle(.wheel)
                     .padding(.bottom)
                 } else {
                     Picker("Choose the rover", selection: $roverName) {
-                        ForEach(Rover.allCases) { rover in
-                            Text(rover.rawValue.capitalized)
-                                .tag(rover)
-                        }
+//                        ForEach(Rover.allCases) { rover in
+//                            Text(rover.rawValue.capitalized)
+//                                .tag(rover)
+//                        }
                     }
                     .pickerStyle(.wheel)
                     .padding(.bottom)
@@ -60,7 +72,7 @@ struct GeneralFilterComponent: View {
         HStack {
             Button {
                 withAnimation {
-                    feedback.impactOccurred()
+                    Constants.feedback.impactOccurred()
                     negativeButtonAction?()
                 }
             } label: {
@@ -75,8 +87,8 @@ struct GeneralFilterComponent: View {
             Spacer()
             Button {
                 withAnimation {
-                    feedback.impactOccurred()
-                    positiveButtonAction?(isFilterCamera ? cameraName.rawValue : roverName.rawValue)
+                    Constants.feedback.impactOccurred()
+//                    positiveButtonAction?(isFilterCamera ? cameraName.rawValue : roverName.rawValue)
                 }
             } label: {
                 Image("correct")

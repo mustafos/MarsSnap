@@ -3,7 +3,7 @@
 //  MarsSnap
 //
 //  Created by Mustafa Bekirov on 11.04.2024.
-//
+//  Copyright © 2024 Mustafa Bekirov. All rights reserved.
 
 import SwiftUI
 import RealmSwift
@@ -11,10 +11,7 @@ import RealmSwift
 struct ContentView: View {
     
     // MARK: – PROPERTIES
-    @ObservedObject var manager = MarsPhotoManager(selectedRover: Rover.perseverance)
-    @State private var selectedRover = Rover.perseverance
-    @State private var selectedCamera = Camera.all
-    @State private var selectedEarthDate = EarthDate.latest
+    @ObservedObject var viewModel = MarsPhotosViewModel()
     
     @State private var showSaveFilterAlert: Bool = false
     @State private var isSheetCameraPresented: Bool = false
@@ -64,15 +61,16 @@ struct ContentView: View {
                             selectedCameraFilter = filter
                         }
                 }
+                
                 Group {
                     VStack {
                         HeaderView()
                         ZStack {
                             ScrollView(.vertical, showsIndicators: true) {
                                 Spacer()
-                                ForEach(manager.filteredData(selectedRover: selectedRover, selectedCamera: selectedCamera, selectedEarthDate: selectedEarthDate)) { marsData in
-                                    NavigationLink(destination: MarsImageView(mars: marsData)) {
-                                        CardComponent(mars: marsData)
+                                ForEach(viewModel.photos, id: \.id) { photo in
+                                    NavigationLink(destination: MarsImageView(marsPhoto: photo, manager: self.viewModel)) {
+                                        CardComponent(mars: photo)
                                     } //: LINK
                                 } //: LOOP
                                 HStack {
@@ -106,7 +104,7 @@ struct ContentView: View {
                     message: Text("The current filters and the date you have chosen can be saved to the filter history."),
                     primaryButton: .default(Text("Save"), action: {
                         withAnimation {
-                            feedback.impactOccurred()
+                            Constants.feedback.impactOccurred()
                             saveFilterHistory()
                         }
                     }),
@@ -129,7 +127,7 @@ struct ContentView: View {
                 Spacer()
                 Button(action: {
                     withAnimation {
-                        feedback.impactOccurred()
+                        Constants.feedback.impactOccurred()
                         presentDatePickerFilter.toggle()
                     }
                 }, label: {
@@ -139,7 +137,7 @@ struct ContentView: View {
             HStack {
                 Button(action: {
                     withAnimation {
-                        feedback.impactOccurred()
+                        Constants.feedback.impactOccurred()
                         isSheetRoverPresented.toggle()
                     }
                 }, label: {
@@ -161,7 +159,7 @@ struct ContentView: View {
                 }) //: BUTTON
                 Button(action: {
                     withAnimation {
-                        feedback.impactOccurred()
+                        Constants.feedback.impactOccurred()
                         isSheetCameraPresented.toggle()
                     }
                 }, label: {
@@ -186,7 +184,7 @@ struct ContentView: View {
                 
                 Button(action: {
                     withAnimation {
-                        feedback.impactOccurred()
+                        Constants.feedback.impactOccurred()
                         showSaveFilterAlert.toggle()
                     }
                 }, label: {
@@ -224,11 +222,11 @@ struct ContentView: View {
     }
     
     // MARK: – METHODS
-    private func saveToHistory(marsData: Mars) {
+    private func saveToHistory(marsData: Photo) {
         try! realm.write {
             let history = History()
-            history.selectedRover = selectedRover.rawValue
-            history.selectedCamera = selectedCamera.rawValue
+            history.selectedRover = selectedRoverFilter
+            history.selectedCamera = selectedCameraFilter
             history.selectedEarthDate = selectedDate
             realm.add(history)
         }
@@ -237,8 +235,8 @@ struct ContentView: View {
     private func saveFilterHistory() {
         try! realm.write {
             let filterHistory = History()
-            filterHistory.selectedRover = selectedRover.rawValue
-            filterHistory.selectedCamera = selectedCamera.rawValue
+            filterHistory.selectedRover = selectedRoverFilter
+            filterHistory.selectedCamera = selectedCameraFilter
             filterHistory.selectedEarthDate = selectedDate
             realm.add(filterHistory)
         }

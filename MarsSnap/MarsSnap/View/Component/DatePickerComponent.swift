@@ -3,7 +3,7 @@
 //  MarsSnap
 //
 //  Created by Mustafa Bekirov on 13.04.2024.
-//
+//  Copyright © 2024 Mustafa Bekirov. All rights reserved.
 
 import SwiftUI
 
@@ -39,7 +39,7 @@ struct DatePickerComponent: View {
         HStack {
             Button {
                 withAnimation {
-                    feedback.impactOccurred()
+                    Constants.feedback.impactOccurred()
                     negativeButtonAction?()
                 }
             } label: {
@@ -56,7 +56,7 @@ struct DatePickerComponent: View {
             
             Button {
                 withAnimation {
-                    feedback.impactOccurred()
+                    Constants.feedback.impactOccurred()
                     positiveButtonAction?(selectedDate)
                 }
             } label: {

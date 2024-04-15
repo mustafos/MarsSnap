@@ -3,7 +3,7 @@
 //  MarsSnap
 //
 //  Created by Mustafa Bekirov on 12.04.2024.
-//
+//  Copyright © 2024 Mustafa Bekirov. All rights reserved.
 
 import SwiftUI
 
@@ -11,10 +11,17 @@ struct MarsImageView: View {
     
     // MARK: – PROPERTIES
     @Environment(\.presentationMode) var presentationMode
-    let mars: Mars
+    @ObservedObject var manager: MarsPhotosViewModel
+    let marsPhoto: Photo
     
     @State private var scale: CGFloat = 1.0
     @State private var lastScale: CGFloat = 1.0
+    
+    init(marsPhoto: Photo, manager: MarsPhotosViewModel) {
+        print("init detail for \(marsPhoto.earthDate)")
+        self.marsPhoto = marsPhoto
+        self.manager = manager
+    }
     
     var body: some View {
         ZStack {
@@ -30,7 +37,7 @@ struct MarsImageView: View {
                 let yOffset = (screenHeight - (marsImageHeight * scale)) / 2
                 
                 // MARS IMAGE
-                AsyncImageView(imageUrl: mars.imgSrc)
+                AsyncImageView(imageUrl: marsPhoto.imgSrc)
                     .scaledToFit()
                     .frame(width: marsImageWidth * scale, height: marsImageHeight * scale)
                     .offset(x: xOffset, y: yOffset)
@@ -47,7 +54,7 @@ struct MarsImageView: View {
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: Button {
             withAnimation {
-                feedback.impactOccurred()
+                Constants.feedback.impactOccurred()
                 presentationMode.wrappedValue.dismiss()
             }
         } label: {
