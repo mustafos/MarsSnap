@@ -23,24 +23,24 @@ struct CardComponent: View {
                     Text("Rover: ")
                         .foregroundColor(.layerTwo)
                         .fontWeight(.regular)
-                    + Text(mars.rover)
+                    + Text(mars.roverName)
                         .fontWeight(.bold)
                         .foregroundColor(.layerOne)
                     
                     Text("Camera: ")
                         .foregroundColor(.layerTwo)
-                    + Text(mars.camera)
+                    + Text(mars.cameraFullName)
                         .fontWeight(.bold)
                         .foregroundColor(.layerOne)
                     
                     Text("Date: ")
                         .foregroundColor(.layerTwo)
-                    + Text(mars.date)
+                    + Text(mars.earthDate)
                         .fontWeight(.bold)
                         .foregroundColor(.layerOne)
                 } //: VSTACK
                 Spacer()
-                AsyncImageView(imageUrl: mars.imageUrl!)
+                AsyncImageView(imageUrl: mars.imgSrc)
                     .scaledToFill()
                     .frame(width: 130, height: 130)
                     .clipShape(

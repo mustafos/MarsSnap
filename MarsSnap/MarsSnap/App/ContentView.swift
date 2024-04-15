@@ -11,7 +11,7 @@ import RealmSwift
 struct ContentView: View {
     
     // MARK: – PROPERTIES
-    @ObservedObject var manager = MarsPhotoManager()
+    @ObservedObject var manager = MarsPhotoManager(selectedRover: Rover.perseverance)
     @State private var selectedRover = Rover.perseverance
     @State private var selectedCamera = Camera.all
     @State private var selectedEarthDate = EarthDate.latest
@@ -24,6 +24,7 @@ struct ContentView: View {
     @State private var presentDatePickerFilter: Bool = false
     @State private var selectedDate = Date()
     @State private var tempSelectedDate = Date()
+    @State private var shouldLoadMoreData = true
     
     let realm = try! Realm()
     
@@ -67,16 +68,13 @@ struct ContentView: View {
                     VStack {
                         HeaderView()
                         ZStack {
-                            ScrollView(.vertical, showsIndicators: false) {
+                            ScrollView(.vertical, showsIndicators: true) {
                                 Spacer()
                                 ForEach(manager.filteredData(selectedRover: selectedRover, selectedCamera: selectedCamera, selectedEarthDate: selectedEarthDate)) { marsData in
                                     NavigationLink(destination: MarsImageView(mars: marsData)) {
                                         CardComponent(mars: marsData)
                                     } //: LINK
                                 } //: LOOP
-                                
-                                LottieView(animationFileName: "loader", loopMode: .loop)
-                                    .frame(width: 200, height: 200)
                                 HStack {
                                     Spacer()
                                     Text("Copyright © 2024 Mustafa Bekirov. \nAll rights reserved.")

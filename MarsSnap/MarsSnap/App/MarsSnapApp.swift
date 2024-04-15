@@ -11,6 +11,8 @@ import SwiftUI
 @available(iOS 14.0, *)
 @main
 struct MarsSnapApp: App {
+    @State private var selectedRoverFilter = "perseverance" // Initialize selectedRoverFilter here
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

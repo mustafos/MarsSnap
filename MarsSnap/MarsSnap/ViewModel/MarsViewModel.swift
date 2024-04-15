@@ -12,26 +12,29 @@ import Kingfisher
 
 class MarsPhotoManager: ObservableObject {
     @Published var datas = [Mars]()
+    var selectedRover: Rover // Declare selectedRover property
     
-    init() {
+    init(selectedRover: Rover) {
+        self.selectedRover = selectedRover
         fetchPhotos()
     }
     
     func fetchPhotos() {
-        let rover = "perseverance" // Default rover
-        let sol = "1000" // Default sol
-        
-        AF.request("https://api.nasa.gov/mars-photos/api/v1/rovers/\(rover)/photos?sol=\(sol)&api_key=T9f55mAkKU4eIDFxBC9viMRytowhjzcNrh4dtanu").responseJSON { response in
+        let url = "https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/photos?api_key=T9f55mAkKU4eIDFxBC9viMRytowhjzcNrh4dtanu&sol=1000"
+        AF.request(url).responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
+                print(json) // Print the JSON response
+                
+                // Assuming the JSON structure is similar to the example website
                 if let photos = json["photos"].array {
                     for photo in photos {
                         let roverName = photo["rover"]["name"].stringValue
                         let cameraName = photo["camera"]["full_name"].stringValue
                         let earthDate = photo["earth_date"].stringValue
                         let imageUrl = photo["img_src"].stringValue
-                        let data = Mars(rover: roverName, camera: cameraName, date: earthDate, imageUrl: imageUrl)
+                        let data = Mars(id: UUID(), roverName: roverName, cameraFullName: cameraName, earthDate: earthDate, imgSrc: imageUrl)
                         self.datas.append(data)
                     }
                 }
@@ -40,27 +43,37 @@ class MarsPhotoManager: ObservableObject {
             }
         }
     }
+
+    
+    private func generateURL(for rover: Rover) -> String {
+        let roverName = rover.rawValue.lowercased()
+        let urlString = "https://api.nasa.gov/mars-photos/api/v1/rovers/\(roverName)/photos?api_key=T9f55mAkKU4eIDFxBC9viMRytowhjzcNrh4dtanu&sol=1000"
+        return urlString
+    }
 }
 
 enum Rover: String, CaseIterable, Identifiable {
     case all = "All"
-    case perseverance = "Perseverance"
     case curiosity = "Curiosity"
+    case perseverance = "Perseverance"
+    case spirit = "Spirit"
+    case opportunity = "Opportunity"
     
-    var id: String { self.rawValue}
+    var id: String { self.rawValue }
 }
 
 enum Camera: String, CaseIterable, Identifiable {
     case all = "All"
-    case FHAZ = "Front Hazard Avoidance Camera"
-    case NAVCAM = "Navigation Camera"
-    case MAST = "Mast Camera"
-    case CHEMCAM = "Chemistry and Camera Complex"
-    case MAHLI = "Mars Hand Lens Imager"
-    case MARD = "Mars Descent Imager"
-    case RHAZ = "Rear Hazard Avoidance Camera"
+    case Mastcam = "Mast Camera"
+    case ChemCam = "ChemCam"
+    case Navcam = "Navigation Camera"
+    case Hazcam = "Hazard Avoidance Camera"
+    case Pancam = "Panoramic Camera"
+    case Microscopic = "Microscopic Imager"
+    case Parachute = "Descent Stage Down-Look Camera"
+    case Lander = "Lander Vision System Camera"
     
-    var id: String { self.rawValue}
+    var id: String { self.rawValue }
 }
 
 enum EarthDate: String, CaseIterable {
@@ -73,17 +86,17 @@ extension MarsPhotoManager {
         
         // Filter by rover
         if selectedRover != .perseverance {
-            filteredData = filteredData.filter { $0.rover.lowercased() == selectedRover.rawValue }
+            filteredData = filteredData.filter { $0.roverName.lowercased() == selectedRover.rawValue.lowercased() }
         }
         
         // Filter by camera
         if selectedCamera != .all {
-            filteredData = filteredData.filter { $0.camera.lowercased() == selectedCamera.rawValue }
+            filteredData = filteredData.filter { $0.cameraFullName.lowercased() == selectedCamera.rawValue.lowercased() }
         }
         
         // Filter by earth date
         if selectedEarthDate != .latest {
-            filteredData = filteredData.filter { $0.date == selectedEarthDate.rawValue }
+            filteredData = filteredData.filter { $0.earthDate == selectedEarthDate.rawValue }
         }
         
         return filteredData
