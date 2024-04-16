@@ -6,12 +6,11 @@
 //  Copyright © 2024 Mustafa Bekirov. All rights reserved.
 
 import SwiftUI
-import Kingfisher
 
 struct CardComponent: View {
     
     // MARK: – PROPERTIES
-    let mars: Photo
+    let mars: MarsPhoto
     
     // MARK: – BODY
     var body: some View {
@@ -24,13 +23,13 @@ struct CardComponent: View {
                     Text("Rover: ")
                         .foregroundColor(.layerTwo)
                         .fontWeight(.regular)
-                    + Text(mars.rover.name)
+                    + Text(String(mars.rover.name))
                         .fontWeight(.bold)
                         .foregroundColor(.layerOne)
                     
                     Text("Camera: ")
                         .foregroundColor(.layerTwo)
-                    + Text(mars.camera.fullName)
+                    + Text(mars.camera.fullName ?? "FHAZ")
                         .fontWeight(.bold)
                         .foregroundColor(.layerOne)
                     

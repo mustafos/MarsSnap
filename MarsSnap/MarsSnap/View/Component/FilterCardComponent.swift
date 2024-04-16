@@ -43,7 +43,7 @@ struct FilterCardComponent: View {
                     
                     Text("Date: ")
                         .foregroundColor(.layerTwo)
-                    + Text(history.selectedCamera)
+                    + Text("history.selectedEarthDate")
                         .fontWeight(.bold)
                         .foregroundColor(.layerOne)
                 } //: VSTACK

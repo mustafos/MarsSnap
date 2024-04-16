@@ -23,7 +23,7 @@ struct ContentView: View {
     @State private var tempSelectedDate = Date()
     @State private var shouldLoadMoreData = true
     
-    let realm = try! Realm()
+    let realm = try? Realm()
     
     // MARK: – BODY
     var body: some View {
@@ -37,6 +37,7 @@ struct ContentView: View {
                         .onPositiveButtonTap { date in
                             presentDatePickerFilter.toggle()
                             selectedDate = tempSelectedDate
+                            viewModel.fetchPhotos(rover: selectedRoverFilter, camera: selectedCameraFilter, date: formattedDate)
                         }
                 }
                 
@@ -47,7 +48,8 @@ struct ContentView: View {
                         }
                         .onPositiveButtonTap { filter in
                             isSheetRoverPresented.toggle()
-                            selectedRoverFilter = filter
+                            selectedRoverFilter = filter.lowercased()
+                            viewModel.fetchPhotos(rover: selectedRoverFilter, camera: selectedCameraFilter, date: formattedDate)
                         }
                 }
                 
@@ -59,6 +61,7 @@ struct ContentView: View {
                         .onPositiveButtonTap { filter in
                             isSheetCameraPresented.toggle()
                             selectedCameraFilter = filter
+                            viewModel.fetchPhotos(rover: selectedRoverFilter, camera: selectedCameraFilter, date: formattedDate)
                         }
                 }
                 
@@ -68,11 +71,17 @@ struct ContentView: View {
                         ZStack {
                             ScrollView(.vertical, showsIndicators: true) {
                                 Spacer()
-                                ForEach(viewModel.photos, id: \.id) { photo in
-                                    NavigationLink(destination: MarsImageView(marsPhoto: photo, manager: self.viewModel)) {
-                                        CardComponent(mars: photo)
-                                    } //: LINK
-                                } //: LOOP
+                                if viewModel.photos.isEmpty {
+                                    Text("No photos available")
+                                        .foregroundColor(.gray)
+                                } else {
+                                    ForEach(viewModel.photos, id: \.id) { photo in
+                                        NavigationLink(destination: MarsImageView(marsPhoto: photo, manager: self.viewModel)) {
+                                            CardComponent(mars: photo)
+                                        } //: LINK
+                                    } //: LOOP
+                                }
+                                
                                 HStack {
                                     Spacer()
                                     Text("Copyright © 2024 Mustafa Bekirov. \nAll rights reserved.")
@@ -105,7 +114,7 @@ struct ContentView: View {
                     primaryButton: .default(Text("Save"), action: {
                         withAnimation {
                             Constants.feedback.impactOccurred()
-                            saveFilterHistory()
+                                saveFilterHistory()
                         }
                     }),
                     secondaryButton: .cancel()
@@ -222,29 +231,29 @@ struct ContentView: View {
     }
     
     // MARK: – METHODS
-    private func saveToHistory(marsData: Photo) {
-        try! realm.write {
+    private func saveToHistory(marsData: MarsPhoto) {
+        try! realm?.write {
             let history = History()
             history.selectedRover = selectedRoverFilter
             history.selectedCamera = selectedCameraFilter
             history.selectedEarthDate = selectedDate
-            realm.add(history)
+            realm?.add(history)
         }
     }
     
     private func saveFilterHistory() {
-        try! realm.write {
+        try! realm?.write {
             let filterHistory = History()
             filterHistory.selectedRover = selectedRoverFilter
             filterHistory.selectedCamera = selectedCameraFilter
             filterHistory.selectedEarthDate = selectedDate
-            realm.add(filterHistory)
+            realm?.add(filterHistory)
         }
     }
     
     private var formattedDate: String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM d, yyyy"
+        formatter.dateFormat = "yyyy-MM-dd"
         return formatter.string(from: selectedDate)
     }
 }

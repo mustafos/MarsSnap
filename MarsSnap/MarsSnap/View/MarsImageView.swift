@@ -12,12 +12,12 @@ struct MarsImageView: View {
     // MARK: – PROPERTIES
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var manager: MarsPhotosViewModel
-    let marsPhoto: Photo
+    let marsPhoto: MarsPhoto
     
     @State private var scale: CGFloat = 1.0
     @State private var lastScale: CGFloat = 1.0
     
-    init(marsPhoto: Photo, manager: MarsPhotosViewModel) {
+    init(marsPhoto: MarsPhoto, manager: MarsPhotosViewModel) {
         print("init detail for \(marsPhoto.earthDate)")
         self.marsPhoto = marsPhoto
         self.manager = manager

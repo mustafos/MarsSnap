@@ -12,10 +12,8 @@ struct GeneralFilterComponent: View {
     // MARK: – PROPERTIES
     @ObservedObject var viewModel = MarsPhotosViewModel()
     var isFilterCamera: Bool = true
-//    let rover: Rover
-//    let camera: Camera
-    @State private var cameraName = String()
-    @State private var roverName = String()
+    @State private var selectedRover: String?
+    @State private var selectedCamera: String?
     
     @Binding var selectedFilter: String
     var positiveButtonAction: ((String) -> ())? = nil
@@ -28,32 +26,28 @@ struct GeneralFilterComponent: View {
                 .edgesIgnoringSafeArea(.all)
             Spacer()
             VStack {
-                
-                
                 ForEach(viewModel.photos, id: \.id) { photo in
                     NavigationLink(destination: MarsImageView(marsPhoto: photo, manager: self.viewModel)) {
                         CardComponent(mars: photo)
                     } //: LINK
                 } //: LOOP
                 
-                
-                
                 HeaderView()
                 if isFilterCamera {
-                    Picker("Choose the camera", selection: $cameraName) {
-//                        ForEach(Camera.allCases) { camera in
-//                            Text(camera.rawValue.capitalized)
-//                                .tag(camera)
-//                        }
+                    Picker("Choose the camera", selection: $selectedCamera) {
+                        ForEach(viewModel.availableCameras, id: \.name) { camera in
+                            Text(camera.fullName ?? "All")
+                                .tag(camera.name)
+                        }
                     }
                     .pickerStyle(.wheel)
                     .padding(.bottom)
                 } else {
-                    Picker("Choose the rover", selection: $roverName) {
-//                        ForEach(Rover.allCases) { rover in
-//                            Text(rover.rawValue.capitalized)
-//                                .tag(rover)
-//                        }
+                    Picker("Choose the rover", selection: $selectedRover) {
+                        ForEach(viewModel.availableRovers, id: \.name) { rover in
+                            Text(rover.name)
+                                .tag(rover.name)
+                        }
                     }
                     .pickerStyle(.wheel)
                     .padding(.bottom)
@@ -88,7 +82,7 @@ struct GeneralFilterComponent: View {
             Button {
                 withAnimation {
                     Constants.feedback.impactOccurred()
-//                    positiveButtonAction?(isFilterCamera ? cameraName.rawValue : roverName.rawValue)
+                    positiveButtonAction?((isFilterCamera ? selectedCamera : selectedRover) ?? "All")
                 }
             } label: {
                 Image("correct")
