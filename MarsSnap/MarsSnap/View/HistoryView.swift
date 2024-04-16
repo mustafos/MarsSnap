@@ -3,7 +3,7 @@
 //  MarsSnap
 //
 //  Created by Mustafa Bekirov on 12.04.2024.
-//
+//  Copyright © 2024 Mustafa Bekirov. All rights reserved.
 
 import SwiftUI
 import RealmSwift
@@ -79,12 +79,12 @@ struct HistoryView: View {
     private func filterSheet() -> ActionSheet {
         let useButton = ActionSheet.Button.default(Text("Use")) {
             withAnimation {
-                feedback.impactOccurred()
+                Constants.feedback.impactOccurred()
             }
         }
         let deleteOutButton = ActionSheet.Button.destructive(Text("Delete")) {
             withAnimation {
-                feedback.impactOccurred()
+                Constants.feedback.impactOccurred()
                 if let _ = filterHistory {
                     showFilterMenuSheet = false
                     deleteFilterCard(at: IndexSet(integer: 0))
@@ -93,7 +93,7 @@ struct HistoryView: View {
         }
         let cancelButton = ActionSheet.Button.cancel(Text("Cancel")) {
             withAnimation {
-                feedback.impactOccurred()
+                Constants.feedback.impactOccurred()
             }
         }
         let buttons: [ActionSheet.Button] = [useButton, deleteOutButton, cancelButton]
@@ -107,7 +107,7 @@ struct HistoryView: View {
             HStack {
                 Button {
                     withAnimation {
-                        feedback.impactOccurred()
+                        Constants.feedback.impactOccurred()
                         presentationMode.wrappedValue.dismiss()
                     }
                 } label: {

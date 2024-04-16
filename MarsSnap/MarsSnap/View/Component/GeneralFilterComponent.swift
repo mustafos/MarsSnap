@@ -3,17 +3,17 @@
 //  MarsSnap
 //
 //  Created by Mustafa Bekirov on 13.04.2024.
-//
+//  Copyright © 2024 Mustafa Bekirov. All rights reserved.
 
 import SwiftUI
 
 struct GeneralFilterComponent: View {
     
     // MARK: – PROPERTIES
+    @ObservedObject var viewModel = MarsPhotosViewModel()
     var isFilterCamera: Bool = true
-    
-    @State private var cameraName = Camera.all
-    @State private var roverName = Rover.all
+    @State private var selectedRover: Rovers?
+    @State private var selectedCamera: Cameras?
     
     @Binding var selectedFilter: String
     var positiveButtonAction: ((String) -> ())? = nil
@@ -28,19 +28,17 @@ struct GeneralFilterComponent: View {
             VStack {
                 HeaderView()
                 if isFilterCamera {
-                    Picker("Choose the camera", selection: $cameraName) {
-                        ForEach(Camera.allCases) { camera in
-                            Text(camera.rawValue.capitalized)
-                                .tag(camera)
+                    Picker("Choose the camera", selection: $selectedCamera) {
+                        ForEach(Cameras.allCases, id: \.self) { camera in
+                            Text(camera.fullName)
                         }
                     }
                     .pickerStyle(.wheel)
                     .padding(.bottom)
                 } else {
-                    Picker("Choose the rover", selection: $roverName) {
-                        ForEach(Rover.allCases) { rover in
-                            Text(rover.rawValue.capitalized)
-                                .tag(rover)
+                    Picker("Choose the rover", selection: $selectedRover) {
+                        ForEach(Rovers.allCases, id: \.self) { rover in
+                            Text(rover.rawValue)
                         }
                     }
                     .pickerStyle(.wheel)
@@ -60,7 +58,7 @@ struct GeneralFilterComponent: View {
         HStack {
             Button {
                 withAnimation {
-                    feedback.impactOccurred()
+                    Constants.feedback.impactOccurred()
                     negativeButtonAction?()
                 }
             } label: {
@@ -75,8 +73,12 @@ struct GeneralFilterComponent: View {
             Spacer()
             Button {
                 withAnimation {
-                    feedback.impactOccurred()
-                    positiveButtonAction?(isFilterCamera ? cameraName.rawValue : roverName.rawValue)
+                    Constants.feedback.impactOccurred()
+                    if isFilterCamera {
+                        positiveButtonAction?(selectedCamera?.rawValue ?? "All")
+                    } else {
+                        positiveButtonAction?(selectedRover?.rawValue ?? "All")
+                    }
                 }
             } label: {
                 Image("correct")
@@ -99,4 +101,58 @@ extension GeneralFilterComponent {
         alert.negativeButtonAction = negativeButtonAction
         return alert
     }
+}
+
+enum Cameras: String, CaseIterable {
+    case fhaz = "FHAZ"
+    case rhaz = "RHAZ"
+    case mast = "MAST"
+    case navcam = "NAVCAM"
+    case pancam = "PANCAM"
+    case minites = "MINITES"
+    
+    var fullName: String {
+        switch self {
+        case .fhaz:
+            return "Front Hazard Avoidance Camera"
+        case .rhaz:
+            return "Rear Hazard Avoidance Camera"
+        case .mast:
+            return "Mast Camera"
+        case .navcam:
+            return "Navigation Camera"
+        case .pancam:
+            return "Panoramic Camera"
+        case .minites:
+            return "Miniature Thermal Emission Spectrometer (Mini-TES)"
+        }
+    }
+}
+
+enum Rovers: String, CaseIterable {
+    case curiosity = "Curiosity"
+    case opportunity = "Opportunity"
+    case spirit = "Spirit"
+    
+//    var cameras: [Camera] {
+//        switch self {
+//        case .curiosity:
+//            return [.fhaz, .rhaz, .mast, .navcam, .pancam, .minites]
+//        case .opportunity:
+//            return [.fhaz, .rhaz, .navcam, .pancam]
+//        case .spirit:
+//            return [.fhaz, .rhaz, .navcam, .pancam]
+//        }
+//    }
+//    
+//    var launchDate: String {
+//        switch self {
+//        case .curiosity:
+//            return "2011-11-26"
+//        case .opportunity:
+//            return "2003-07-07"
+//        case .spirit:
+//            return "2003-06-10"
+//        }
+//    }
 }

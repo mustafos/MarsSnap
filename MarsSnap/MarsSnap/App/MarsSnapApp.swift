@@ -3,7 +3,7 @@
 //  MarsSnap
 //
 //  Created by Mustafa Bekirov on 11.04.2024.
-//
+//  Copyright © 2024 Mustafa Bekirov. All rights reserved.
 
 import SwiftUI
 
@@ -11,6 +11,7 @@ import SwiftUI
 @available(iOS 14.0, *)
 @main
 struct MarsSnapApp: App {
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

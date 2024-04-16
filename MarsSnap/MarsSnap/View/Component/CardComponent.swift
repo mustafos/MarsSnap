@@ -3,14 +3,14 @@
 //  MarsSnap
 //
 //  Created by Mustafa Bekirov on 11.04.2024.
-//
+//  Copyright © 2024 Mustafa Bekirov. All rights reserved.
 
 import SwiftUI
 
 struct CardComponent: View {
     
     // MARK: – PROPERTIES
-    let mars: Mars
+    let mars: MarsPhoto
     
     // MARK: – BODY
     var body: some View {
@@ -23,24 +23,25 @@ struct CardComponent: View {
                     Text("Rover: ")
                         .foregroundColor(.layerTwo)
                         .fontWeight(.regular)
-                    + Text(mars.rover)
+                    + Text(String(mars.rover.name))
                         .fontWeight(.bold)
                         .foregroundColor(.layerOne)
                     
                     Text("Camera: ")
                         .foregroundColor(.layerTwo)
-                    + Text(mars.camera)
+                    + Text(mars.camera.fullName ?? "FHAZ")
                         .fontWeight(.bold)
                         .foregroundColor(.layerOne)
                     
                     Text("Date: ")
                         .foregroundColor(.layerTwo)
-                    + Text(mars.date)
+                    + Text(mars.earthDate)
                         .fontWeight(.bold)
                         .foregroundColor(.layerOne)
                 } //: VSTACK
                 Spacer()
-                AsyncImageView(imageUrl: mars.imageUrl!)
+                
+                AsyncImageView(imageUrl: mars.imgSrc)
                     .scaledToFill()
                     .frame(width: 130, height: 130)
                     .clipShape(

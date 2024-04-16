@@ -3,7 +3,7 @@
 //  MarsSnap
 //
 //  Created by Mustafa Bekirov on 14.04.2024.
-//
+//  Copyright © 2024 Mustafa Bekirov. All rights reserved.
 
 import SwiftUI
 
@@ -43,7 +43,7 @@ struct FilterCardComponent: View {
                     
                     Text("Date: ")
                         .foregroundColor(.layerTwo)
-                    + Text(history.selectedCamera)
+                    + Text("history.selectedEarthDate")
                         .fontWeight(.bold)
                         .foregroundColor(.layerOne)
                 } //: VSTACK

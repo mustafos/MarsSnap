@@ -3,7 +3,7 @@
 //  MarsSnap
 //
 //  Created by Mustafa Bekirov on 12.04.2024.
-//
+//  Copyright © 2024 Mustafa Bekirov. All rights reserved.
 
 import SwiftUI
 
@@ -11,22 +11,50 @@ struct MarsImageView: View {
     
     // MARK: – PROPERTIES
     @Environment(\.presentationMode) var presentationMode
-    let mars: Mars
+    @ObservedObject var manager: MarsPhotosViewModel
+    let marsPhoto: MarsPhoto
     
-    // MARK: – BODY
+    @State private var scale: CGFloat = 1.0
+    @State private var lastScale: CGFloat = 1.0
+    
+    init(marsPhoto: MarsPhoto, manager: MarsPhotosViewModel) {
+        print("init detail for \(marsPhoto.earthDate)")
+        self.marsPhoto = marsPhoto
+        self.manager = manager
+    }
+    
     var body: some View {
         ZStack {
             Color.layerOne
                 .edgesIgnoringSafeArea(.all)
-            // MARS IMAGE
-            AsyncImageView(imageUrl: mars.imageUrl!)
-                .scaledToFit()
-                .frame(maxWidth: .infinity)
+            
+            GeometryReader { geometry in
+                let screenWidth = geometry.size.width
+                let screenHeight = geometry.size.height
+                
+                // Center the image on the screen
+                let xOffset = (screenWidth - (marsImageWidth * scale)) / 2
+                let yOffset = (screenHeight - (marsImageHeight * scale)) / 2
+                
+                // MARS IMAGE
+                AsyncImageView(imageUrl: marsPhoto.imgSrc)
+                    .scaledToFit()
+                    .frame(width: marsImageWidth * scale, height: marsImageHeight * scale)
+                    .offset(x: xOffset, y: yOffset)
+                    .gesture(MagnificationGesture()
+                        .onChanged { value in
+                            scale = lastScale * value.magnitude
+                        }
+                        .onEnded { value in
+                            lastScale = scale
+                        }
+                    )
+            }
         } //: ZSTACK
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: Button {
             withAnimation {
-                feedback.impactOccurred()
+                Constants.feedback.impactOccurred()
                 presentationMode.wrappedValue.dismiss()
             }
         } label: {
@@ -34,4 +62,8 @@ struct MarsImageView: View {
                 .frame(width: 44, height: 44)
         })
     }
+    
+    // Constants for the original image dimensions
+    let marsImageWidth: CGFloat = 400 // Update with the actual width of your image
+    let marsImageHeight: CGFloat = 300 // Update with the actual height of your image
 }

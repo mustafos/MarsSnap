@@ -3,10 +3,9 @@
 //  MarsSnap
 //
 //  Created by Mustafa Bekirov on 14.04.2024.
-//
+//  Copyright © 2024 Mustafa Bekirov. All rights reserved.
 
 import SwiftUI
-import Kingfisher
 
 struct AsyncImageView: View {
     private let imageUrl: String
@@ -18,19 +17,7 @@ struct AsyncImageView: View {
     }
     
     var body: some View {
-        if #available(iOS 14.0, *) {
-            KFImage(URL(string: imageUrl))
-                .placeholder({
-                    placeholder
-                })
-                .loadDiskFileSynchronously()
-                .cacheMemoryOnly()
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-        } else {
-            // Fallback for iOS 13
-            ImageView(imageUrl: imageUrl, placeholder: placeholder)
-        }
+        ImageView(imageUrl: imageUrl, placeholder: placeholder)
     }
 }
 

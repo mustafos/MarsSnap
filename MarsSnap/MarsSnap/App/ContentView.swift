@@ -3,7 +3,7 @@
 //  MarsSnap
 //
 //  Created by Mustafa Bekirov on 11.04.2024.
-//
+//  Copyright © 2024 Mustafa Bekirov. All rights reserved.
 
 import SwiftUI
 import RealmSwift
@@ -11,10 +11,7 @@ import RealmSwift
 struct ContentView: View {
     
     // MARK: – PROPERTIES
-    @ObservedObject var manager = MarsPhotoManager()
-    @State private var selectedRover = Rover.perseverance
-    @State private var selectedCamera = Camera.all
-    @State private var selectedEarthDate = EarthDate.latest
+    @ObservedObject var viewModel = MarsPhotosViewModel()
     
     @State private var showSaveFilterAlert: Bool = false
     @State private var isSheetCameraPresented: Bool = false
@@ -24,8 +21,9 @@ struct ContentView: View {
     @State private var presentDatePickerFilter: Bool = false
     @State private var selectedDate = Date()
     @State private var tempSelectedDate = Date()
+    @State private var shouldLoadMoreData = true
     
-    let realm = try! Realm()
+    let realm = try? Realm()
     
     // MARK: – BODY
     var body: some View {
@@ -63,20 +61,24 @@ struct ContentView: View {
                             selectedCameraFilter = filter
                         }
                 }
+                
                 Group {
                     VStack {
                         HeaderView()
                         ZStack {
-                            ScrollView(.vertical, showsIndicators: false) {
+                            ScrollView(.vertical, showsIndicators: true) {
                                 Spacer()
-                                ForEach(manager.filteredData(selectedRover: selectedRover, selectedCamera: selectedCamera, selectedEarthDate: selectedEarthDate)) { marsData in
-                                    NavigationLink(destination: MarsImageView(mars: marsData)) {
-                                        CardComponent(mars: marsData)
-                                    } //: LINK
-                                } //: LOOP
+                                if viewModel.photos.isEmpty {
+                                    Text("No photos available")
+                                        .foregroundColor(.gray)
+                                } else {
+                                    ForEach(viewModel.photos, id: \.id) { photo in
+                                        NavigationLink(destination: MarsImageView(marsPhoto: photo, manager: self.viewModel)) {
+                                            CardComponent(mars: photo)
+                                        } //: LINK
+                                    } //: LOOP
+                                }
                                 
-                                LottieView(animationFileName: "loader", loopMode: .loop)
-                                    .frame(width: 200, height: 200)
                                 HStack {
                                     Spacer()
                                     Text("Copyright © 2024 Mustafa Bekirov. \nAll rights reserved.")
@@ -108,8 +110,8 @@ struct ContentView: View {
                     message: Text("The current filters and the date you have chosen can be saved to the filter history."),
                     primaryButton: .default(Text("Save"), action: {
                         withAnimation {
-                            feedback.impactOccurred()
-                            saveFilterHistory()
+                            Constants.feedback.impactOccurred()
+                                saveFilterHistory()
                         }
                     }),
                     secondaryButton: .cancel()
@@ -131,7 +133,7 @@ struct ContentView: View {
                 Spacer()
                 Button(action: {
                     withAnimation {
-                        feedback.impactOccurred()
+                        Constants.feedback.impactOccurred()
                         presentDatePickerFilter.toggle()
                     }
                 }, label: {
@@ -141,7 +143,7 @@ struct ContentView: View {
             HStack {
                 Button(action: {
                     withAnimation {
-                        feedback.impactOccurred()
+                        Constants.feedback.impactOccurred()
                         isSheetRoverPresented.toggle()
                     }
                 }, label: {
@@ -163,7 +165,7 @@ struct ContentView: View {
                 }) //: BUTTON
                 Button(action: {
                     withAnimation {
-                        feedback.impactOccurred()
+                        Constants.feedback.impactOccurred()
                         isSheetCameraPresented.toggle()
                     }
                 }, label: {
@@ -188,7 +190,7 @@ struct ContentView: View {
                 
                 Button(action: {
                     withAnimation {
-                        feedback.impactOccurred()
+                        Constants.feedback.impactOccurred()
                         showSaveFilterAlert.toggle()
                     }
                 }, label: {
@@ -226,29 +228,29 @@ struct ContentView: View {
     }
     
     // MARK: – METHODS
-    private func saveToHistory(marsData: Mars) {
-        try! realm.write {
+    private func saveToHistory(marsData: MarsPhoto) {
+        try! realm?.write {
             let history = History()
-            history.selectedRover = selectedRover.rawValue
-            history.selectedCamera = selectedCamera.rawValue
+            history.selectedRover = selectedRoverFilter
+            history.selectedCamera = selectedCameraFilter
             history.selectedEarthDate = selectedDate
-            realm.add(history)
+            realm?.add(history)
         }
     }
     
     private func saveFilterHistory() {
-        try! realm.write {
+        try! realm?.write {
             let filterHistory = History()
-            filterHistory.selectedRover = selectedRover.rawValue
-            filterHistory.selectedCamera = selectedCamera.rawValue
+            filterHistory.selectedRover = selectedRoverFilter
+            filterHistory.selectedCamera = selectedCameraFilter
             filterHistory.selectedEarthDate = selectedDate
-            realm.add(filterHistory)
+            realm?.add(filterHistory)
         }
     }
     
     private var formattedDate: String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM d, yyyy"
+        formatter.dateFormat = "yyyy-MM-dd"
         return formatter.string(from: selectedDate)
     }
 }
