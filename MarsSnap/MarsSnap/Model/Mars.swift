@@ -23,12 +23,13 @@ struct MarsPhoto: Codable, Identifiable {
     }
 }
 
-struct Camera: Codable {
+struct Camera: Codable, Identifiable, Hashable {
+    let id = UUID() // Add an id property
     let name: String
     let fullName: String?
 }
 
-struct Rover: Codable, Identifiable {
+struct Rover: Codable, Identifiable, Hashable {
     let id: Int
     var name: String
 }

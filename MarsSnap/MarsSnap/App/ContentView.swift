@@ -37,7 +37,6 @@ struct ContentView: View {
                         .onPositiveButtonTap { date in
                             presentDatePickerFilter.toggle()
                             selectedDate = tempSelectedDate
-                            viewModel.fetchPhotos(rover: selectedRoverFilter, camera: selectedCameraFilter, date: formattedDate)
                         }
                 }
                 
@@ -48,8 +47,7 @@ struct ContentView: View {
                         }
                         .onPositiveButtonTap { filter in
                             isSheetRoverPresented.toggle()
-                            selectedRoverFilter = filter.lowercased()
-                            viewModel.fetchPhotos(rover: selectedRoverFilter, camera: selectedCameraFilter, date: formattedDate)
+                            selectedRoverFilter = filter
                         }
                 }
                 
@@ -61,7 +59,6 @@ struct ContentView: View {
                         .onPositiveButtonTap { filter in
                             isSheetCameraPresented.toggle()
                             selectedCameraFilter = filter
-                            viewModel.fetchPhotos(rover: selectedRoverFilter, camera: selectedCameraFilter, date: formattedDate)
                         }
                 }
                 

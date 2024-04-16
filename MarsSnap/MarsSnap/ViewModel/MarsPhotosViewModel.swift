@@ -1,7 +1,7 @@
 //
 //  MarsPhotosViewModel.swift
 //  MarsSnap
-//
+//  
 //  Created by Mustafa Bekirov on 11.04.2024.
 //  Copyright © 2024 Mustafa Bekirov. All rights reserved.
 
@@ -13,16 +13,21 @@ class MarsPhotosViewModel: ObservableObject {
     @Published var photos: [MarsPhoto] = []
     @Published var availableRovers: [Rover] = []
     @Published var availableCameras: [Camera] = []
+    private var currentPage = 1
     private var isLoading = false
     
-    func fetchPhotos(rover: String, camera: String, date: String) {
+    init() {
+        // Immediately fetch the first page of photos when the view model is initialized
+        fetchPhotos(page: currentPage)
+    }
+    
+    func fetchPhotos(page: Int) {
         guard !isLoading else { return }
         
         isLoading = true
         
         let apiKey = "T9f55mAkKU4eIDFxBC9viMRytowhjzcNrh4dtanu"
-        let urlString = "https://api.nasa.gov/mars-photos/api/v1/rovers/\(rover)/photos?camera=\(camera)&earth_date=\(date)&api_key=\(apiKey)"
-        
+        let urlString = "https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/photos?sol=1000&page=\(page)&api_key=\(apiKey)"
         guard let url = URL(string: urlString) else {
             print("Invalid URL:", urlString)
             return
@@ -45,6 +50,7 @@ class MarsPhotosViewModel: ObservableObject {
                         imgSrc: json["img_src"].stringValue
                     )
                 }
+                
                 DispatchQueue.main.async {
                     self.photos.append(contentsOf: photoArray)
                     self.objectWillChange.send() // Trigger view update
