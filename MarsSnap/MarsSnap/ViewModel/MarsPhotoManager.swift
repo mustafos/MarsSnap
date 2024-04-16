@@ -8,12 +8,12 @@
 import SwiftUI
 
 enum Link {
-    case employees
+    case photos
     
     var url: URL {
         switch self {
-        case .employees:
-            return URL(string: "https://dummy.restapiexample.com/api/v1/employees")!
+        case .photos:
+            return URL(string: "https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/photos?api_key=T9f55mAkKU4eIDFxBC9viMRytowhjzcNrh4dtanu&sol=1000")!
         }
     }
 }
@@ -30,10 +30,10 @@ final class MarsPhotoManager: ObservableObject {
     
     static let shared = MarsPhotoManager()
     
-    func fetchEmployees(completion: @escaping (Result<[Employee], NetworkError>) -> Void) {
+    func fetchEmployees(completion: @escaping (Result<[Card], NetworkError>) -> Void) {
         print("try to fetch")
         
-        let fetchRequest = URLRequest(url: Link.employees.url)
+        let fetchRequest = URLRequest(url: Link.photos.url)
         
         URLSession.shared.dataTask(with: fetchRequest) { (data, response, error) -> Void in
             if error != nil {
@@ -50,9 +50,9 @@ final class MarsPhotoManager: ObservableObject {
                     guard let safeData = data else { return }
                     
                     do {
-                        let decodedQuery = try JSONDecoder().decode(Query.self, from: safeData)
+                        let decodedQuery = try JSONDecoder().decode(Query1.self, from: safeData)
                         
-                        completion(.success(decodedQuery.data))
+                        completion(.success(decodedQuery.photos))
                         
                     } catch let decodeError {
                         print("Decoding error: \(decodeError)")

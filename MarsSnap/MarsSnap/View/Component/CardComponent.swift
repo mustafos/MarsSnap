@@ -10,7 +10,7 @@ import SwiftUI
 struct CardComponent: View {
     
     // MARK: – PROPERTIES
-    let mars: MarsPhoto
+    let mars: Card
     
     // MARK: – BODY
     var body: some View {
@@ -29,19 +29,19 @@ struct CardComponent: View {
                     
                     Text("Camera: ")
                         .foregroundColor(.layerTwo)
-                    + Text(mars.camera.fullName ?? "FHAZ")
+                    + Text(mars.camera.full_name)
                         .fontWeight(.bold)
                         .foregroundColor(.layerOne)
                     
                     Text("Date: ")
                         .foregroundColor(.layerTwo)
-                    + Text(mars.earthDate)
+                    + Text(mars.earth_date)
                         .fontWeight(.bold)
                         .foregroundColor(.layerOne)
                 } //: VSTACK
                 Spacer()
                 
-                AsyncImageView(imageUrl: mars.imgSrc)
+                AsyncImageView(imageUrl: mars.img_src)
                     .scaledToFill()
                     .frame(width: 130, height: 130)
                     .clipShape(

@@ -10,7 +10,7 @@ import SwiftUI
 struct FilterCardComponent: View {
     
     // MARK: – PROPERTIES
-    let history: History
+    let history: Card
     
     // MARK: – BODY
     var body: some View {
@@ -31,13 +31,13 @@ struct FilterCardComponent: View {
                     Text("Rover: ")
                         .foregroundColor(.layerTwo)
                         .fontWeight(.regular)
-                    + Text(history.selectedRover)
+                    + Text(history.rover.name)
                         .fontWeight(.bold)
                         .foregroundColor(.layerOne)
                     
                     Text("Camera: ")
                         .foregroundColor(.layerTwo)
-                    + Text(history.selectedCamera)
+                    + Text(history.camera.full_name)
                         .fontWeight(.bold)
                         .foregroundColor(.layerOne)
                     

@@ -11,16 +11,14 @@ struct MarsImageView: View {
     
     // MARK: – PROPERTIES
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var manager: MarsPhotosViewModel
-    let marsPhoto: MarsPhoto
+    let marsPhoto: Card
     
     @State private var scale: CGFloat = 1.0
     @State private var lastScale: CGFloat = 1.0
     
-    init(marsPhoto: MarsPhoto, manager: MarsPhotosViewModel) {
-        print("init detail for \(marsPhoto.earthDate)")
+    init(marsPhoto: Card) {
+        print("init detail for \(marsPhoto.earth_date)")
         self.marsPhoto = marsPhoto
-        self.manager = manager
     }
     
     var body: some View {
@@ -37,7 +35,7 @@ struct MarsImageView: View {
                 let yOffset = (screenHeight - (marsImageHeight * scale)) / 2
                 
                 // MARS IMAGE
-                AsyncImageView(imageUrl: marsPhoto.imgSrc)
+                AsyncImageView(imageUrl: marsPhoto.img_src)
                     .scaledToFit()
                     .frame(width: marsImageWidth * scale, height: marsImageHeight * scale)
                     .offset(x: xOffset, y: yOffset)

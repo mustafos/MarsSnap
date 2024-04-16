@@ -6,13 +6,13 @@
 //  Copyright © 2024 Mustafa Bekirov. All rights reserved.
 
 import SwiftUI
-import RealmSwift
 
 struct ContentView: View {
     
     // MARK: – PROPERTIES
-    @ObservedObject var viewModel = MarsPhotosViewModel()
-    
+    @StateObject var networkManager = MarsPhotoManager.shared
+    @State private var cardData = [Card]()
+    @State private var showProgress: Bool = false
     @State private var showSaveFilterAlert: Bool = false
     @State private var isSheetCameraPresented: Bool = false
     @State private var isSheetRoverPresented: Bool = false
@@ -22,8 +22,8 @@ struct ContentView: View {
     @State private var selectedDate = Date()
     @State private var tempSelectedDate = Date()
     @State private var shouldLoadMoreData = true
-    
-    let realm = try? Realm()
+    @State private var showError: Bool = false
+    @State private var errorMessage: String = ""
     
     // MARK: – BODY
     var body: some View {
@@ -68,12 +68,12 @@ struct ContentView: View {
                         ZStack {
                             ScrollView(.vertical, showsIndicators: true) {
                                 Spacer()
-                                if viewModel.photos.isEmpty {
+                                if cardData.isEmpty {
                                     Text("No photos available")
                                         .foregroundColor(.gray)
                                 } else {
-                                    ForEach(viewModel.photos, id: \.id) { photo in
-                                        NavigationLink(destination: MarsImageView(marsPhoto: photo, manager: self.viewModel)) {
+                                    ForEach(cardData, id: \.id) { photo in
+                                        NavigationLink(destination: MarsImageView(marsPhoto: photo)) {
                                             CardComponent(mars: photo)
                                         } //: LINK
                                     } //: LOOP
@@ -87,17 +87,40 @@ struct ContentView: View {
                                     Spacer()
                                 } //: HSTACK
                                 .padding(10)
-                                .animation(.easeIn)
                             } //: SCROLL
+                            
+                            ProgressView()
+                                .progressViewStyle(.circular)
+                                .opacity(showProgress ? 1 : 0)
+                            
                         } //: ZSTACK
                         .background(Color.backgroundOne)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .edgesIgnoringSafeArea(.all)
-                        
+                        .ignoresSafeArea()
+                        .alert(isPresented: $showError, content: {
+                            Alert(title: Text(errorMessage))
+                        })
+                        .onAppear {
+                            showProgress = true
+                            networkManager.fetchEmployees { result in
+                                showProgress = false
+                                switch result {
+                                case .success(let decodedMarsCard):
+                                    print("success")
+                                    
+                                    cardData = decodedMarsCard
+                                    
+                                case .failure(let networkError):
+                                    print("feilure: \(networkError)")
+                                    errorMessage = warningMessage(error: networkError)
+                                    showError = true
+                                }
+                            }
+                        }
                     } //: VSTACK
                     .background(Color.accentOne)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .edgesIgnoringSafeArea(.all)
+                    .ignoresSafeArea()
                 } //: GROUP
                 .navigationBarHidden(true)
                 
@@ -111,7 +134,7 @@ struct ContentView: View {
                     primaryButton: .default(Text("Save"), action: {
                         withAnimation {
                             Constants.feedback.impactOccurred()
-                                saveFilterHistory()
+                            // TODO: – Save data from filter
                         }
                     }),
                     secondaryButton: .cancel()
@@ -225,27 +248,6 @@ struct ContentView: View {
         .edgesIgnoringSafeArea(.all)
         .padding(.trailing, 20)
         .padding(.bottom, 10)
-    }
-    
-    // MARK: – METHODS
-    private func saveToHistory(marsData: MarsPhoto) {
-        try! realm?.write {
-            let history = History()
-            history.selectedRover = selectedRoverFilter
-            history.selectedCamera = selectedCameraFilter
-            history.selectedEarthDate = selectedDate
-            realm?.add(history)
-        }
-    }
-    
-    private func saveFilterHistory() {
-        try! realm?.write {
-            let filterHistory = History()
-            filterHistory.selectedRover = selectedRoverFilter
-            filterHistory.selectedCamera = selectedCameraFilter
-            filterHistory.selectedEarthDate = selectedDate
-            realm?.add(filterHistory)
-        }
     }
     
     private var formattedDate: String {
