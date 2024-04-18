@@ -50,7 +50,7 @@ final class MarsPhotoManager: ObservableObject {
                     guard let safeData = data else { return }
                     
                     do {
-                        let decodedQuery = try JSONDecoder().decode(Query1.self, from: safeData)
+                        let decodedQuery = try JSONDecoder().decode(Query.self, from: safeData)
                         
                         completion(.success(decodedQuery.photos))
                         

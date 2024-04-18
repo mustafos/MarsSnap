@@ -6,81 +6,7 @@
 //  Copyright © 2024 Mustafa Bekirov. All rights reserved.
 
 import Foundation
-import Combine
-import SwiftUI
 
-struct NetworkGETDataView: View {
-    var body: some View {
-        NavigationView {
-            VStack {
-                NavigationLink {
-                    EmployeesView()
-                } label: {
-                    HStack {
-                        Text("Employees")
-                            .font(.headline)
-                        Spacer()
-                        Image(systemName: "chevron.right")
-                    }
-                    .padding()
-                    .background(Color.blue.opacity(0.1))
-                }
-                
-                Spacer()
-            }
-            .navigationTitle("Fetching Data")
-        }
-    }
-}
-
-struct EmployeesView: View {
-    
-    @StateObject var networkManager = MarsPhotoManager.shared
-    
-    @State private var employees = [Card]()
-    
-    @State private var showProgress: Bool = false
-    @State private var showError: Bool = false
-    @State private var errorMessage: String = ""
-    
-    var body: some View {
-        ZStack {
-            List(employees, id: \.self) { employee in
-                HStack {
-                    Text(employee.rover.name)
-                    Spacer()
-                    Text(employee.camera.full_name)
-                }
-            }
-            
-            ProgressView()
-                .progressViewStyle(.circular)
-                .opacity(showProgress ? 1 : 0)
-        }
-        .alert(isPresented: $showError, content: {
-            Alert(title: Text(errorMessage))
-        })
-        .onAppear {
-            showProgress = true
-            networkManager.fetchEmployees { result in
-                showProgress = false
-                switch result {
-                case .success(let decodedEmployees):
-                    print("success")
-                    
-                    employees = decodedEmployees
-                    
-                case .failure(let networkError):
-                    print("feilure: \(networkError)")
-                    errorMessage = warningMessage(error: networkError)
-                    showError = true
-                }
-            }
-        }
-    }
-}
-
-//________________________________________________________ Model
 struct Card: Decodable, Hashable {
     let id: Int
     let camera: Camera
@@ -97,8 +23,6 @@ struct Card: Decodable, Hashable {
     }
     
     static func == (lhs: Card, rhs: Card) -> Bool {
-        // Implement your equality logic here
-        // For example, comparing properties:
         return lhs.id == rhs.id &&
         lhs.camera.full_name == rhs.camera.full_name &&
                lhs.img_src == rhs.img_src &&
@@ -121,7 +45,7 @@ struct Cameras: Decodable, Hashable {
     let full_name: String
 }
 
-struct Query1: Decodable {
+struct Query: Decodable {
     let photos: [Card]
 }
 
