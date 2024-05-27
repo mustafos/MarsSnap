@@ -48,12 +48,3 @@ struct Cameras: Decodable, Hashable {
 struct Query: Decodable {
     let photos: [Card]
 }
-
-// Sample data for extension purposes
-extension Card {
-    static let card = Card(id: 103383, camera: Camera(full_name: "Navigation Camera"), img_src: "http://mars.jpl.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01000/opgs/edr/ncam/NLB_486272784EDR_F0481570NCAM00415M_.JPG", earth_date: "2015-05-30", rover: Rover(name: "Curiosity", cameras: []))
-}
-
-extension Cameras {
-    static let camera = Cameras(name: "FHAZ", full_name: "Front Hazard Avoidance Camera")
-}

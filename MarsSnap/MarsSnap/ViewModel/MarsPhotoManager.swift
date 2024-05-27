@@ -6,6 +6,7 @@
 //  Copyright © 2024 Mustafa Bekirov. All rights reserved.
 
 import SwiftUI
+import Alamofire
 
 enum Link {
     case photos
@@ -25,42 +26,34 @@ enum NetworkError: Error {
 }
 
 final class MarsPhotoManager: ObservableObject {
-    
-    init() {}
-    
     static let shared = MarsPhotoManager()
     
-    func fetchEmployees(completion: @escaping (Result<[Card], NetworkError>) -> Void) {
-        print("try to fetch")
-        
-        let fetchRequest = URLRequest(url: Link.photos.url)
-        
-        URLSession.shared.dataTask(with: fetchRequest) { (data, response, error) -> Void in
-            if error != nil {
-                print("Error in session is not nil")
-                completion(.failure(.noData))
-            } else {
-                // We've got data!
-                let httpResponse = response as? HTTPURLResponse
-                print("status code: \(String(describing: httpResponse?.statusCode ?? 0))")
-                
-                if httpResponse?.statusCode == 429 {
-                    completion(.failure(.tooManyRequests))
-                } else {
-                    guard let safeData = data else { return }
-                    
-                    do {
-                        let decodedQuery = try JSONDecoder().decode(Query.self, from: safeData)
-                        
-                        completion(.success(decodedQuery.photos))
-                        
-                    } catch let decodeError {
-                        print("Decoding error: \(decodeError)")
-                        completion(.failure(.decodingError))
+    private init() {}
+    
+    func fetchEmployees(from url: URL, completion: @escaping(Result<[Card], NetworkError>) -> Void) {
+        AF.request(url)
+            .validate()
+            .responseData { responseData in
+                switch responseData.result {
+                case .success(let correctData):
+                    let photos = self.parseEmployees(correctData)
+                    completion(.success(photos))
+                case .failure(let afError):
+                    print("AF error: \(afError.localizedDescription)")
+                    if responseData.response?.statusCode == 429 {
+                        completion(.failure(.tooManyRequests))
+                    } else {
+                        completion(.failure(.noData))
                     }
                 }
             }
+    }
+    
+    private func parseEmployees(_ data: Data) -> [Card] {
+        var photos = [Card]()
+        if let decoded: Query = decode(data) {
+            photos = decoded.photos
         }
-        .resume()
+        return photos
     }
 }

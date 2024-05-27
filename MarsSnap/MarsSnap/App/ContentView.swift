@@ -12,7 +12,6 @@ struct ContentView: View {
     // MARK: – PROPERTIES
     @StateObject var networkManager = MarsPhotoManager.shared
     @State private var cardData = [Card]()
-    @State private var showProgress: Bool = false
     @State private var showSaveFilterAlert: Bool = false
     @State private var isSheetCameraPresented: Bool = false
     @State private var isSheetRoverPresented: Bool = false
@@ -22,6 +21,7 @@ struct ContentView: View {
     @State private var selectedDate = Date()
     @State private var tempSelectedDate = Date()
     @State private var shouldLoadMoreData = true
+    @State private var showProgress: Bool = false
     @State private var showError: Bool = false
     @State private var errorMessage: String = ""
     
@@ -66,53 +66,43 @@ struct ContentView: View {
                     VStack {
                         HeaderView()
                         ZStack {
-                            ScrollView(.vertical, showsIndicators: true) {
-                                Spacer()
-                                if cardData.isEmpty {
-                                    Text("No photos available")
-                                        .foregroundColor(.gray)
-                                } else {
-                                    ForEach(cardData, id: \.id) { photo in
+                            if showProgress {
+                                ProgressView()
+                            } else {
+                                ScrollView(.vertical, showsIndicators: true) {
+                                    Spacer()
+                                    ForEach(cardData, id: \.self) { photo in
                                         NavigationLink(destination: MarsImageView(marsPhoto: photo)) {
                                             CardComponent(mars: photo)
                                         } //: LINK
                                     } //: LOOP
-                                }
-                                
-                                HStack {
-                                    Spacer()
-                                    Text("Copyright © 2024 Mustafa Bekirov. \nAll rights reserved.")
-                                        .font(.footnote)
-                                        .multilineTextAlignment(.center)
-                                    Spacer()
-                                } //: HSTACK
-                                .padding(10)
-                            } //: SCROLL
-                            
-                            ProgressView()
-                                .progressViewStyle(.circular)
-                                .opacity(showProgress ? 1 : 0)
-                            
+                                    
+                                    HStack {
+                                        Spacer()
+                                        Text("Copyright © 2024 Mustafa Bekirov. \nAll rights reserved.")
+                                            .font(.footnote)
+                                            .multilineTextAlignment(.center)
+                                        Spacer()
+                                    } //: HSTACK
+                                    .padding(10)
+                                } //: SCROLL
+                            }
                         } //: ZSTACK
                         .background(Color.backgroundOne)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .ignoresSafeArea()
-                        .alert(isPresented: $showError, content: {
+                        .alert(isPresented: $showError) {
                             Alert(title: Text(errorMessage))
-                        })
-                        .onAppear {
+                        }
+                        .task {
                             showProgress = true
-                            networkManager.fetchEmployees { result in
+                            networkManager.fetchEmployees(from: Link.photos.url) { result in
                                 showProgress = false
                                 switch result {
-                                case .success(let decodedMarsCard):
-                                    print("success")
-                                    
-                                    cardData = decodedMarsCard
-                                    
-                                case .failure(let networkError):
-                                    print("feilure: \(networkError)")
-                                    errorMessage = warningMessage(error: networkError)
+                                case .success(let newPhotos):
+                                    cardData = newPhotos
+                                case .failure(let someError):
+                                    errorMessage = warningMessage(error: someError)
                                     showError = true
                                 }
                             }
