@@ -7,60 +7,53 @@
 
 import Foundation
 
-struct MarsPhoto: Codable, Identifiable {
+struct Card: Decodable, Hashable {
     let id: Int
-    var rover: Rover
     let camera: Camera
-    let earthDate: String
-    let imgSrc: String
+    let img_src: String
+    let earth_date: String
+    let rover: Rover
     
-    enum CodingKeys: String, CodingKey {
-        case id
-        case rover
-        case camera
-        case earthDate = "earth_date"
-        case imgSrc = "img_src"
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(camera.full_name)
+        hasher.combine(img_src)
+        hasher.combine(earth_date)
+        hasher.combine(rover.name)
+    }
+    
+    static func == (lhs: Card, rhs: Card) -> Bool {
+        return lhs.id == rhs.id &&
+        lhs.camera.full_name == rhs.camera.full_name &&
+               lhs.img_src == rhs.img_src &&
+               lhs.earth_date == rhs.earth_date &&
+        lhs.rover.name == rhs.rover.name
     }
 }
 
-struct Camera: Codable, Identifiable, Hashable {
-    let id = UUID() // Add an id property
+struct Camera: Decodable {
+    let full_name: String
+}
+
+struct Rover: Decodable {
     let name: String
-    let fullName: String?
+    let cameras: [Cameras]
 }
 
-struct Rover: Codable, Identifiable, Hashable {
-    let id: Int
-    var name: String
+struct Cameras: Decodable, Hashable {
+    let name: String
+    let full_name: String
 }
 
-// TODO: – Model for sort methods
-//struct Photo: Identifiable {
-//    let id = UUID()
-//    let imageUrl: String
-//}
-//
-//enum Rover: String, CaseIterable {
-//    case curiosity
-//    case opportunity
-//    case spirit
-//    
-//    var cameras: [Camera] {
-//        switch self {
-//        case .curiosity:
-//            return [.fhaz, .rhaz, .mast, .navcam, .pancam]
-//        case .opportunity:
-//            return [.fhaz, .rhaz, .navcam, .pancam]
-//        case .spirit:
-//            return [.fhaz, .rhaz, .navcam, .pancam]
-//        }
-//    }
-//}
-//
-//enum Camera: String, CaseIterable {
-//    case fhaz
-//    case rhaz
-//    case mast
-//    case navcam
-//    case pancam
-//}
+struct Query: Decodable {
+    let photos: [Card]
+}
+
+// Sample data for extension purposes
+extension Card {
+    static let card = Card(id: 103383, camera: Camera(full_name: "Navigation Camera"), img_src: "http://mars.jpl.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01000/opgs/edr/ncam/NLB_486272784EDR_F0481570NCAM00415M_.JPG", earth_date: "2015-05-30", rover: Rover(name: "Curiosity", cameras: []))
+}
+
+extension Cameras {
+    static let camera = Cameras(name: "FHAZ", full_name: "Front Hazard Avoidance Camera")
+}

@@ -6,14 +6,12 @@
 //  Copyright © 2024 Mustafa Bekirov. All rights reserved.
 
 import SwiftUI
-import RealmSwift
 
 struct HistoryView: View {
     
     // MARK: – PROPERTIES
     @Environment(\.presentationMode) var presentationMode
-    @Environment(\.realm) var realm
-    @State var filterHistory: Results<History>?
+    @State private var history = [Card]()
     @State private var showFilterMenuSheet: Bool = false
     
     // MARK: – BODY
@@ -23,8 +21,8 @@ struct HistoryView: View {
             ZStack {
                 ScrollView(.vertical, showsIndicators: false) {
                     Spacer()
-                    if let filterHistory = filterHistory, !filterHistory.isEmpty {
-                        ForEach(filterHistory, id: \.self) { history in
+                    if !history.isEmpty {
+                        ForEach(history, id: \.self) { history in
                             FilterCardComponent(history: history)
                                 .onTapGesture {
                                     showFilterMenuSheet.toggle()
@@ -39,7 +37,6 @@ struct HistoryView: View {
                             Spacer()
                         } //: HSTACK
                         .padding(10)
-                        .animation(.easeIn)
                     } else {
                         ZStack {
                             Image("empty")
@@ -63,19 +60,6 @@ struct HistoryView: View {
         .actionSheet(isPresented: $showFilterMenuSheet, content: filterSheet)
     }
     
-    private func fetchFilterHistory() {
-        filterHistory = realm.objects(History.self)
-    }
-    
-    private func deleteFilterCard(at indexSet: IndexSet) {
-        guard let index = indexSet.first else { return }
-        if let history = filterHistory?[index] {
-            try? realm.write {
-                realm.delete(history)
-            }
-        }
-    }
-    
     private func filterSheet() -> ActionSheet {
         let useButton = ActionSheet.Button.default(Text("Use")) {
             withAnimation {
@@ -85,10 +69,7 @@ struct HistoryView: View {
         let deleteOutButton = ActionSheet.Button.destructive(Text("Delete")) {
             withAnimation {
                 Constants.feedback.impactOccurred()
-                if let _ = filterHistory {
                     showFilterMenuSheet = false
-                    deleteFilterCard(at: IndexSet(integer: 0))
-                }
             }
         }
         let cancelButton = ActionSheet.Button.cancel(Text("Cancel")) {
