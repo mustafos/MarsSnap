@@ -2,8 +2,8 @@
 //  ContentView.swift
 //  MarsSnap
 //
-//  Created by Mustafa Bekirov on 11.04.2024.
-//  Copyright © 2024 Mustafa Bekirov. All rights reserved.
+//  Created by Mustafa Bekirov on 11.04.2022.
+//  Copyright © 2022 Mustafa Bekirov. All rights reserved.
 
 import SwiftUI
 
@@ -64,49 +64,8 @@ struct ContentView: View {
                 
                 Group {
                     VStack {
-                        HeaderView()
-                        ZStack {
-                            if showProgress {
-                                ProgressView()
-                            } else {
-                                ScrollView(.vertical, showsIndicators: true) {
-                                    Spacer()
-                                    ForEach(cardData, id: \.self) { photo in
-                                        NavigationLink(destination: MarsImageView(marsPhoto: photo)) {
-                                            CardComponent(mars: photo)
-                                        } //: LINK
-                                    } //: LOOP
-                                    
-                                    HStack {
-                                        Spacer()
-                                        Text("Copyright © 2024 Mustafa Bekirov. \nAll rights reserved.")
-                                            .font(.footnote)
-                                            .multilineTextAlignment(.center)
-                                        Spacer()
-                                    } //: HSTACK
-                                    .padding(10)
-                                } //: SCROLL
-                            }
-                        } //: ZSTACK
-                        .background(Color.backgroundOne)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .ignoresSafeArea()
-                        .alert(isPresented: $showError) {
-                            Alert(title: Text(errorMessage))
-                        }
-                        .task {
-                            showProgress = true
-                            networkManager.fetchEmployees(from: Link.photos.url) { result in
-                                showProgress = false
-                                switch result {
-                                case .success(let newPhotos):
-                                    cardData = newPhotos
-                                case .failure(let someError):
-                                    errorMessage = warningMessage(error: someError)
-                                    showError = true
-                                }
-                            }
-                        }
+                        headerView
+                        bodyView
                     } //: VSTACK
                     .background(Color.accentOne)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -114,7 +73,7 @@ struct ContentView: View {
                 } //: GROUP
                 .navigationBarHidden(true)
                 
-                HistoryButton()
+                historyButton
                 
             } //: ZSTACK
             .alert(isPresented: $showSaveFilterAlert) {
@@ -132,10 +91,11 @@ struct ContentView: View {
             }
         } //: NAVIGATION
     }
-    
-    // MARK: – VIEW BUILDER
-    @ViewBuilder
-    private func HeaderView() -> some View {
+}
+
+// MARK: – CUSTOM COMPONENTS
+private extension ContentView {
+    var headerView: some View {
         VStack {
             HStack {
                 VStack(alignment: .leading) {
@@ -224,8 +184,52 @@ struct ContentView: View {
         .edgesIgnoringSafeArea(.all)
     }
     
-    @ViewBuilder
-    private func HistoryButton() -> some View {
+    var bodyView: some View {
+        ZStack {
+            if showProgress {
+                ProgressView()
+            } else {
+                ScrollView(.vertical, showsIndicators: true) {
+                    Spacer()
+                    ForEach(cardData, id: \.self) { photo in
+                        NavigationLink(destination: MarsImageView(marsPhoto: photo)) {
+                            CardComponent(mars: photo)
+                        } //: LINK
+                    } //: LOOP
+                    
+                    HStack {
+                        Spacer()
+                        Text("Copyright © 2024 Mustafa Bekirov. \nAll rights reserved.")
+                            .font(.footnote)
+                            .multilineTextAlignment(.center)
+                        Spacer()
+                    } //: HSTACK
+                    .padding(10)
+                } //: SCROLL
+            }
+        }
+        .background(Color.backgroundOne)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .ignoresSafeArea()
+        .alert(isPresented: $showError) {
+            Alert(title: Text(errorMessage))
+        }
+        .task {
+            showProgress = true
+            networkManager.fetchEmployees(from: Link.photos.url) { result in
+                showProgress = false
+                switch result {
+                case .success(let newPhotos):
+                    cardData = newPhotos
+                case .failure(let someError):
+                    errorMessage = warningMessage(error: someError)
+                    showError = true
+                }
+            }
+        }
+    }
+    
+    var historyButton: some View {
         NavigationLink {
             HistoryView()
         } label: {
@@ -240,7 +244,7 @@ struct ContentView: View {
         .padding(.bottom, 10)
     }
     
-    private var formattedDate: String {
+    var formattedDate: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter.string(from: selectedDate)
