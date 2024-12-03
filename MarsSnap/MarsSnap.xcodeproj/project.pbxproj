@@ -23,7 +23,6 @@
 		6AE6FB402BC995BF00F31EDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AE6FB3F2BC995BF00F31EDE /* Assets.xcassets */; };
 		6AE6FB432BC995BF00F31EDE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AE6FB422BC995BF00F31EDE /* Preview Assets.xcassets */; };
 		6AE6FB512BC9967300F31EDE /* CardComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB4D2BC9967300F31EDE /* CardComponent.swift */; };
-		6AE6FB5A2BC996D000F31EDE /* MarsPhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB542BC996D000F31EDE /* MarsPhotosViewModel.swift */; };
 		6AE6FB5B2BC996D000F31EDE /* Mars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB562BC996D000F31EDE /* Mars.swift */; };
 		6AE6FB5C2BC996D000F31EDE /* MarsImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB582BC996D000F31EDE /* MarsImageView.swift */; };
 		6AE6FB5F2BC9A1A800F31EDE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB5E2BC9A1A800F31EDE /* Constants.swift */; };
@@ -64,7 +63,6 @@
 		6AE6FB3F2BC995BF00F31EDE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6AE6FB422BC995BF00F31EDE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6AE6FB4D2BC9967300F31EDE /* CardComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardComponent.swift; sourceTree = "<group>"; };
-		6AE6FB542BC996D000F31EDE /* MarsPhotosViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsPhotosViewModel.swift; sourceTree = "<group>"; };
 		6AE6FB562BC996D000F31EDE /* Mars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mars.swift; sourceTree = "<group>"; };
 		6AE6FB582BC996D000F31EDE /* MarsImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsImageView.swift; sourceTree = "<group>"; };
 		6AE6FB5E2BC9A1A800F31EDE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -160,7 +158,6 @@
 		6AE6FB552BC996D000F31EDE /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				6AE6FB542BC996D000F31EDE /* MarsPhotosViewModel.swift */,
 				6A48F9072BCEBAC000ADB472 /* MarsPhotoManager.swift */,
 			);
 			path = ViewModel;
@@ -340,7 +337,6 @@
 				6A48F9062BCEBA6100ADB472 /* WarningMessage.swift in Sources */,
 				6A48F9082BCEBAC000ADB472 /* MarsPhotoManager.swift in Sources */,
 				6AD259F92BCC62A100E56C38 /* History.swift in Sources */,
-				6AE6FB5A2BC996D000F31EDE /* MarsPhotosViewModel.swift in Sources */,
 				6AE6FB5F2BC9A1A800F31EDE /* Constants.swift in Sources */,
 				6A06599C2BCAF333005D9B8E /* DatePickerComponent.swift in Sources */,
 				6AE6FB5C2BC996D000F31EDE /* MarsImageView.swift in Sources */,

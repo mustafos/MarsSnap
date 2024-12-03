@@ -2,8 +2,8 @@
 //  HistoryView.swift
 //  MarsSnap
 //
-//  Created by Mustafa Bekirov on 12.04.2024.
-//  Copyright © 2024 Mustafa Bekirov. All rights reserved.
+//  Created by Mustafa Bekirov on 12.04.2022.
+//  Copyright © 2022 Mustafa Bekirov. All rights reserved.
 
 import SwiftUI
 
