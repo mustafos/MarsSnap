@@ -39,7 +39,7 @@ struct DatePickerComponent: View {
         HStack {
             Button {
                 withAnimation {
-                    Constants.feedback.impactOccurred()
+//                    Constants.feedback.impactOccurred()
                     negativeButtonAction?()
                 }
             } label: {
@@ -56,7 +56,7 @@ struct DatePickerComponent: View {
             
             Button {
                 withAnimation {
-                    Constants.feedback.impactOccurred()
+//                    Constants.feedback.impactOccurred()
                     positiveButtonAction?(selectedDate)
                 }
             } label: {
