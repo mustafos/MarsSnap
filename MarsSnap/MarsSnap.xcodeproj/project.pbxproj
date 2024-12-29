@@ -10,9 +10,13 @@
 		6A06599C2BCAF333005D9B8E /* DatePickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A06599B2BCAF333005D9B8E /* DatePickerComponent.swift */; };
 		6A357C7F2BCB0B5B0048A833 /* GeneralFilterComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A357C7E2BCB0B5B0048A833 /* GeneralFilterComponent.swift */; };
 		6A357C812BCB159D0048A833 /* Preloader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A357C802BCB159D0048A833 /* Preloader.storyboard */; };
-		6A48F9062BCEBA6100ADB472 /* WarningMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A48F9052BCEBA6100ADB472 /* WarningMessage.swift */; };
-		6A48F9082BCEBAC000ADB472 /* MarsPhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A48F9072BCEBAC000ADB472 /* MarsPhotoManager.swift */; };
-		6AA85E332BD5CA7700B3483B /* DecodeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA85E322BD5CA7700B3483B /* DecodeData.swift */; };
+		6A48F9062BCEBA6100ADB472 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A48F9052BCEBA6100ADB472 /* Store.swift */; };
+		6A48F9082BCEBAC000ADB472 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A48F9072BCEBAC000ADB472 /* Webservice.swift */; };
+		6A7E22172D2C158D002C2024 /* PhotoMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7E22162D2C158D002C2024 /* PhotoMiddleware.swift */; };
+		6A7E221B2D2C1E20002C2024 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7E221A2D2C1E20002C2024 /* MainView.swift */; };
+		6A7E221D2D2C1ED4002C2024 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7E221C2D2C1ED4002C2024 /* AppReducer.swift */; };
+		6A7E221F2D2C1F0D002C2024 /* PhotosReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7E221E2D2C1F0D002C2024 /* PhotosReducer.swift */; };
+		6A7E22212D2C21D7002C2024 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7E22202D2C21D7002C2024 /* View+Extensions.swift */; };
 		6AD259F22BCC3CA800E56C38 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD259F12BCC3CA800E56C38 /* AsyncImageView.swift */; };
 		6AD259F92BCC62A100E56C38 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD259F82BCC62A100E56C38 /* History.swift */; };
 		6AD259FB2BCC70BE00E56C38 /* FilterCardComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD259FA2BCC70BE00E56C38 /* FilterCardComponent.swift */; };
@@ -23,7 +27,7 @@
 		6AE6FB402BC995BF00F31EDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AE6FB3F2BC995BF00F31EDE /* Assets.xcassets */; };
 		6AE6FB432BC995BF00F31EDE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AE6FB422BC995BF00F31EDE /* Preview Assets.xcassets */; };
 		6AE6FB512BC9967300F31EDE /* CardComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB4D2BC9967300F31EDE /* CardComponent.swift */; };
-		6AE6FB5B2BC996D000F31EDE /* Mars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB562BC996D000F31EDE /* Mars.swift */; };
+		6AE6FB5B2BC996D000F31EDE /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB562BC996D000F31EDE /* Photo.swift */; };
 		6AE6FB5C2BC996D000F31EDE /* MarsImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB582BC996D000F31EDE /* MarsImageView.swift */; };
 		6AE6FB5F2BC9A1A800F31EDE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB5E2BC9A1A800F31EDE /* Constants.swift */; };
 		6AE6FB612BC9C60500F31EDE /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB602BC9C60500F31EDE /* HistoryView.swift */; };
@@ -49,9 +53,13 @@
 		6A06599B2BCAF333005D9B8E /* DatePickerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerComponent.swift; sourceTree = "<group>"; };
 		6A357C7E2BCB0B5B0048A833 /* GeneralFilterComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralFilterComponent.swift; sourceTree = "<group>"; };
 		6A357C802BCB159D0048A833 /* Preloader.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preloader.storyboard; sourceTree = "<group>"; };
-		6A48F9052BCEBA6100ADB472 /* WarningMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningMessage.swift; sourceTree = "<group>"; };
-		6A48F9072BCEBAC000ADB472 /* MarsPhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsPhotoManager.swift; sourceTree = "<group>"; };
-		6AA85E322BD5CA7700B3483B /* DecodeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeData.swift; sourceTree = "<group>"; };
+		6A48F9052BCEBA6100ADB472 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		6A48F9072BCEBAC000ADB472 /* Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
+		6A7E22162D2C158D002C2024 /* PhotoMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMiddleware.swift; sourceTree = "<group>"; };
+		6A7E221A2D2C1E20002C2024 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		6A7E221C2D2C1ED4002C2024 /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
+		6A7E221E2D2C1F0D002C2024 /* PhotosReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosReducer.swift; sourceTree = "<group>"; };
+		6A7E22202D2C21D7002C2024 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		6AD259F12BCC3CA800E56C38 /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		6AD259F82BCC62A100E56C38 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		6AD259FA2BCC70BE00E56C38 /* FilterCardComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCardComponent.swift; sourceTree = "<group>"; };
@@ -63,7 +71,7 @@
 		6AE6FB3F2BC995BF00F31EDE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6AE6FB422BC995BF00F31EDE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6AE6FB4D2BC9967300F31EDE /* CardComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardComponent.swift; sourceTree = "<group>"; };
-		6AE6FB562BC996D000F31EDE /* Mars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mars.swift; sourceTree = "<group>"; };
+		6AE6FB562BC996D000F31EDE /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		6AE6FB582BC996D000F31EDE /* MarsImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsImageView.swift; sourceTree = "<group>"; };
 		6AE6FB5E2BC9A1A800F31EDE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6AE6FB602BC9C60500F31EDE /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
@@ -82,9 +90,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6A7E22142D2C14D2002C2024 /* Reducers */ = {
+			isa = PBXGroup;
+			children = (
+				6A7E221C2D2C1ED4002C2024 /* AppReducer.swift */,
+				6A7E221E2D2C1F0D002C2024 /* PhotosReducer.swift */,
+			);
+			path = Reducers;
+			sourceTree = "<group>";
+		};
+		6A7E22152D2C14D4002C2024 /* Middleware */ = {
+			isa = PBXGroup;
+			children = (
+				6A7E22162D2C158D002C2024 /* PhotoMiddleware.swift */,
+			);
+			path = Middleware;
+			sourceTree = "<group>";
+		};
 		6AD259FC2BCC7DFF00E56C38 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				6AD259FF2BCC9F8800E56C38 /* LottieAnimationView.swift */,
+				6AE6FB5E2BC9A1A800F31EDE /* Constants.swift */,
 				6AD259FD2BCC9F1E00E56C38 /* loader.json */,
 				6AE6FB3F2BC995BF00F31EDE /* Assets.xcassets */,
 				6A357C802BCB159D0048A833 /* Preloader.storyboard */,
@@ -93,16 +120,13 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		6AD25A012BCC9FAC00E56C38 /* Helpers */ = {
+		6AD25A012BCC9FAC00E56C38 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				6AE6FB5E2BC9A1A800F31EDE /* Constants.swift */,
 				6AD259F12BCC3CA800E56C38 /* AsyncImageView.swift */,
-				6AD259FF2BCC9F8800E56C38 /* LottieAnimationView.swift */,
-				6A48F9052BCEBA6100ADB472 /* WarningMessage.swift */,
-				6AA85E322BD5CA7700B3483B /* DecodeData.swift */,
+				6A7E22202D2C21D7002C2024 /* View+Extensions.swift */,
 			);
-			path = Helpers;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		6AE6FB2F2BC995BE00F31EDE = {
@@ -126,11 +150,12 @@
 		6AE6FB3A2BC995BE00F31EDE /* MarsSnap */ = {
 			isa = PBXGroup;
 			children = (
-				6AE6FB5D2BC996DF00F31EDE /* App */,
-				6AE6FB572BC996D000F31EDE /* Model */,
+				6AE6FB3B2BC995BE00F31EDE /* MarsSnapApp.swift */,
+				6AE6FB5D2BC996DF00F31EDE /* Store */,
+				6AE6FB572BC996D000F31EDE /* Models */,
 				6AE6FB592BC996D000F31EDE /* View */,
-				6AE6FB552BC996D000F31EDE /* ViewModel */,
-				6AD25A012BCC9FAC00E56C38 /* Helpers */,
+				6AE6FB552BC996D000F31EDE /* Service */,
+				6AD25A012BCC9FAC00E56C38 /* Extensions */,
 				6AD259FC2BCC7DFF00E56C38 /* Utils */,
 			);
 			path = MarsSnap;
@@ -155,21 +180,21 @@
 			path = Component;
 			sourceTree = "<group>";
 		};
-		6AE6FB552BC996D000F31EDE /* ViewModel */ = {
+		6AE6FB552BC996D000F31EDE /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				6A48F9072BCEBAC000ADB472 /* MarsPhotoManager.swift */,
+				6A48F9072BCEBAC000ADB472 /* Webservice.swift */,
 			);
-			path = ViewModel;
+			path = Service;
 			sourceTree = "<group>";
 		};
-		6AE6FB572BC996D000F31EDE /* Model */ = {
+		6AE6FB572BC996D000F31EDE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				6AE6FB562BC996D000F31EDE /* Mars.swift */,
+				6AE6FB562BC996D000F31EDE /* Photo.swift */,
 				6AD259F82BCC62A100E56C38 /* History.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		6AE6FB592BC996D000F31EDE /* View */ = {
@@ -177,18 +202,21 @@
 			children = (
 				6AE6FB582BC996D000F31EDE /* MarsImageView.swift */,
 				6AE6FB602BC9C60500F31EDE /* HistoryView.swift */,
+				6AE6FB3D2BC995BE00F31EDE /* ContentView.swift */,
 				6AE6FB502BC9967300F31EDE /* Component */,
+				6A7E221A2D2C1E20002C2024 /* MainView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		6AE6FB5D2BC996DF00F31EDE /* App */ = {
+		6AE6FB5D2BC996DF00F31EDE /* Store */ = {
 			isa = PBXGroup;
 			children = (
-				6AE6FB3B2BC995BE00F31EDE /* MarsSnapApp.swift */,
-				6AE6FB3D2BC995BE00F31EDE /* ContentView.swift */,
+				6A48F9052BCEBA6100ADB472 /* Store.swift */,
+				6A7E22152D2C14D4002C2024 /* Middleware */,
+				6A7E22142D2C14D2002C2024 /* Reducers */,
 			);
-			path = App;
+			path = Store;
 			sourceTree = "<group>";
 		};
 		842F4C4C1458E61CBED5F7D5 /* Frameworks */ = {
@@ -328,19 +356,23 @@
 				6A357C7F2BCB0B5B0048A833 /* GeneralFilterComponent.swift in Sources */,
 				6AE6FB612BC9C60500F31EDE /* HistoryView.swift in Sources */,
 				6AD25A002BCC9F8800E56C38 /* LottieAnimationView.swift in Sources */,
-				6AE6FB5B2BC996D000F31EDE /* Mars.swift in Sources */,
-				6AA85E332BD5CA7700B3483B /* DecodeData.swift in Sources */,
+				6AE6FB5B2BC996D000F31EDE /* Photo.swift in Sources */,
 				6AE6FB3E2BC995BE00F31EDE /* ContentView.swift in Sources */,
 				6AE6FB3C2BC995BE00F31EDE /* MarsSnapApp.swift in Sources */,
 				6AD259FB2BCC70BE00E56C38 /* FilterCardComponent.swift in Sources */,
 				6AE6FB512BC9967300F31EDE /* CardComponent.swift in Sources */,
-				6A48F9062BCEBA6100ADB472 /* WarningMessage.swift in Sources */,
-				6A48F9082BCEBAC000ADB472 /* MarsPhotoManager.swift in Sources */,
+				6A48F9062BCEBA6100ADB472 /* Store.swift in Sources */,
+				6A48F9082BCEBAC000ADB472 /* Webservice.swift in Sources */,
+				6A7E221D2D2C1ED4002C2024 /* AppReducer.swift in Sources */,
+				6A7E22172D2C158D002C2024 /* PhotoMiddleware.swift in Sources */,
+				6A7E221B2D2C1E20002C2024 /* MainView.swift in Sources */,
 				6AD259F92BCC62A100E56C38 /* History.swift in Sources */,
 				6AE6FB5F2BC9A1A800F31EDE /* Constants.swift in Sources */,
 				6A06599C2BCAF333005D9B8E /* DatePickerComponent.swift in Sources */,
 				6AE6FB5C2BC996D000F31EDE /* MarsImageView.swift in Sources */,
 				6AD259F22BCC3CA800E56C38 /* AsyncImageView.swift in Sources */,
+				6A7E22212D2C21D7002C2024 /* View+Extensions.swift in Sources */,
+				6A7E221F2D2C1F0D002C2024 /* PhotosReducer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

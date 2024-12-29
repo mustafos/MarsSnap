@@ -6,8 +6,6 @@ target 'MarsSnap' do
   use_frameworks!
 
   # Pods for MarsSnap
-  pod 'Alamofire'
-  pod 'SwiftyJSON'
-  pod 'lottie-ios'
+  pod 'SDWebImageSwiftUI'
 
 end
