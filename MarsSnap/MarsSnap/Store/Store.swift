@@ -16,10 +16,17 @@ protocol ReduxState { }
 
 struct AppState: ReduxState {
     var photos = PhotosState()
+    var filters = FiltersState()
 }
 
 struct PhotosState: ReduxState {
     var photos = [Photo]()
+}
+
+struct FiltersState: ReduxState {
+    var rover: String = ""
+    var camera: String = ""
+    var date: String = ""
 }
 
 protocol Action { }
@@ -32,6 +39,12 @@ struct FetchPhotos: Action {
 
 struct SetPhotos: Action {
     let photos: [Photo]
+}
+
+struct SetFilters: Action {
+    let rover: String
+    let camera: String
+    let date: String
 }
 
 class Store<StoreState: ReduxState>: ObservableObject {
