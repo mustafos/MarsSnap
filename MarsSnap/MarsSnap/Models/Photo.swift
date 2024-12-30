@@ -26,13 +26,26 @@ struct Photo: Decodable {
 }
 
 struct Camera: Decodable {
+    let name: String
     let fullName: String
     
     private enum CodingKeys: String, CodingKey {
+        case name
         case fullName = "full_name"
     }
 }
 
 struct Rover: Decodable {
     let name: String
+    let cameras: [RoverCameras]
+}
+
+struct RoverCameras: Decodable {
+    let name: String
+    let fullName: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case name
+        case fullName = "full_name"
+    }
 }

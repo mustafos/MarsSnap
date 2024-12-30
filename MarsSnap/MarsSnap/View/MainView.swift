@@ -83,7 +83,7 @@ struct MainView: View {
     MainView()
 }
 
-import SDWebImageSwiftUI
+import SDWebImage
 
 struct PhotoCell: View {
     
