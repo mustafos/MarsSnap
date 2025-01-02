@@ -14,13 +14,13 @@ struct Constants {
     struct ApiKeys {
         static let securKey = "T9f55mAkKU4eIDFxBC9viMRytowhjzcNrh4dtanu"
     }
-    
+    // https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?sol=1000&api_key=T9f55mAkKU4eIDFxBC9viMRytowhjzcNrh4dtanu
     struct Urls {
         static func urlForMarsPhotoByRoverCameraDate(rover: String, camera: String? = nil, date: String? = nil) -> String {
             var urlString = "https://api.nasa.gov/mars-photos/api/v1/rovers/\(rover)/photos?sol=1000"
             
             // Добавляем камеру, если она задана
-            if let camera = camera {
+            if let camera = camera, !camera.isEmpty {
                 urlString += "&camera=\(camera.lowercased())"
             }
             
