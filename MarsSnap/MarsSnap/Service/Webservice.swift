@@ -32,6 +32,8 @@ class Webservice {
             return
         }
         
+        print("Requesting URL: \(photoURL)") // Debug: Print the constructed URL
+        
         URLSession.shared.dataTask(with: photoURL) { data, response, error in
             guard let data, error == nil else {
                 completion(.failure(.invalidData))
