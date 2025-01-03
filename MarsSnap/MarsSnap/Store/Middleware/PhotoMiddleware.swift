@@ -15,7 +15,10 @@ func photoMiddleware() -> Middlewere<AppState> {
                 switch result {
                 case .success(let photos):
                     if let photos = photos {
-                        // set photos to the state
+                        // Сначала устанавливаем доступные камеры для марсохода
+                        let availableCameras = photos.first?.rover.cameras ?? []
+                        dispatch(SetAvailableCameras(cameras: availableCameras))
+                        // Затем обновляем фото
                         dispatch(SetPhotos(photos: photos))
                     }
                 case .failure(let error):
