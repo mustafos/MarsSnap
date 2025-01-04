@@ -9,7 +9,6 @@ import Foundation
 
 func photosReducer(_ state: PhotosState, _ action: Action) -> PhotosState {
     var state = state
-    
     switch action {
     case let action as SetPhotos:
         state.photos = action.photos
