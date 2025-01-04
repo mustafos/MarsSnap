@@ -25,8 +25,9 @@ struct PhotosState: ReduxState {
 
 struct FiltersState: ReduxState {
     var rover: String = ""
-    var camera: String = ""
-    var date: String = ""
+    var camera: String? = nil
+    var date: String? = nil 
+    var availableCameras: [RoverCameras] = [] // Список доступных камер для текущего марсохода
 }
 
 protocol Action { }
@@ -43,8 +44,12 @@ struct SetPhotos: Action {
 
 struct SetFilters: Action {
     let rover: String
-    let camera: String
-    let date: String
+    let camera: String?
+    let date: String?
+}
+
+struct SetAvailableCameras: Action {
+    let cameras: [RoverCameras]
 }
 
 class Store<StoreState: ReduxState>: ObservableObject {
