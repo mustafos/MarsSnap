@@ -33,6 +33,7 @@
 		6AE6FB612BC9C60500F31EDE /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE6FB602BC9C60500F31EDE /* HistoryView.swift */; };
 		6AF485502D2D4EDD00042665 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6AF4854F2D2D4EDD00042665 /* SDWebImageSwiftUI */; };
 		6AF485532D2D4FF800042665 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 6AF485522D2D4FF800042665 /* Lottie */; };
+		6AF485552D2D55DF00042665 /* FiltersReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF485542D2D55DF00042665 /* FiltersReducer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -74,6 +75,7 @@
 		6AE6FB582BC996D000F31EDE /* MarsImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsImageView.swift; sourceTree = "<group>"; };
 		6AE6FB5E2BC9A1A800F31EDE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6AE6FB602BC9C60500F31EDE /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		6AF485542D2D55DF00042665 /* FiltersReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersReducer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 			children = (
 				6A7E221C2D2C1ED4002C2024 /* AppReducer.swift */,
 				6A7E221E2D2C1F0D002C2024 /* PhotosReducer.swift */,
+				6AF485542D2D55DF00042665 /* FiltersReducer.swift */,
 			);
 			path = Reducers;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				6A7E221B2D2C1E20002C2024 /* MainView.swift in Sources */,
 				6AD259F92BCC62A100E56C38 /* History.swift in Sources */,
 				6AE6FB5F2BC9A1A800F31EDE /* Constants.swift in Sources */,
+				6AF485552D2D55DF00042665 /* FiltersReducer.swift in Sources */,
 				6A06599C2BCAF333005D9B8E /* DatePickerComponent.swift in Sources */,
 				6AE6FB5C2BC996D000F31EDE /* MarsImageView.swift in Sources */,
 				6AD259F22BCC3CA800E56C38 /* AsyncImageView.swift in Sources */,
@@ -444,10 +448,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MarsSnap/Utils/Preview Content\"";
-				DEVELOPMENT_TEAM = 9PCQ5XC84W;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -467,6 +471,7 @@
 				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = mandlecommerce.MarsSnap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -483,10 +488,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MarsSnap/Utils/Preview Content\"";
-				DEVELOPMENT_TEAM = 9PCQ5XC84W;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -506,6 +511,7 @@
 				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = mandlecommerce.MarsSnap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
