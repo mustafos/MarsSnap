@@ -9,73 +9,102 @@ import SwiftUI
 
 struct MainView: View {
     @EnvironmentObject var store: Store<AppState>
-    @State private var rover: String = ""
-    @State private var camera: String = ""
-    @State private var date: String = ""
     
-    struct Props {
-        let photos: [Photo]
-        let onRover: (String) -> Void
-        let onCamera: (String) -> Void
-        let onDate: (String) -> Void
-    }
-    
-    private func map(state: PhotosState) -> Props {
-        Props(photos: state.photos) { roverType in
-            store.dispatch(action: FetchPhotos(rover: roverType, camera: camera, date: date))
-        } onCamera: { cameraType in
-            store.dispatch(action: FetchPhotos(rover: rover, camera: cameraType, date: date))
-        } onDate: { earthDate in
-            store.dispatch(action: FetchPhotos(rover: rover, camera: camera, date: earthDate))
-        }
+    struct MainProps {
+        var rover: String
+        var camera: String?
+        var date: String?
+        var availableCameras: [RoverCameras]
+        var photos: [Photo]
     }
     
     var body: some View {
-        let props = map(state: store.state.photos)
-        VStack {
-            HStack {
-                Button("Perseverance") {
-                    rover = "perseverance"
-                }
-                Button("Curiosity") {
-                    rover = "curiosity"
-                }
-                Button("Opportunity") {
-                    rover = "opportunity"
-                }
-                Button("Spirit") {
-                    rover = "spirit"
-                }
+        let props = map(state: store.state)
+        
+        return VStack {
+            // Марсоход (rover)
+            Picker("Select Rover", selection: $store.state.filters.rover) {
+                Text("Perseverance").tag("perseverance")
+                Text("Curiosity").tag("curiosity")
+                Text("Opportunity").tag("opportunity")
+                Text("Spirit").tag("spirit")
+            }
+            .onChange(of: store.state.filters.rover) { newRover in
+                store.dispatch(action: SetFilters(rover: newRover, camera: nil, date: nil))
+                store.dispatch(action: FetchPhotos(rover: newRover, camera: nil, date: nil))
             }
             
-            VStack(spacing: 5) {
-                Button("Front Hazard Avoidance Camera") {
-                    camera = "fhaz"
+            // Камера (camera) - динамически заполняется в зависимости от выбранного марсохода
+            Picker("Select Camera", selection: $store.state.filters.camera) {
+                Text("All Cameras").tag(nil as String?)
+                ForEach(props.availableCameras, id: \.name) { camera in
+                    Text(camera.fullName).tag(camera.name as String?)
                 }
-                Button("Rear Hazard Avoidance Camera") {
-                    camera = "rhaz"
-                }
-                Button("Navigation Camera") {
-                    camera = "navcam"
-                }
+            }
+            .onChange(of: store.state.filters.camera) { newCamera in
+                store.dispatch(action: FetchPhotos(rover: store.state.filters.rover, camera: newCamera, date: store.state.filters.date))
             }
             
-            Button("Search") {
-                props.onRover(rover)
-                props.onCamera(camera)
-                props.onDate(date)
-            }
-
+            // Новый DatePicker для выбора даты
+            DatePicker(
+                "Select Date",
+                selection: Binding(
+                    get: {
+                        if let dateString = store.state.filters.date {
+                            return stringToDate(dateString) ?? Date()
+                        }
+                        return Date()
+                    },
+                    set: { newDate in
+                        store.state.filters.date = dateToString(newDate)
+                    }
+                ),
+                displayedComponents: .date
+            )
+            .datePickerStyle(.compact)
+            .labelsHidden()
+            
+            // Photo
             List(props.photos, id: \.imgSrc) { photo in
                 NavigationLink {
-//                    PhotoDetailsView(photo: photo)
+                    // PhotoDetailsView(photo: photo)
                 } label: {
                     PhotoCell(photo: photo)
                 }
-            }.listStyle(PlainListStyle())
+            }
+            .listStyle(PlainListStyle())
+            .onAppear {
+                if !store.state.filters.rover.isEmpty {
+                    store.dispatch(action: FetchPhotos(rover: store.state.filters.rover, camera: store.state.filters.camera, date: store.state.filters.date))
+                }
+            }
         }
         .navigationTitle("Mars Photos")
         .embedInNavigationView()
+    }
+}
+
+private extension MainView {
+    func map(state: AppState) -> MainProps {
+        return MainProps(
+            rover: state.filters.rover,
+            camera: state.filters.camera,
+            date: state.filters.date,
+            availableCameras: state.filters.availableCameras,  // Здесь оставляем массив RoverCameras
+            photos: state.photos.photos
+        )
+    }
+    
+    func stringToDate(_ dateString: String) -> Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.date(from: dateString)
+    }
+
+    func dateToString(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: date)
     }
 }
 
@@ -83,7 +112,7 @@ struct MainView: View {
     MainView()
 }
 
-import SDWebImage
+import SDWebImageSwiftUI
 
 struct PhotoCell: View {
     
@@ -97,9 +126,9 @@ struct PhotoCell: View {
                 .transition(.fade(duration: 0.5))
                 .frame(width: 100, height: 80)
             
-//            URLImage(url: photo.imgSrc)
-//                .frame(width: 100, height: 130)
-//                .cornerRadius(10)
+            //            URLImage(url: photo.imgSrc)
+            //                .frame(width: 100, height: 130)
+            //                .cornerRadius(10)
             VStack {
                 Text(photo.rover.name)
                 Text(photo.camera.fullName)
@@ -112,22 +141,22 @@ struct PhotoCell: View {
 //struct PhotoDetailsView: View {
 //    @EnvironmentObject var store: Store<AppState>
 //    let photo: Photo
-//    
+//
 //    struct Props {
 //        let details: [Photo]
 //        let onLoadMovieDetails: (String) -> Void
 //    }
-//    
+//
 //    private func map(state: PhotosState) -> Props {
 //        Props(details: state.photos) { img in
 //            store.dispatch(action: FetchPhotos(rover: img, camera: img, date: img))
 //        }
 //    }
-//    
+//
 //    var body: some View {
 //        VStack {
 //            let props = map(state: store.state.photos)
-//            
+//
 //            Group {
 //                if let details = props.details {
 //                    VStack(alignment: .leading) {
@@ -136,15 +165,15 @@ struct PhotoCell: View {
 ////                            URLImage(url: details.first?.imgSrc!)
 //                            Spacer()
 //                        }
-//                        
+//
 //                        Text(details.count.description)
 //                            .padding(5)
 //                            .font(.title)
 ////                        Text(details.endIndex.codingKey)
 //                            .padding(5)
-//                        
+//
 //                        Spacer()
-//                        
+//
 //                    }
 //                } else {
 //                    Text("Loading...")
