@@ -5,107 +5,92 @@
 //  Created by Mustafa Bekirov on 13.04.2022.
 //  Copyright © 2022 Mustafa Bekirov. All rights reserved.
 
-//import SwiftUI
-//
-//struct GeneralFilterComponent: View {
-//    
-//    // MARK: – PROPERTIES
-//    @StateObject var networkManager = MarsPhotoManager.shared
-//    var isFilterCamera: Bool = true
-//    @State private var selectedRover: Rovers?
-//    @State private var selectedCamera = [Cameras]()
-//    @State private var cameraName: String = ""
-//    
-//    @Binding var selectedFilter: String
-//    var positiveButtonAction: ((String) -> ())? = nil
-//    var negativeButtonAction: (() -> ())? = {}
-//    
-//    // MARK: – BODY
-//    var body: some View {
-//        ZStack(alignment: .bottom) {
-//            Color.black.opacity(0.5)
-//                .edgesIgnoringSafeArea(.all)
-//            Spacer()
-//            VStack {
-//                HeaderView()
-//                if isFilterCamera {
-//                    Picker("Choose the camera", selection: $cameraName) {
-//                        ForEach(selectedCamera, id: \.self) { camera in
-//                            Text(camera.full_name)
-//                        }
-//                    }
-//                    .pickerStyle(.wheel)
-//                    .padding(.bottom)
-//                } else {
-//                    Picker("Choose the rover", selection: $selectedRover) {
-//                        ForEach(Rovers.allCases, id: \.self) { rover in
-//                            Text(rover.rawValue)
-//                        }
-//                    }
-//                    .pickerStyle(.wheel)
-//                    .padding(.bottom)
-//                }
-//            } //: VSTACK
-//            .frame(maxWidth: .infinity, maxHeight: 306)
-//            .background(Color.backgroundOne)
-//            .cornerRadius(50)
-//        } //: ZSTACK
-//        .edgesIgnoringSafeArea(.all)
-//        .zIndex(2)
-//    }
-//    
-//    @ViewBuilder
-//    private func HeaderView() -> some View {
-//        HStack {
-//            Button {
-//                withAnimation {
-//                    Constants.feedback.impactOccurred()
-//                    negativeButtonAction?()
-//                }
-//            } label: {
-//                Image("close")
-//                    .frame(width: 44, height: 44)
-//            }
-//            Spacer()
-//            
-//            Text(isFilterCamera ? "Camera" : "Rover")
-//                .font(.system(size: 22, weight: .bold))
-//            
-//            Spacer()
-//            Button {
-//                withAnimation {
-//                    Constants.feedback.impactOccurred()
-//                    if isFilterCamera {
-//                        positiveButtonAction?(cameraName.capitalized)
-//                    } else {
-//                        positiveButtonAction?(selectedRover?.rawValue ?? "All")
-//                    }
-//                }
-//            } label: {
-//                Image("correct")
-//                    .frame(width: 44, height: 44)
-//            }
-//        }
-//        .padding([.top, .horizontal], 20)
-//    }
-//}
-//
-//extension GeneralFilterComponent {
-//    func onPositiveButtonTap(_ positiveButtonAction: ((String) -> ())?) -> Self {
-//        var alert = self
-//        alert.positiveButtonAction = positiveButtonAction
-//        return alert
-//    }
-//    
-//    func onNegativeButtonTap(_ negativeButtonAction: (() -> ())?) -> Self {
-//        var alert = self
-//        alert.negativeButtonAction = negativeButtonAction
-//        return alert
-//    }
-//}
-//
-//enum Rovers: String, CaseIterable {
-//    case curiosity = "Curiosity"
-//    case opportunity = "Opportunity"
-//    case spirit = "Spirit"
-//}
+import SwiftUI
+
+struct FilterOption: Identifiable, Hashable {
+    let id: String
+    let title: String
+}
+
+struct GeneralFilterComponent: View {
+    let title: String
+    let options: [FilterOption]
+    @State private var draftID: String
+    var onCancel: () -> Void
+    var onConfirm: (String) -> Void
+
+    init(
+        title: String,
+        options: [FilterOption],
+        selection: String,
+        onCancel: @escaping () -> Void,
+        onConfirm: @escaping (String) -> Void
+    ) {
+        self.title = title
+        self.options = options
+        let initial = options.contains(where: { $0.id == selection }) ? selection : (options.first?.id ?? "")
+        _draftID = State(initialValue: initial)
+        self.onCancel = onCancel
+        self.onConfirm = onConfirm
+    }
+
+    var body: some View {
+        ZStack(alignment: .bottom) {
+            Color.black.opacity(0.5)
+                .ignoresSafeArea()
+                .onTapGesture(perform: onCancel)
+
+            VStack(spacing: 0) {
+                header
+                if options.isEmpty {
+                    Text("No options")
+                        .foregroundColor(.layerTwo)
+                        .padding(.bottom, 28)
+                } else {
+                    Picker(title, selection: $draftID) {
+                        ForEach(options) { option in
+                            Text(option.title).tag(option.id)
+                        }
+                    }
+                    .pickerStyle(.wheel)
+                    .labelsHidden()
+                    .padding(.bottom, 8)
+                }
+            }
+            .frame(maxWidth: .infinity)
+            .background(Color.backgroundOne)
+            .cornerRadius(28)
+        }
+        .ignoresSafeArea()
+    }
+
+    private var header: some View {
+        HStack {
+            Button(action: {
+                Haptics.tap()
+                onCancel()
+            }) {
+                Image("close")
+                    .frame(width: 44, height: 44)
+            }
+            .accessibilityLabel("Cancel")
+
+            Spacer()
+
+            Text(title)
+                .font(.system(size: 22, weight: .bold))
+
+            Spacer()
+
+            Button(action: {
+                Haptics.tap()
+                onConfirm(draftID)
+            }) {
+                Image("correct")
+                    .frame(width: 44, height: 44)
+            }
+            .accessibilityLabel("Apply")
+        }
+        .padding([.top, .horizontal], 20)
+    }
+}
