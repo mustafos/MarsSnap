@@ -8,74 +8,78 @@
 import SwiftUI
 
 struct DatePickerComponent: View {
-    
-    // MARK: – PROPERTIES
     var title: String
     @Binding var selectedDate: Date
-    var positiveButtonAction: ((Date) -> ())? = nil
-    var negativeButtonAction: (() -> ())? = {}
-    
-    // MARK: – BODY
+    var minimumDate: Date
+    var maximumDate: Date
+    var positiveButtonAction: ((Date) -> Void)?
+    var negativeButtonAction: (() -> Void)?
+
     var body: some View {
         ZStack {
             Color.black.opacity(0.5)
-                .edgesIgnoringSafeArea(.all)
-            
-            VStack {
-                HeaderView()
-                DatePicker("Select the earth date", selection: $selectedDate, displayedComponents: .date)
-                    .datePickerStyle(.wheel)
-                    .padding(.horizontal, 20)
-            } //: VSTACK
-            .frame(maxWidth: 353, maxHeight: 312)
+                .ignoresSafeArea()
+                .onTapGesture { negativeButtonAction?() }
+
+            VStack(spacing: 0) {
+                header
+                DatePicker(
+                    "Select the earth date",
+                    selection: $selectedDate,
+                    in: minimumDate...maximumDate,
+                    displayedComponents: .date
+                )
+                .datePickerStyle(.wheel)
+                .labelsHidden()
+                .padding(.horizontal, 20)
+                .padding(.bottom, 12)
+            }
+            .frame(maxWidth: 353)
             .background(Color.backgroundOne)
-            .cornerRadius(50)
-        } //: ZSTACK
-        .zIndex(2)
+            .cornerRadius(28)
+            .padding(.horizontal, 20)
+        }
     }
-    
-    @ViewBuilder
-    private func HeaderView() -> some View {
+
+    private var header: some View {
         HStack {
             Button {
-                withAnimation {
-//                    Constants.feedback.impactOccurred()
-                    negativeButtonAction?()
-                }
+                Haptics.tap()
+                negativeButtonAction?()
             } label: {
                 Image("close")
                     .frame(width: 44, height: 44)
             }
-            
+            .accessibilityLabel("Cancel")
+
             Spacer()
-            
+
             Text(title)
                 .font(.system(size: 22, weight: .bold))
-            
+
             Spacer()
-            
+
             Button {
-                withAnimation {
-//                    Constants.feedback.impactOccurred()
-                    positiveButtonAction?(selectedDate)
-                }
+                Haptics.tap()
+                positiveButtonAction?(selectedDate)
             } label: {
                 Image("correct")
                     .frame(width: 44, height: 44)
             }
-        } //: HSTACK
+            .accessibilityLabel("Apply date")
+        }
         .padding(20)
     }
 }
 
 extension DatePickerComponent {
-    func onPositiveButtonTap(_ positiveButtonAction: ((Date) -> ())?) -> Self {
+    func onPositiveButtonTap(_ positiveButtonAction: ((Date) -> Void)?) -> Self {
         var alert = self
         alert.positiveButtonAction = positiveButtonAction
         return alert
     }
-    
-    func onNegativeButtonTap(_ negativeButtonAction: (() -> ())?) -> Self {
+
+    func onNegativeButtonTap(_ negativeButtonAction: (() -> Void)?) -> Self {
         var alert = self
         alert.negativeButtonAction = negativeButtonAction
         return alert
