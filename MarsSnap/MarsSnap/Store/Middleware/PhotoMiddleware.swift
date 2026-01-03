@@ -7,24 +7,35 @@
 
 import Foundation
 
-func photoMiddleware() -> Middlewere<AppState> {
-    return { state, action, dispatch in
+func photoMiddleware() -> Middleware<AppState> {
+    { state, action, dispatch in
         switch action {
         case let action as FetchPhotos:
-            Webservice().getMarsPhotosBy(rover: action.rover, camera: action.camera, date: action.date) { result in
-                switch result {
-                case .success(let photos):
-                    if let photos = photos {
-                        // Сначала устанавливаем доступные камеры для марсохода
-                        let availableCameras = photos.first?.rover.cameras ?? []
-                        dispatch(SetAvailableCameras(cameras: availableCameras))
-                        // Затем обновляем фото
-                        dispatch(SetPhotos(photos: photos))
+            let rover = action.request.rover
+            let shouldLoadCameras = (state.filters.camerasByRover[rover] ?? []).isEmpty
+            Task {
+                do {
+                    async let photosTask = Webservice().fetchPhotos(request: action.request, page: action.page)
+                    let cameras = shouldLoadCameras ? try? await Webservice().fetchCameras(rover: rover) : nil
+                    let page = try await photosTask
+                    if let cameras, !cameras.isEmpty {
+                        dispatch(SetRoverCameras(rover: rover, cameras: cameras))
                     }
-                case .failure(let error):
-                    print(error.localizedDescription)
+                    dispatch(PhotosLoaded(
+                        requestID: action.requestID,
+                        page: page.page,
+                        photos: page.photos,
+                        hasMore: page.hasMore
+                    ))
+                } catch {
+                    let message = (error as? LocalizedError)?.errorDescription ?? "Couldn't load photos."
+                    dispatch(PhotosFailed(requestID: action.requestID, page: action.page, message: message))
                 }
             }
+        case is LoadHistory:
+            dispatch(SetHistory(items: HistoryStore.load()))
+        case is AddFilter, is DeleteFilter, is SetHistory:
+            HistoryStore.save(state.history.items)
         default:
             break
         }
